@@ -2,9 +2,9 @@ Data Readers
 ------------
 
 .. toctree::
-:maxdepth: 2
+   :maxdepth: 3
 
-       sohu
-       netease
-       sse
-       szse
+   sohu
+   netease
+   sse
+   szse

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# ORAC documentation build configuration file, created by
+# finance-datareader-py documentation build configuration file, created by
 # sphinx-quickstart on Tue Jan 16 11:20:59 2018.
 #
 # This file is execfile()d with the current directory set to its
