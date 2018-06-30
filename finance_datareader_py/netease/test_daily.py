@@ -1,5 +1,5 @@
-# Copyright (C) 2018 GuQiangJs.
-# Licensed under https://www.gnu.org/licenses/gpl-3.0.html <see LICENSE file>
+# Copyright (C) 2018 GuQiangJs. https://github.com/GuQiangJS
+# Licensed under Apache License 2.0 <see LICENSE file>
 
 import unittest
 
