@@ -23,7 +23,7 @@ setup(
     cmdclass=versioneer.get_cmdclass(),
     description="",
     long_description=readme(),
-    license='BApache License 2.0',
+    license='Apache License 2.0',
     author='GuQiangJS',
     author_email='guqiangjs@gmail.com',
     url='https://github.com/GuQiangJS/finance-datareader-py.git',
