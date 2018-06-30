@@ -1,6 +1,6 @@
 SZSE
 ------------
 
-.. py:module:: finance_datareader_py.datareader.szse
+.. py:module:: finance_datareader_py.szse
 
 .. autofunction:: get_szse_symbols

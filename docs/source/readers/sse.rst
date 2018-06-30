@@ -1,6 +1,6 @@
 SSE
 ------------
 
-.. py:module:: finance_datareader_py.datareader.sse
+.. py:module:: finance_datareader_py.sse
 
 .. autofunction:: get_sse_symbols

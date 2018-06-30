@@ -1,7 +1,7 @@
 Sohu
 ------------
 
-.. py:module:: finance_datareader_py.datareader.sohu.daily
+.. py:module:: finance_datareader_py.sohu.daily
 
 .. autoclass:: SohuDailyReader
 :members:
