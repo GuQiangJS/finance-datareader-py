@@ -1,7 +1,7 @@
 NetEase
 ------------
 
-.. py:module:: finance-datareader-py.datareader.netease.daily
+.. py:module:: finance_datareader_py.datareader.netease.daily
 
 .. autoclass:: NetEaseDailyReader
 :members:
