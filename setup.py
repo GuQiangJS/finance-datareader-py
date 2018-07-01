@@ -40,6 +40,6 @@ setup(
     keywords='data',
     install_requires=INSTALL_REQUIRES,
     packages=find_packages(),
-    test_suite='tests',
     zip_safe=False,
+    exclude_package_data={'': ['test_*.py']}
 )

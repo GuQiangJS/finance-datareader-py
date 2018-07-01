@@ -5,3 +5,5 @@ include versioneer.py
 include finance_datareader_py/_version.py
 
 recursive-include finance_datareader_py *.py
+recursive-exclude finance_datareader_py test_*.py
+exclude finance_datareader_py/netease test_*.py
