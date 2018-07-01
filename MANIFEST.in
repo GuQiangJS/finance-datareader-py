@@ -1,3 +1,6 @@
+include README.md
+include LICENSE.md
+
 include versioneer.py
 include finance_datareader_py/_version.py
 
