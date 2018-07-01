@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 import versioneer
 
-NAME = 'finance_datareader_py'
+NAME = 'finance-datareader-py'
 
 
 def readme():
