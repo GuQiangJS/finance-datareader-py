@@ -8,6 +8,8 @@ import pandas as pd
 from pandas.io.json import json_normalize
 from pandas_datareader.base import _DailyBaseReader
 
+__all__ = ['SohuDailyReader']
+
 
 class SohuDailyReader(_DailyBaseReader):
     """从sohu读取每日成交汇总数据

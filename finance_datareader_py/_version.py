@@ -1,4 +1,3 @@
-
 # This file helps to compute a version number in source trees obtained from
 # git-archive tarball (such as those provided by githubs download-from-tag
 # feature). Distribution tarballs (built by setup.py sdist) and build
@@ -58,12 +57,14 @@ HANDLERS = {}
 
 def register_vcs_handler(vcs, method):  # decorator
     """Decorator to mark a method as the handler for a particular VCS."""
+
     def decorate(f):
         """Store f in HANDLERS[vcs][method]."""
         if vcs not in HANDLERS:
             HANDLERS[vcs] = {}
         HANDLERS[vcs][method] = f
         return f
+
     return decorate
 
 
@@ -79,7 +80,7 @@ def run_command(commands, args, cwd=None, verbose=False, hide_stderr=False,
             p = subprocess.Popen([c] + args, cwd=cwd, env=env,
                                  stdout=subprocess.PIPE,
                                  stderr=(subprocess.PIPE if hide_stderr
-                                         else None))
+                                 else None))
             break
         except EnvironmentError:
             e = sys.exc_info()[1]

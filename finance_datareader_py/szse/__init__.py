@@ -5,6 +5,8 @@ import time
 
 import pandas as pd
 
+__all__ = ['get_szse_symbols']
+
 # http://www.szse.cn/szseWeb/ShowReport.szse?SHOWTYPE=xlsx&CATALOGID=1110&tab1PAGENO=1&ENCODE=1&TABKEY=tab1  全部
 # http://www.szse.cn/szseWeb/ShowReport.szse?SHOWTYPE=xlsx&CATALOGID=1110&tab1PAGENO=1&ENCODE=1&TABKEY=tab2  A股
 # http://www.szse.cn/szseWeb/ShowReport.szse?SHOWTYPE=xlsx&CATALOGID=1110&tab5PAGENO=1&ENCODE=1&TABKEY=tab5  中小板

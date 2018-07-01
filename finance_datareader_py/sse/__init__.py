@@ -7,6 +7,7 @@ import time
 import pandas as pd
 from pandas_datareader.base import _BaseReader
 
+__all__ = ['get_sse_symbols']
 _RE = re.compile('val:"(6\d{5})",val2:"(.*)",val3:"(.*)"')
 _ticker_cache = None
 

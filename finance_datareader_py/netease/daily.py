@@ -8,6 +8,8 @@ import pandas.compat as compat
 from pandas.compat import StringIO, bytes_to_str
 from pandas_datareader.base import _DailyBaseReader, _BaseReader
 
+__all__ = ['NetEaseDailyReader']
+
 
 class NetEaseDailyReader(_DailyBaseReader):
     """从 163 读取每日成交汇总数据
