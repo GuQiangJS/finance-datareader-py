@@ -21,7 +21,7 @@ setup(
     name=NAME,
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
-    description="",
+    description=readme(),
     long_description=readme(),
     license='Apache License 2.0',
     author='GuQiangJS',
@@ -39,7 +39,7 @@ setup(
     ],
     keywords='data',
     install_requires=INSTALL_REQUIRES,
-    packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
+    packages=find_packages(),
     test_suite='tests',
     zip_safe=False,
 )
