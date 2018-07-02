@@ -8,3 +8,4 @@ Data Readers
    netease
    sse
    szse
+   sina

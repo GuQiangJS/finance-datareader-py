@@ -13,6 +13,16 @@ class SohuDailyReader_TestCase(unittest.TestCase):
         self.assertFalse(df.empty)
         print(df)
 
+    def test_read_399300(self):
+        """测试抓取沪深300指数数据
+
+        :return:
+        """
+        df = SohuDailyReader(symbols='399300',prefix='zs_').read()
+        self.assertIsNotNone(df)
+        self.assertFalse(df.empty)
+        print(df)
+
 
 if __name__ == '__main__':
     unittest.main()

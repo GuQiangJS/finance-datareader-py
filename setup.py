@@ -14,7 +14,7 @@ def readme():
 
 
 INSTALL_REQUIRES = (
-    ['pandas-datareader>=0.6.0']
+    ['pandas-datareader','numpy','beautifulsoup4']
 )
 
 setup(

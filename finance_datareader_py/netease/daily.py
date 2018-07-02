@@ -38,8 +38,6 @@ class NetEaseDailyReader(_DailyBaseReader):
             session:
             chunksize:
 
-        Todo:
-            暂时未能实现抓取指数的功能，抓取指数可以使用 ``finance-datareader-py.sohu.daily.SohuDailyReader``
         """
         super(NetEaseDailyReader, self).__init__(symbols, start, end, retry_count, pause, session, chunksize)
 
