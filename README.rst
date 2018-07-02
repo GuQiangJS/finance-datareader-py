@@ -8,6 +8,6 @@ Python 金融数据读取器
 快速安装
 -------
 
-.. code-block:: python
+.. code-block:: shell
 
     $ pip install git+https://github.com/GuQiangJS/finance-datareader-py.git
