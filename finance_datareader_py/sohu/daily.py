@@ -59,7 +59,7 @@ class SohuDailyReader(_DailyBaseReader):
         """读取数据
 
         Returns:
-            `pandas.DataFrame`_ 实例。``Date`` 列为索引列。
+            ``pandas.DataFrame`` 实例。``Date`` 列为索引列。
 
             成交量的单位为 *手*，成交金额的单位为 *万元*。
 
@@ -87,9 +87,6 @@ class SohuDailyReader(_DailyBaseReader):
             2018-06-27  25.50  24.22  -1.32  -5.17  23.81  25.51  672347  165239.47  0.69
             2018-06-26  25.82  25.54  -0.95  -3.59  24.83  26.06  591809  150393.69  0.61
             ==========  =====  ===== ======  =====  =====  =====  ======  =========  ====
-
-        .. pandas.DataFrame:
-            https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html
 
         """
         return super(SohuDailyReader, self).read()

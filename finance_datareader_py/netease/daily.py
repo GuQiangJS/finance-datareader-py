@@ -88,7 +88,7 @@ class NetEaseDailyReader(_DailyBaseReader):
         """读取数据
 
         Returns:
-            `pandas.DataFrame`_ 实例。``Date`` 列为索引列。
+            ``pandas.DataFrame`` 实例。``Date`` 列为索引列。
 
             成交量的单位为 *手*，成交金额的单位为 *万元*。
 
@@ -116,9 +116,6 @@ class NetEaseDailyReader(_DailyBaseReader):
             2004-10-11   5.54   5.65   5.51     5.56   -0.02    -0.3597    1.6744   264020.0      34637.0
             2004-10-12   5.79   5.87   5.50     5.53    0.25     4.5126    3.8106   600869.0      14604.0
             ==========  ======  ====== ======  =====  =======  ========  =========  =========  ==========
-
-        .. pandas.DataFrame:
-            https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html
 
         """
         return super(NetEaseDailyReader, self).read()
