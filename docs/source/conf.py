@@ -56,7 +56,7 @@ author = 'GuQiangJS'
 # built documents.
 #
 # The short X.Y version.
-version = finance_datareader_py.__version__('+')[0]
+version = finance_datareader_py.__version__.split('+')[0]
 # The full version, including alpha/beta/rc tags.
 release = finance_datareader_py.__version__
 
