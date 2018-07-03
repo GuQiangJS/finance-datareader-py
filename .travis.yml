@@ -5,7 +5,10 @@ python:
   - "3.6"
 install:
   - pip install coverage
-  - pip install -r requirements.txt
+  - pip install git+https://github.com/pydata/pandas-datareader.git
+  - pip install beautifulsoup4
+  - pip install numpy
+  - pip install sphinx
 script: 
   - python -m unittest
 after_success: 
