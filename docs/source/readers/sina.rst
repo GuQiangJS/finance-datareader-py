@@ -6,3 +6,9 @@ Sina
 .. autoclass:: get_dividends
    :members:
    :undoc-members:
+
+.. py:module:: finance_datareader_py.sina.daily
+
+.. autoclass:: SinaDailyDetailsReader
+   :members:
+   :undoc-members:

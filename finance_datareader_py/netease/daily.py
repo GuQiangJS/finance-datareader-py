@@ -24,7 +24,7 @@ class NetEaseDailyReader(_DailyBaseReader):
         chunksize:
     """
 
-    def __init__(self, symbols=None, start=datetime.date(2004, 10, 8),
+    def __init__(self, symbols:str=None, start=datetime.date(2004, 10, 8),
                  end=datetime.date.today() + datetime.timedelta(days=-1), retry_count=3, pause=1, session=None,
                  chunksize=25):
         """

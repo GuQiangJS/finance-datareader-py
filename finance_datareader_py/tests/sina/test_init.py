@@ -1,3 +1,6 @@
+# Copyright (C) 2018 GuQiangJs. https://github.com/GuQiangJS
+# Licensed under Apache License 2.0 <see LICENSE file>
+
 import datetime
 import unittest
 
