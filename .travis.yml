@@ -15,6 +15,7 @@ install:
   - pip install beautifulsoup4
   - pip install numpy
   - pip install sphinx
+  - pip install sphinx_rtd_theme
   - pip install coveralls --quiet
   - python setup.py install
 script: 
