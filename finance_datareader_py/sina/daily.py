@@ -37,7 +37,8 @@ class SinaDailyDetailsReader(_DailyBaseReader):
             session:
             chunksize:
 
-        不建议传入日期间隔较大的。传入日期较大时会循环按照日期读取，会造成时间较长。
+        Warnings:
+            不建议传入日期间隔较大的。传入日期较大时会循环按照日期读取，会造成时间较长。
 
         """
         super(SinaDailyDetailsReader, self).__init__(symbols, start, end, retry_count, pause, session, chunksize)
@@ -62,13 +63,13 @@ class SinaDailyDetailsReader(_DailyBaseReader):
         """读取数据
 
         Returns:
-            `pandas.DataFrame`` 实例。`成交时间` 为索引列。
+            ``pandas.DataFrame`` 实例。``成交时间`` 为索引列。
 
             读取后的数据 **排序顺序为正序**。
 
-        For example:
+        Example:
             ====================  ==========  ==========  =========   ===========   =====
-                                     成交价     价格变动    成交量(手)    成交额(元)     性质
+                    成交时间          成交价     价格变动    成交量(手)    成交额(元)     性质
             ====================  ==========  ==========  =========   ===========   =====
             2018-06-25 09:25:03     28.25       28.25       5582       15769150      买盘
             2018-06-25 09:30:00     28.24       -0.01       302         852848       卖盘
