@@ -14,4 +14,4 @@ install:
 script: 
   - python -m unittest
 after_success: 
-  - coverage report
+  #- coverage report
