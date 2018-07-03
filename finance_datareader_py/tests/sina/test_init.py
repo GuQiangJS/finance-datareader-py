@@ -6,6 +6,7 @@ import unittest
 
 import numpy as np
 import pandas as pd
+
 from finance_datareader_py.sina import get_dividends
 
 

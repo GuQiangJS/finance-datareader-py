@@ -1,8 +1,9 @@
 # Copyright (C) 2018 GuQiangJs. https://github.com/GuQiangJS
 # Licensed under Apache License 2.0 <see LICENSE file>
 
-import unittest
 import datetime
+import unittest
+
 from finance_datareader_py.netease.daily import NetEaseDailyReader
 
 
@@ -18,7 +19,7 @@ class NetEaseDailyReader_TestCase(unittest.TestCase):
 
         :return:
         """
-        df = NetEaseDailyReader(symbols='399300',start=datetime.date(2002,1,4)).read()
+        df = NetEaseDailyReader(symbols='399300', start=datetime.date(2002, 1, 4)).read()
         self.assertIsNotNone(df)
         self.assertFalse(df.empty)
         print(df)

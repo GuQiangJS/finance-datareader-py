@@ -80,12 +80,12 @@ def _download_dividends(symbol: str):
         for tbody in tbodies:
             if tbodies.index(tbody) == 0:
                 # 分红数据
-                r = _parse_body(tbody,_parse_divided_line)
+                r = _parse_body(tbody, _parse_divided_line)
                 if r:
                     df1 = _translate_dtype(pd.DataFrame(r)).set_index('公告日期')
             elif tbodies.index(tbody) == 1:
                 # 配股数据
-                r = _parse_body(tbody,_parse_allotment_line)
+                r = _parse_body(tbody, _parse_allotment_line)
                 if r:
                     df2 = _translate_dtype(pd.DataFrame(r)).set_index('公告日期')
             else:
@@ -95,6 +95,7 @@ def _download_dividends(symbol: str):
     finally:
         reader.close()
     return [df1, df2]
+
 
 def _translate_dtype(df):
     """转换每一列的格式
@@ -107,16 +108,17 @@ def _translate_dtype(df):
     if df is not None and not df.empty:
         for col in df.columns:
             if '日' in col:
-                df[col]=pd.to_datetime(df[col], format='%Y-%m-%d', errors='coerce')
+                df[col] = pd.to_datetime(df[col], format='%Y-%m-%d', errors='coerce')
             else:
                 df[col] = pd.to_numeric(df[col], downcast='float', errors='coerce')
     return df
 
-def _parse_body(tbody,func_parse_line):
+
+def _parse_body(tbody, func_parse_line):
     """解析 tbody 内容
 
     :param tbody:
-    :param func: 解析每一行用的方法
+    :param func_parse_line: 解析每一行用的方法
     :return:
     """
     if not tbody:
@@ -127,6 +129,7 @@ def _parse_body(tbody,func_parse_line):
         if d:
             result.append(d)
     return result
+
 
 def _parse_divided_line(tr):
     """解析分红数据tr行
@@ -147,6 +150,7 @@ def _parse_divided_line(tr):
             '红股上市日': tds[7].text.strip()
         }
     return None
+
 
 def _parse_allotment_line(tr):
     """解析配股数据tr行

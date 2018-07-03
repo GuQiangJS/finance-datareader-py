@@ -18,7 +18,7 @@ class SohuDailyReader_TestCase(unittest.TestCase):
 
         :return:
         """
-        df = SohuDailyReader(symbols='399300',prefix='zs_').read()
+        df = SohuDailyReader(symbols='399300', prefix='zs_').read()
         self.assertIsNotNone(df)
         self.assertFalse(df.empty)
         print(df)
