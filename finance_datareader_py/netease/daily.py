@@ -106,7 +106,6 @@ class NetEaseDailyReader(_DailyBaseReader):
             Rate       换手率
             =========  =====
 
-        Example:
             ==========  ======  ====== ======  =====  =======  ========  =========  =========  ==========
                   Date   Close   High    Low   Open    Change    Quote    Rate       Volume      Turnover
             ==========  ======  ====== ======  =====  =======  ========  =========  =========  ==========

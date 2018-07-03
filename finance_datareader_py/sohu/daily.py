@@ -79,7 +79,6 @@ class SohuDailyReader(_DailyBaseReader):
             Rate       换手率
             =========  =====
 
-        Example:
             ==========  =====  ===== ======  =====  =====  =====  ======  =========  ====
                   Date   Open  Close Change  Quote    Low   High  Volume   Turnover  Rate
             ==========  =====  ===== ======  =====  =====  =====  ======  =========  ====
