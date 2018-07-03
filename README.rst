@@ -4,6 +4,10 @@ finance-datareader-py
 .. image:: https://api.travis-ci.org/GuQiangJS/finance-datareader-py.svg?branch=master
     :target: https://travis-ci.org/GuQiangJS/finance-datareader-py
 
+.. image:: https://landscape.io/github/GuQiangJS/finance-datareader-py/master/landscape.svg?style=flat-square
+   :target: https://landscape.io/github/GuQiangJS/finance-datareader-py/master
+   :alt: Code Health
+
 Python 金融数据读取器
 
 基于 ``pandas-datareader`` 开发，用来读取 上证、深证（股票列表、每日成交汇总）
