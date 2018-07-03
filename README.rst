@@ -1,5 +1,8 @@
 finance-datareader-py
 =======================
+    
+.. image:: https://api.travis-ci.org/GuQiangJS/finance-datareader-py.svg?branch=master
+    :target: https://travis-ci.org/GuQiangJS/finance-datareader-py
 
 Python 金融数据读取器
 
