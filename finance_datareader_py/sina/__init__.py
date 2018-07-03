@@ -45,7 +45,8 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
 
     global _dividends_cache
     if timeout < 0:
-        raise ValueError('timeout must be >= 0, not {timeout}'.format(timeout=timeout))
+        raise ValueError(
+            'timeout must be >= 0, not {timeout}'.format(timeout=timeout))
 
     if pause is None:
         pause = timeout / 3
@@ -67,7 +68,8 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
                     retry_count -= 1
                     time.sleep(pause)
 
-    return _dividends_cache[symbol] if symbol in _dividends_cache else [None, None]
+    return _dividends_cache[symbol] if symbol in _dividends_cache else [None,
+                                                                        None]
 
 
 def _download_dividends(symbol: str):
@@ -75,10 +77,15 @@ def _download_dividends(symbol: str):
 
     try:
         response = reader._get_response(
-            r'http://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/{0}.phtml'.format(symbol))
+            r'http://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/{0}.phtml'.format(
+                symbol))
         txt = str(response.content, encoding='gb2312')
-        fh = re.search('<!--分红 begin-->[\s\S]*<tbody>([\s\S]*)<\/tbody>[\s\S]*<!--分红 end-->', txt)
-        pg = re.search('<!--配股 begin-->[\s\S]*<tbody>([\s\S]*)<\/tbody>[\s\S]*<!--配股 end-->', txt)
+        fh = re.search(
+            '<!--分红 begin-->[\s\S]*<tbody>([\s\S]*)<\/tbody>[\s\S]*<!--分红 end-->',
+            txt)
+        pg = re.search(
+            '<!--配股 begin-->[\s\S]*<tbody>([\s\S]*)<\/tbody>[\s\S]*<!--配股 end-->',
+            txt)
         df1, df2 = None, None
         # 分红数据
         r = _parse_body(bs(fh.group(1), 'lxml'), _parse_divided_line)
@@ -106,9 +113,11 @@ def _translate_dtype(df):
     if df is not None and not df.empty:
         for col in df.columns:
             if '日' in col:
-                df[col] = pd.to_datetime(df[col], format='%Y-%m-%d', errors='coerce')
+                df[col] = pd.to_datetime(df[col], format='%Y-%m-%d',
+                                         errors='coerce')
             else:
-                df[col] = pd.to_numeric(df[col], downcast='float', errors='coerce')
+                df[col] = pd.to_numeric(df[col], downcast='float',
+                                        errors='coerce')
     return df
 
 

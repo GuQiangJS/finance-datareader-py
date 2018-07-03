@@ -11,7 +11,8 @@ from finance_datareader_py.sina.daily import SinaDailyDetailsReader
 
 class SinaDailyDetailsReader_TestCase(unittest.TestCase):
     def test_read_single(self):
-        df = SinaDailyDetailsReader(symbols='000002', start=datetime.date(2018, 7, 2),
+        df = SinaDailyDetailsReader(symbols='000002',
+                                    start=datetime.date(2018, 7, 2),
                                     end=datetime.date(2018, 7, 2)).read()
         self.assertIsNotNone(df)
         self.assertFalse(df.empty)
@@ -69,7 +70,8 @@ class SinaDailyDetailsReader_TestCase(unittest.TestCase):
 
         while start <= end:
             if not start.weekday():
-                df_1 = SinaDailyDetailsReader(symbols='000002', start=start, end=start).read()
+                df_1 = SinaDailyDetailsReader(symbols='000002', start=start,
+                                              end=start).read()
                 df_2 = df[start:start + datetime.timedelta(days=1)]
                 self.assertTrue(df_1.equals(df_2))
             start = start + datetime.timedelta(days=1)

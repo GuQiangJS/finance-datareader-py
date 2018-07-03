@@ -45,7 +45,8 @@ def get_szse_symbols(kind: str = '2', retry_count=3, timeout=30, pause=None):
     """
     global _ticker_cache
     if timeout < 0:
-        raise ValueError('timeout must be >= 0, not {timeout}'.format(timeout=timeout))
+        raise ValueError(
+            'timeout must be >= 0, not {timeout}'.format(timeout=timeout))
 
     if pause is None:
         pause = timeout / 3

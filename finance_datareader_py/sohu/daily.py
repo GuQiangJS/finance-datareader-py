@@ -25,8 +25,10 @@ class SohuDailyReader(_DailyBaseReader):
         chunksize:
     """
 
-    def __init__(self, symbols=None, prefix='cn_', start=datetime.date(2004, 10, 8),
-                 end=datetime.date.today() + datetime.timedelta(days=-1), retry_count=3, pause=1, session=None,
+    def __init__(self, symbols=None, prefix='cn_',
+                 start=datetime.date(2004, 10, 8),
+                 end=datetime.date.today() + datetime.timedelta(days=-1),
+                 retry_count=3, pause=1, session=None,
                  chunksize=25):
         """
 
@@ -40,14 +42,16 @@ class SohuDailyReader(_DailyBaseReader):
             session:
             chunksize:
         """
-        super(SohuDailyReader, self).__init__(symbols, start, end, retry_count, pause, session, chunksize)
+        super(SohuDailyReader, self).__init__(symbols, start, end, retry_count,
+                                              pause, session, chunksize)
         self.prefix = prefix
 
     @property
     def url(self):
         # http://q.stock.sohu.com/hisHq?code=cn_600569&start=20041008&end=20180608&stat=1&order=D&period=d&rt=jsonp
         return 'http://q.stock.sohu.com/hisHq?code={symbol}&start={start}&end={end}&stat=1&order=D&period=d&rt=jsonp'.format(
-            symbol=self._parse_symbol(), start=self.start.strftime('%Y%m%d'), end=self.end.strftime('%Y%m%d'))
+            symbol=self._parse_symbol(), start=self.start.strftime('%Y%m%d'),
+            end=self.end.strftime('%Y%m%d'))
 
     def _parse_symbol(self):
         return self.prefix + self.symbols
@@ -111,7 +115,8 @@ class SohuDailyReader(_DailyBaseReader):
         """
         # 设置标题
         out.rename(
-            columns={0: 'Date', 1: 'Open', 2: 'Close', 3: 'Change', 4: 'Quote', 5: 'Low', 6: 'High', 7: 'Volume',
+            columns={0: 'Date', 1: 'Open', 2: 'Close', 3: 'Change', 4: 'Quote',
+                     5: 'Low', 6: 'High', 7: 'Volume',
                      8: 'Turnover', 9: 'Rate'}, inplace=True)
         # 转换 Date 列为 datetime 数据类型
         out['Date'] = pd.to_datetime(out['Date'], format='%Y-%m-%d')

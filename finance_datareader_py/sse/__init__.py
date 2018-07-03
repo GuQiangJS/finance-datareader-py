@@ -33,7 +33,8 @@ def get_sse_symbols(retry_count=3, timeout=30, pause=None):
     """
     global _ticker_cache
     if timeout < 0:
-        raise ValueError('timeout must be >= 0, not {timeout}'.format(timeout=timeout))
+        raise ValueError(
+            'timeout must be >= 0, not {timeout}'.format(timeout=timeout))
 
     if pause is None:
         pause = timeout / 3
@@ -61,7 +62,8 @@ def _download_sse_symbols(timeout):
 
     try:
         result = []
-        response = reader._get_response(r'http://www.sse.com.cn/js/common/ssesuggestdataAll.js')
+        response = reader._get_response(
+            r'http://www.sse.com.cn/js/common/ssesuggestdataAll.js')
         matches = _RE.finditer(response.text)
         for match in matches:
             result.append({'symbol': match.group(1), 'name': match.group(2)})

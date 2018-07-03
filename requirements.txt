@@ -1,5 +1,7 @@
+xlrd
 pandas-datareader
 numpy
 beautifulsoup4
 # Documentation Only
 sphinx
+sphinxcontrib-napoleon

@@ -19,7 +19,8 @@ class NetEaseDailyReader_TestCase(unittest.TestCase):
 
         :return:
         """
-        df = NetEaseDailyReader(symbols='399300', start=datetime.date(2002, 1, 4)).read()
+        df = NetEaseDailyReader(symbols='399300',
+                                start=datetime.date(2002, 1, 4)).read()
         self.assertIsNotNone(df)
         self.assertFalse(df.empty)
         print(df)

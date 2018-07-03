@@ -9,6 +9,7 @@ python:
 install:
   - pip install flake8
   #- pip install coverage
+  - pip install sphinxcontrib-napoleon
   - pip install xlrd
   - pip install git+https://github.com/pydata/pandas-datareader.git
   - pip install beautifulsoup4

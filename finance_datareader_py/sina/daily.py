@@ -24,7 +24,8 @@ class SinaDailyDetailsReader(_DailyBaseReader):
     """
 
     def __init__(self, symbols: str = None, start=datetime.date(2004, 10, 8),
-                 end=datetime.date.today() + datetime.timedelta(days=-1), retry_count=3, pause=1, session=None,
+                 end=datetime.date.today() + datetime.timedelta(days=-1),
+                 retry_count=3, pause=1, session=None,
                  chunksize=25):
         """
 
@@ -41,7 +42,9 @@ class SinaDailyDetailsReader(_DailyBaseReader):
             不建议传入日期间隔较大的。传入日期较大时会循环按照日期读取，会造成时间较长。
 
         """
-        super(SinaDailyDetailsReader, self).__init__(symbols, start, end, retry_count, pause, session, chunksize)
+        super(SinaDailyDetailsReader, self).__init__(symbols, start, end,
+                                                     retry_count, pause,
+                                                     session, chunksize)
         self._date = start
 
     @property
@@ -108,9 +111,10 @@ class SinaDailyDetailsReader(_DailyBaseReader):
             # return read_csv(out,sep=r'\t',index_col=0,parse_dates=[0],na_values=('--', 'null'),date_parser=self._date_parser)
             df = read_csv(out, sep=r'\t', index_col=0, parse_dates=[0],
                           na_values=('--', 'null'), engine='python',
-                          date_parser=lambda x: pd.to_datetime(x).replace(year=self._date.year,
-                                                                          month=self._date.month,
-                                                                          day=self._date.day))
+                          date_parser=lambda x: pd.to_datetime(x).replace(
+                              year=self._date.year,
+                              month=self._date.month,
+                              day=self._date.day))
             if df is not None and not df.empty:
                 df = df.fillna(0).round(2)[::-1]
                 return df
