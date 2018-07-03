@@ -13,6 +13,7 @@ Python 金融数据读取器
 
 使用 finance-datareader-py 依赖于以下包：
 
+* xlrd
 * pandas-datareader
 * numpy
 * beautifulsoup4
