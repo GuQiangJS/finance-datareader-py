@@ -1,6 +1,7 @@
 # Copyright (C) 2018 GuQiangJs.
 # Licensed under Apache License 2.0 <see LICENSE file>
 
+import re
 import time
 
 import pandas as pd
@@ -75,21 +76,18 @@ def _download_dividends(symbol: str):
     try:
         response = reader._get_response(
             r'http://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/{0}.phtml'.format(symbol))
-        tbodies = bs(str(response.content, encoding='gb2312'), 'lxml').find_all('tbody')
+        txt = str(response.content, encoding='gb2312')
+        fh = re.search('<!--分红 begin-->[\s\S]*<tbody>([\s\S]*)<\/tbody>[\s\S]*<!--分红 end-->', txt)
+        pg = re.search('<!--配股 begin-->[\s\S]*<tbody>([\s\S]*)<\/tbody>[\s\S]*<!--配股 end-->', txt)
         df1, df2 = None, None
-        for tbody in tbodies:
-            if tbodies.index(tbody) == 0:
-                # 分红数据
-                r = _parse_body(tbody, _parse_divided_line)
-                if r:
-                    df1 = _translate_dtype(pd.DataFrame(r)).set_index('公告日期')
-            elif tbodies.index(tbody) == 1:
-                # 配股数据
-                r = _parse_body(tbody, _parse_allotment_line)
-                if r:
-                    df2 = _translate_dtype(pd.DataFrame(r)).set_index('公告日期')
-            else:
-                raise NotImplementedError
+        # 分红数据
+        r = _parse_body(bs(fh.group(1), 'lxml'), _parse_divided_line)
+        if r:
+            df1 = _translate_dtype(pd.DataFrame(r)).set_index('公告日期')
+        # 配股数据
+        r = _parse_body(bs(pg.group(1), 'lxml'), _parse_allotment_line)
+        if r:
+            df2 = _translate_dtype(pd.DataFrame(r)).set_index('公告日期')
     except Exception:
         raise
     finally:
