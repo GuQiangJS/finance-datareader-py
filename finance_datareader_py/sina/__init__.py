@@ -74,7 +74,7 @@ def _download_dividends(symbol: str):
 
     try:
         response = reader._get_response(
-            r'http://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/000541.phtml'.format(symbol))
+            r'http://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/{0}.phtml'.format(symbol))
         tbodies = bs(str(response.content, encoding='gb2312'), 'lxml').find_all('tbody')
         df1, df2 = None, None
         for tbody in tbodies:
