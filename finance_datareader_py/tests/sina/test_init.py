@@ -10,7 +10,7 @@ from finance_datareader_py.sina import get_dividends
 
 
 class sina_TestCase(unittest.TestCase):
-    def test_get_dividends(self):
+    def get_dividends(self):
         df1, df2 = get_dividends('000002')
         self.assertIsNotNone(df1)
         self.assertFalse(df1.empty)
