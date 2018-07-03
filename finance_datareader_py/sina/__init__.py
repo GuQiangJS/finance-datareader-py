@@ -90,6 +90,8 @@ def _download_dividends(symbol: str):
                     df2 = _translate_dtype(pd.DataFrame(r)).set_index('公告日期')
             else:
                 raise NotImplementedError
+    except Exception:
+        raise
     finally:
         reader.close()
     return [df1, df2]

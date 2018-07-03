@@ -7,8 +7,8 @@ python:
   - "3.6"
   - "3.7-dev"
 install:
-  - pip install flake8
-  - pip install coverage
+  #- pip install flake8
+  #- pip install coverage
   - pip install xlrd
   - pip install git+https://github.com/pydata/pandas-datareader.git
   - pip install beautifulsoup4
@@ -18,8 +18,12 @@ install:
   - python setup.py install
 script: 
   - python -m unittest
-  - flake8 --version
-  - flake8 finance-datareader-py
+  #- flake8 --version
+  #- flake8 finance-datareader-py
 after_success: 
   #- coverage report
+  - |
+    cd docs
+    make html && make html
+    cd ..
   - coveralls
