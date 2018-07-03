@@ -48,7 +48,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'finance-datareader-py'
-copyright = '2018, GuQiangJS'
+copyright = u'2018, GuQiangJS'
 author = 'GuQiangJS'
 
 # The version info for the project you're documenting, acts as replacement for
