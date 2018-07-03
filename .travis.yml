@@ -12,20 +12,12 @@ install:
   - pip install sphinx
 script: 
   #- python -m unittest
-  - cd docs
-  # Use Sphinx to make the html docs
-  - make html
-  # Tell GitHub not to use jekyll to compile the docs
-  - touch _build/html/.nojekyll
 after_success: 
-  - coverage report
-# Tell Travis CI to copy the documentation to the gh-pages branch of
-# your GitHub repository.
-deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
-  keep-history: true
-  on:
-    branch: master
-  local_dir: _build/html/
+  - |
+      cd docs
+      make html && make html
+      cd ..
+      doctr deploy devel --build-tags
+      #doctr deploy stable --build-tags
+  - coveralls
+  #- coverage report
