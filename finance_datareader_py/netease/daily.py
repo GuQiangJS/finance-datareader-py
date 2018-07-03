@@ -25,7 +25,8 @@ class NetEaseDailyReader(_DailyBaseReader):
     """
 
     def __init__(self, symbols: str = None, start=datetime.date(2004, 10, 8),
-                 end=datetime.date.today() + datetime.timedelta(days=-1), retry_count=3, pause=1, session=None,
+                 end=datetime.date.today() + datetime.timedelta(days=-1),
+                 retry_count=3, pause=1, session=None,
                  chunksize=25):
         """
 
@@ -39,7 +40,9 @@ class NetEaseDailyReader(_DailyBaseReader):
             chunksize:
 
         """
-        super(NetEaseDailyReader, self).__init__(symbols, start, end, retry_count, pause, session, chunksize)
+        super(NetEaseDailyReader, self).__init__(symbols, start, end,
+                                                 retry_count, pause, session,
+                                                 chunksize)
 
     @property
     def url(self):
@@ -47,7 +50,8 @@ class NetEaseDailyReader(_DailyBaseReader):
         # http://quotes.money.163.com/service/chddata.html?code=1002024&start=20040707&end=20180629&fields=TCLOSE;HIGH;LOW;TOPEN;CHG;PCHG;TURNOVER;VOTURNOVER;VATURNOVER
         # http://quotes.money.163.com/service/chddata.html?code=0601398&start=20061027&end=20180628&fields=TCLOSE;HIGH;LOW;TOPEN;CHG;PCHG;TURNOVER;VOTURNOVER;VATURNOVER
         return 'http://quotes.money.163.com/service/chddata.html?code={symbol}&start={start}&end={end}&fields=TCLOSE;HIGH;LOW;TOPEN;CHG;PCHG;TURNOVER;VOTURNOVER;VATURNOVER'.format(
-            symbol=self._parse_symbol(), start=self.start.strftime('%Y%m%d'), end=self.end.strftime('%Y%m%d'))
+            symbol=self._parse_symbol(), start=self.start.strftime('%Y%m%d'),
+            end=self.end.strftime('%Y%m%d'))
 
     def _parse_symbol(self):
         # 深市前加1，沪市前加0
@@ -75,9 +79,11 @@ class NetEaseDailyReader(_DailyBaseReader):
         out = _BaseReader._read_lines(self, out)
         out = out.drop(['股票代码', '名称'], axis=1)
         out.rename(
-            columns={'日期': 'Date', '开盘价': 'Open', '收盘价': 'Close', '涨跌额': 'Change', '涨跌幅': 'Quote', '最低价': 'Low',
-                     '最高价': 'High', '成交量': 'Volume',
-                     '成交金额': 'Turnover', '换手率': 'Rate'}, inplace=True)
+            columns={'日期': 'Date', '开盘价': 'Open', '收盘价': 'Close',
+                     '涨跌额': 'Change', '涨跌幅': 'Quote',
+                     '最低价': 'Low', '最高价': 'High', '成交量': 'Volume',
+                     '成交金额': 'Turnover', '换手率': 'Rate'
+                     }, inplace=True)
         out['Volume'] = (out['Volume'] / 100).round(0)
         out['Turnover'] = (out['Turnover'] / 10000).round(0)
         return out

@@ -9,12 +9,12 @@ NAME = 'finance-datareader-py'
 
 
 def readme():
-    with open('README.rst',encoding='utf-8') as f:
+    with open('README.rst', encoding='utf-8') as f:
         return f.read()
 
 
 INSTALL_REQUIRES = (
-    ['pandas-datareader','numpy','beautifulsoup4']
+    ['pandas-datareader', 'numpy', 'beautifulsoup4']
 )
 
 setup(

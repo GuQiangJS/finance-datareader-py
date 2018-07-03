@@ -19,6 +19,7 @@
 #
 import os
 import sys
+
 import finance_datareader_py
 
 sys.path.insert(0, os.path.abspath('../../'))
@@ -32,7 +33,10 @@ sys.path.insert(0, os.path.abspath('../../'))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc', 'sphinxcontrib.napoleon', 'sphinx.ext.extlinks', ]
+extensions = ['sphinx.ext.autodoc',
+              'sphinxcontrib.napoleon',
+              'sphinx.ext.extlinks'
+              ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -137,8 +141,11 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'finance-datareader-py.tex', 'finance-datareader-py Documentation',
-     'GuQiangJS', 'manual'),
+    (master_doc,
+     'finance-datareader-py.tex',
+     'finance-datareader-py Documentation',
+     'GuQiangJS',
+     'manual'),
 ]
 
 # -- Options for manual page output ---------------------------------------
@@ -146,7 +153,9 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'finance-datareader-py', 'finance-datareader-py Documentation',
+    (master_doc,
+     'finance-datareader-py',
+     'finance-datareader-py Documentation',
      [author], 1)
 ]
 

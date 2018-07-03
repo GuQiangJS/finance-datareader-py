@@ -19,7 +19,7 @@ install:
 script: 
   - python -m unittest
   - flake8 --version
-  - flake8 .
+  - flake8 . --ignore=E501
 after_success: 
   #- coverage report
   - |
