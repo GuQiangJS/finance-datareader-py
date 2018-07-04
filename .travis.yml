@@ -1,6 +1,12 @@
 sudo: false
 
 language: python
+
+env:
+  global:
+    # Doctr deploy key for GuQiangJS/finance-datareader-py
+    - secure: "qYGS84w2yDz43HMJAn1ex0ciCZV8MGXaeY/pBRZerrrnp4o2WhUCuVEh5GKMfKXksBN2Hi7IMmZxGhLCz248hfLwCZUbq4g0haXInIkng3kgpC/psp8sauqfb006Ftpb4F7M+DNZWMtdYHosj6uOGQ7NzH2ugo4EEKZgkEb5U5z/NWp5HMTB4a7YjQabvkzB3FWzUQ1ekT+gpANgfRb7NuWgyUCSMwDWNpyWL9+SyeulvXIf6CIJ1U7BxDSZHCUV6zZru6hVmxm0iMr09YR7EXnYiLwmEMCbirio67F6mo1y2HdNFlU2lNfKoKaqjyXW3xXOfvnTIF+/Yw+cxkeT8x6DsPpB5J+15jKW9lXVcIIOO17Hpl23khqG9bkIAzp3l2qtJefjv15OtkOAs8zQzgkPWS/6J/uHsKSXAm/rmYNeaLmPAQ9XnJdMntE4r7JhsuuwCHwVlIt3zImfuamQvsjZ4tgdsn8xdZPpRBVVkZ8iDsiRe46Y1AaaQMqiBmoD6vjTQv8vgW71zjyqGiIh7uHPxrowKqY5mdcx0lY2zTQRNQD8QCHzVuqQVWcsQs4FhuVTceouXdnTHlhclgWOFk/h7Ymy1ONw/O5Zf4qPaBAQcmIvSuXnqHvitMYiciI0Qj12pS7QhUmBkkAHUiyat8rj1g+Sb9LaUhQp/lRVe58="
+
 python:
   - "3.4"
   - "3.5"
@@ -16,8 +22,9 @@ install:
   - pip install numpy
   - pip install sphinx
   - pip install sphinx_rtd_theme
-  - pip install coveralls --quiet
+  #- pip install coveralls --quiet
   - python setup.py install
+  - pip install doctr
 script: 
   - python -m unittest
   - flake8 --version
@@ -28,4 +35,5 @@ after_success:
     cd docs
     make html && make html
     cd ..
-  - coveralls
+    doctr deploy devel --build-tags
+  #- coveralls
