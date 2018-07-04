@@ -20,7 +20,7 @@ install:
   - pip install git+https://github.com/pydata/pandas-datareader.git
   - pip install beautifulsoup4
   - pip install numpy
-  #- pip install coveralls --quiet
+  - pip install coveralls
   - python setup.py install
   - if [[ "$PYTHON" == "3.6" ]]; then
     pip install sphinx sphinx_rtd_theme doctr;
