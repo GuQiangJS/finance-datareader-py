@@ -2,7 +2,10 @@
 [run]
 source = finance_datareader_py
 branch = True
-include = */finance_datareader_py/tests/*
+include = */finance_datareader_py/*
+omit =
+    */_version.py
+    tests/*
 
 [report]
 # Regexes for lines to exclude from consideration
@@ -14,6 +17,9 @@ exclude_lines =
     raise ImmediateDeprecationError
     # Ignore pass
     pass
-include = */finance_datareader_py/tests/*
+include = */finance_datareader_py/*
+omit =
+    */_version.py
+    tests/*
 ignore_errors = True
 show_missing = True
