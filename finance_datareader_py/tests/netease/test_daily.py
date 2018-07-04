@@ -25,6 +25,16 @@ class NetEaseDailyReader_TestCase(unittest.TestCase):
         self.assertFalse(df.empty)
         print(df)
 
+    def test_read_err_symbol(self):
+        """测试读取错误的股票代码
+
+        Returns:
+
+        """
+        df = NetEaseDailyReader(symbols='123').read()
+        self.assertIsNotNone(df)
+        self.assertTrue(df.empty)
+
 
 if __name__ == '__main__':
     unittest.main()

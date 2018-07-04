@@ -22,4 +22,3 @@ omit =
     */_version.py
     tests/*
 ignore_errors = True
-show_missing = True

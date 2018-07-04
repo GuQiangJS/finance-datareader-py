@@ -98,6 +98,8 @@ class NetEaseDailyReader(_DailyBaseReader):
 
             读取后的数据 **排序顺序为正序**。最新日期排在最后面。
 
+            *无数据时返回空白的 `DataFrame` 。参见 `DataFrame.empty`。*
+
             =========  =====
             列名        解释
             =========  =====
@@ -121,4 +123,7 @@ class NetEaseDailyReader(_DailyBaseReader):
             ==========  ======  ====== ======  =====  =======  ========  =========  =========  ==========
 
         """
-        return super(NetEaseDailyReader, self).read()
+        try:
+            return super(NetEaseDailyReader, self).read()
+        finally:
+            self.close()

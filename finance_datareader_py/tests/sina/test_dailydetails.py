@@ -6,7 +6,7 @@ import unittest
 
 import numpy as np
 
-from finance_datareader_py.sina.daily import SinaDailyDetailsReader
+from finance_datareader_py.sina.daily_details import SinaDailyDetailsReader
 
 
 class SinaDailyDetailsReader_TestCase(unittest.TestCase):
@@ -72,9 +72,21 @@ class SinaDailyDetailsReader_TestCase(unittest.TestCase):
             if not start.weekday():
                 df_1 = SinaDailyDetailsReader(symbols='000002', start=start,
                                               end=start).read()
-                df_2 = df[start:start + datetime.timedelta(days=1)]
+                df_2 = df[start.strftime('%Y-%m-%d')]
                 self.assertTrue(df_1.equals(df_2))
             start = start + datetime.timedelta(days=1)
+
+    def test_read_err_symbol(self):
+        """测试读取错误的股票代码
+
+        Returns:
+
+        """
+        df = SinaDailyDetailsReader(symbols='123',
+                                    start=datetime.date(2018, 7, 2),
+                                    end=datetime.date(2018, 7, 2)).read()
+        self.assertIsNotNone(df)
+        self.assertTrue(df.empty)
 
 
 if __name__ == '__main__':

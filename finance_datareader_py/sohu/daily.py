@@ -92,7 +92,10 @@ class SohuDailyReader(_DailyBaseReader):
             ==========  =====  ===== ======  =====  =====  =====  ======  =========  ====
 
         """
-        return super(SohuDailyReader, self).read()
+        try:
+            return super(SohuDailyReader, self).read()
+        finally:
+            self.close()
 
     def _read_url_as_StringIO(self, url, params=None):
         """

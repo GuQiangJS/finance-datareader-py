@@ -39,6 +39,16 @@ class sina_TestCase(unittest.TestCase):
         self.assertEqual(pd.Timestamp(1995, 2, 22), df2.loc[dt, '配股上市日'])
         self.assertTrue(pd.isna(df2.loc[dt, '募集资金合计(元)']))
 
+    def test_read_err_symbol(self):
+        """测试读取错误的股票代码
+
+        Returns:
+
+        """
+        df1, df2 = get_dividends('123')
+        self.assertIsNone(df1)
+        self.assertIsNone(df2)
+
 
 if __name__ == '__main__':
     unittest.main()

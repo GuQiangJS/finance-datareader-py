@@ -23,6 +23,8 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
     Returns:
         ``[DataFrame,DataFrame]``
 
+        *任意数据表无数据时返回None*
+
         分红
 
         ===========     ==============      ==========   ===========  ========  ========   ===========

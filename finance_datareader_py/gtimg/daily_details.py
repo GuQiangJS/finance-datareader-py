@@ -10,8 +10,8 @@ from pandas.compat import StringIO, bytes_to_str
 from pandas_datareader.base import _DailyBaseReader
 
 
-class SinaDailyDetailsReader(_DailyBaseReader):
-    """从 Sina 读取每日成交明细
+class GtimgDailyDetailsReader(_DailyBaseReader):
+    """从 gtimg 读取每日成交明细
 
     Args:
         symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002,300002
@@ -42,21 +42,19 @@ class SinaDailyDetailsReader(_DailyBaseReader):
             不建议传入日期间隔较大的。传入日期较大时会循环按照日期读取，会造成时间较长。
 
         """
-        super(SinaDailyDetailsReader, self).__init__(symbols, start, end,
-                                                     retry_count, pause,
-                                                     session, chunksize)
+        super(GtimgDailyDetailsReader, self).__init__(symbols, start, end,
+                                                      retry_count, pause,
+                                                      session, chunksize)
         self._date = start
 
     @property
     def url(self):
-        # http://market.finance.sina.com.cn/downxls.php?date={0}&symbol={1}{2}
-        return 'http://market.finance.sina.com.cn/downxls.php'
+        # http://stock.gtimg.cn/data/index.php?appn=detail&action=download&c=sz000002&d=20180704
+        return 'http://stock.gtimg.cn/data/index.php?appn=detail&action=download&c={0}&d={1}'.format(
+            self._parse_symbol(), self._date.strftime('%Y%m%d'))
 
     def _get_params(self, *args, **kwargs):
-        return {
-            'date': self._date.strftime('%Y-%m-%d'),
-            'symbol': self._parse_symbol()
-        }
+        return {}
 
     def _parse_symbol(self):
         # 深市前加1，沪市前加0
@@ -68,26 +66,31 @@ class SinaDailyDetailsReader(_DailyBaseReader):
         Returns:
             ``pandas.DataFrame`` 实例。``成交时间`` 为索引列。
 
-            读取后的数据 **排序顺序为正序**。
+            读取后的数据 **排序顺序为倒序**。
+
+            *无数据时返回空白的 `DataFrame` 。参见 `DataFrame.empty`。*
 
             ====================  ==========  ==========  ==========   ===========   =====
-                    成交时间        成交价     价格变动   成交量(手)    成交额(元)    性质
+                    成交时间        成交价格     价格变动   成交量(手)    成交额(元)    性质
             ====================  ==========  ==========  ==========   ===========   =====
-            2018-06-25 09:25:03     28.25       28.25       5582       15769150      买盘
-            2018-06-25 09:30:00     28.24       -0.01       302         852848       卖盘
-            2018-06-25 09:30:03     28.26        0.02       6254       17675047      买盘
-            2018-06-25 09:30:06     28.28        0.02       1140       3223920       买盘
+            2018-06-25 15:00:03     26.49        0.00        6826        18081544     卖盘
+            2018-06-25 14:57:00     26.49        0.00         17          45030       买盘
+            2018-06-25 14:56:57     26.49        0.02         51          135088      买盘
+            2018-06-25 14:56:54     26.47       -0.01         40          105938      卖盘
             ====================  ==========  ==========  ==========   ===========   =====
 
         """
-        df = pd.DataFrame()
-        self._date = self.start
-        while self._date <= self.end:
-            df1 = super(SinaDailyDetailsReader, self).read()
-            if df1 is not None and not df1.empty:
-                df = df.append(df1)
-            self._date = self._date + datetime.timedelta(days=1)
-        return df
+        try:
+            df = pd.DataFrame()
+            self._date = self.start
+            while self._date <= self.end:
+                df1 = super(GtimgDailyDetailsReader, self).read()
+                if df1 is not None and not df1.empty:
+                    df = df.append(df1)
+                self._date = self._date + datetime.timedelta(days=1)
+            return df
+        finally:
+            self.close()
 
     def _read_url_as_StringIO(self, url, params=None):
         """
