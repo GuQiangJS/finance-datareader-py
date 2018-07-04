@@ -26,11 +26,11 @@ install:
     pip install sphinx sphinx_rtd_theme doctr;
     fi
 script: 
-  - python -m unittest
+  - coverage run -m unittest
   - flake8 --version
   - flake8 finance_datareader_py --ignore=E501
 after_success: 
-  #- coverage report
+  - coverage report
   - |
     if [[ "$PYTHON" == "3.6" ]]; then
       cd docs
@@ -38,4 +38,4 @@ after_success:
       cd ..
       doctr deploy devel --build-tags
     fi
-  #- coveralls
+  - coveralls
