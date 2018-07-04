@@ -23,7 +23,8 @@ install:
   #- pip install coveralls --quiet
   - python setup.py install
   - if [[ "$PYTHON" == "3.6" ]]; then
-    pip install sphinx sphinx_rtd_theme doctr
+    pip install sphinx sphinx_rtd_theme doctr;
+    fi
 script: 
   - python -m unittest
   - flake8 --version
