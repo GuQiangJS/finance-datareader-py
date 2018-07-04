@@ -37,6 +37,12 @@ Python 金融数据读取器
 
     $ pip install git+https://github.com/GuQiangJS/finance-datareader-py.git
 
+文档
+~~~~~
+
+`开发文档 <https://guqiangjs.github.io/finance-datareader-py/devel/>`__
+会在每次提交变更后自动生成。
+
 使用示例
 ~~~~~~~~~
 
