@@ -20,11 +20,10 @@ install:
   - pip install git+https://github.com/pydata/pandas-datareader.git
   - pip install beautifulsoup4
   - pip install numpy
-  - pip install sphinx
-  - pip install sphinx_rtd_theme
   #- pip install coveralls --quiet
   - python setup.py install
-  - pip install doctr
+  - if [[ "$PYTHON" == "3.6" ]]; then
+    pip install sphinx sphinx_rtd_theme doctr
 script: 
   - python -m unittest
   - flake8 --version
@@ -32,8 +31,10 @@ script:
 after_success: 
   #- coverage report
   - |
-    cd docs
-    make html && make html
-    cd ..
-    doctr deploy devel --build-tags
+    if [[ "$PYTHON" == "3.6" ]]; then
+      cd docs
+      make html && make html
+      cd ..
+      doctr deploy devel --build-tags
+    fi
   #- coveralls
