@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>NetEase &mdash; finance-datareader-py 0+untagged.50.g6345bed 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="SSE" href="sse.html" />
+    <link rel="prev" title="Sohu" href="sohu.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> finance-datareader-py
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Data Readers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sohu.html">Sohu</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">NetEase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sse.html">SSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="szse.html">SZSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sina.html">Sina</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">finance-datareader-py</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Data Readers</a> &raquo;</li>
+        
+      <li>NetEase</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/readers/netease.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-finance_datareader_py.netease.daily">
+<span id="netease"></span><h1>NetEase<a class="headerlink" href="#module-finance_datareader_py.netease.daily" title="永久链接至标题">¶</a></h1>
+<dl class="class">
+<dt id="finance_datareader_py.netease.daily.NetEaseDailyReader">
+<em class="property">class </em><code class="descclassname">finance_datareader_py.netease.daily.</code><code class="descname">NetEaseDailyReader</code><span class="sig-paren">(</span><em>symbols: str = None</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>7</em>, <em>3)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.netease.daily.NetEaseDailyReader" title="永久链接至目标">¶</a></dt>
+<dd><p>从 163 读取每日成交汇总数据</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first last simple">
+<li><strong>symbols</strong> – 股票代码。<strong>此参数只接收单一股票代码</strong>。For example:600001,000002,300002</li>
+<li><strong>start</strong> – 开始日期。默认值：2004-10-08</li>
+<li><strong>end</strong> – 结束日期。默认值：当前日期的 <strong>前一天</strong> 。</li>
+<li><strong>retry_count</strong> – 重试次数</li>
+<li><strong>pause</strong> – 重试间隔时间</li>
+<li><strong>session</strong> – </li>
+<li><strong>chunksize</strong> – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="finance_datareader_py.netease.daily.NetEaseDailyReader.read">
+<code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.netease.daily.NetEaseDailyReader.read" title="永久链接至目标">¶</a></dt>
+<dd><p>读取数据</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 实例。<code class="docutils literal notranslate"><span class="pre">Date</span></code> 列为索引列。<p>成交量的单位为 <em>手</em>，成交金额的单位为 <em>万元</em>。</p>
+<p>读取后的数据 <strong>排序顺序为正序</strong>。最新日期排在最后面。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="47%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">列名</th>
+<th class="head">解释</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Date</td>
+<td>日期</td>
+</tr>
+<tr class="row-odd"><td>Open</td>
+<td>开盘价</td>
+</tr>
+<tr class="row-even"><td>Close</td>
+<td>收盘价</td>
+</tr>
+<tr class="row-odd"><td>Change</td>
+<td>涨跌额</td>
+</tr>
+<tr class="row-even"><td>Quote</td>
+<td>涨跌幅</td>
+</tr>
+<tr class="row-odd"><td>High</td>
+<td>最高价</td>
+</tr>
+<tr class="row-even"><td>Low</td>
+<td>最低价</td>
+</tr>
+<tr class="row-odd"><td>Turnover</td>
+<td>成交金额</td>
+</tr>
+<tr class="row-even"><td>Rate</td>
+<td>换手率</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="7%" />
+<col width="9%" />
+<col width="11%" />
+<col width="12%" />
+<col width="12%" />
+<col width="13%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Date</th>
+<th class="head">Close</th>
+<th class="head">High</th>
+<th class="head">Low</th>
+<th class="head">Open</th>
+<th class="head">Change</th>
+<th class="head">Quote</th>
+<th class="head">Rate</th>
+<th class="head">Volume</th>
+<th class="head">Turnover</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>2004-10-08</td>
+<td>5.56</td>
+<td>5.60</td>
+<td>5.28</td>
+<td>5.42</td>
+<td>0.14</td>
+<td>2.583</td>
+<td>0.7425</td>
+<td>117074.0</td>
+<td>6369.0</td>
+</tr>
+<tr class="row-odd"><td>2004-10-11</td>
+<td>5.54</td>
+<td>5.65</td>
+<td>5.51</td>
+<td>5.56</td>
+<td>-0.02</td>
+<td>-0.3597</td>
+<td>1.6744</td>
+<td>264020.0</td>
+<td>34637.0</td>
+</tr>
+<tr class="row-even"><td>2004-10-12</td>
+<td>5.79</td>
+<td>5.87</td>
+<td>5.50</td>
+<td>5.53</td>
+<td>0.25</td>
+<td>4.5126</td>
+<td>3.8106</td>
+<td>600869.0</td>
+<td>14604.0</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="finance_datareader_py.netease.daily.NetEaseDailyReader.url">
+<code class="descname">url</code><a class="headerlink" href="#finance_datareader_py.netease.daily.NetEaseDailyReader.url" title="永久链接至目标">¶</a></dt>
+<dd><p>API URL</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sse.html" class="btn btn-neutral float-right" title="SSE" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="sohu.html" class="btn btn-neutral" title="Sohu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, GuQiangJS.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0+untagged.50.g6345bed',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
