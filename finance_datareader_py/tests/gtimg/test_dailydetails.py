@@ -12,8 +12,8 @@ from finance_datareader_py.gtimg.daily_details import GtimgDailyDetailsReader
 class SinaDailyDetailsReader_TestCase(unittest.TestCase):
     def test_read_single(self):
         df = GtimgDailyDetailsReader(symbols='000002',
-                                    start=datetime.date(2018, 7, 2),
-                                    end=datetime.date(2018, 7, 2)).read()
+                                     start=datetime.date(2018, 7, 2),
+                                     end=datetime.date(2018, 7, 2)).read()
         self.assertIsNotNone(df)
         self.assertFalse(df.empty)
         print(df)
@@ -32,8 +32,7 @@ class SinaDailyDetailsReader_TestCase(unittest.TestCase):
                 '成交价格': np.float64(24.43),
                 '价格变动': np.float64(-0.07),
                 '成交量(手)': np.float64(1672),
-                '成交额(元)': np.float64(4092375
-),
+                '成交额(元)': np.float64(4092375),
                 '性质': '卖盘'
             },
             '2018-07-02 14:57:00': {
@@ -64,7 +63,7 @@ class SinaDailyDetailsReader_TestCase(unittest.TestCase):
         end = datetime.date(2018, 7, 2)
 
         df = GtimgDailyDetailsReader(symbols='000002', start=start,
-                                    end=end).read()
+                                     end=end).read()
         self.assertIsNotNone(df)
         self.assertFalse(df.empty)
         print(df)
@@ -72,7 +71,7 @@ class SinaDailyDetailsReader_TestCase(unittest.TestCase):
         while start <= end:
             if not start.weekday():
                 df_1 = GtimgDailyDetailsReader(symbols='000002', start=start,
-                                              end=start).read()
+                                               end=start).read()
                 df_2 = df[start.strftime('%Y-%m-%d')]
                 self.assertTrue(df_1.equals(df_2))
             start = start + datetime.timedelta(days=1)
@@ -84,8 +83,8 @@ class SinaDailyDetailsReader_TestCase(unittest.TestCase):
 
         """
         df = GtimgDailyDetailsReader(symbols='123',
-                                    start=datetime.date(2018, 7, 2),
-                                    end=datetime.date(2018, 7, 2)).read()
+                                     start=datetime.date(2018, 7, 2),
+                                     end=datetime.date(2018, 7, 2)).read()
         self.assertIsNotNone(df)
         self.assertTrue(df.empty)
 
