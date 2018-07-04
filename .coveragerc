@@ -1,0 +1,14 @@
+# .coveragerc to control coverage.py
+[run]
+source = finance_datareader_py
+branch = True
+include = */finance_datareader_py/*
+omit =
+    tests/*
+
+[report]
+source = finance_datareader_py
+branch = True
+include = */finance_datareader_py/*
+omit =
+    tests/*
