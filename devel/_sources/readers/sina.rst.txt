@@ -7,7 +7,7 @@ Sina
    :members:
    :undoc-members:
 
-.. py:module:: finance_datareader_py.sina.daily
+.. py:module:: finance_datareader_py.sina.daily_details
 
 .. autoclass:: SinaDailyDetailsReader
    :members:

@@ -9,3 +9,4 @@ Data Readers
    sse
    szse
    sina
+   gtimg

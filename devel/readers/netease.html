@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NetEase &mdash; finance-datareader-py 0+untagged.50.gba83feb 文档</title>
+  <title>NetEase &mdash; finance-datareader-py 0+untagged.50.gee520a7 文档</title>
   
 
   
@@ -89,6 +89,7 @@
 <li class="toctree-l2"><a class="reference internal" href="sse.html">SSE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="szse.html">SZSE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sina.html">Sina</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gtimg.html">Gtimg</a></li>
 </ul>
 </li>
 </ul>
@@ -161,7 +162,7 @@
 <span id="netease"></span><h1>NetEase<a class="headerlink" href="#module-finance_datareader_py.netease.daily" title="永久链接至标题">¶</a></h1>
 <dl class="class">
 <dt id="finance_datareader_py.netease.daily.NetEaseDailyReader">
-<em class="property">class </em><code class="descclassname">finance_datareader_py.netease.daily.</code><code class="descname">NetEaseDailyReader</code><span class="sig-paren">(</span><em>symbols: str = None</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>7</em>, <em>3)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.netease.daily.NetEaseDailyReader" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="descclassname">finance_datareader_py.netease.daily.</code><code class="descname">NetEaseDailyReader</code><span class="sig-paren">(</span><em>symbols: str = None</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>7</em>, <em>4)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.netease.daily.NetEaseDailyReader" title="永久链接至目标">¶</a></dt>
 <dd><p>从 163 读取每日成交汇总数据</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -190,6 +191,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 实例。<code class="docutils literal notranslate"><span class="pre">Date</span></code> 列为索引列。<p>成交量的单位为 <em>手</em>，成交金额的单位为 <em>万元</em>。</p>
 <p>读取后的数据 <strong>排序顺序为正序</strong>。最新日期排在最后面。</p>
+<p><em>无数据时返回空白的 `DataFrame` 。参见 `DataFrame.empty`。</em></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="53%" />
@@ -350,7 +352,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0+untagged.50.gba83feb',
+            VERSION:'0+untagged.50.gee520a7',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
