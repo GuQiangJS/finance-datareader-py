@@ -1,9 +1,7 @@
 Gtimg
 ------------
 
-.. py:module:: finance_datareader_py.gtimg
-
-.. py:module:: finance_datareader_py.sina.daily_details
+.. py:module:: finance_datareader_py.gtimg.daily_details
 
 .. autoclass:: GtimgDailyDetailsReader
    :members:
