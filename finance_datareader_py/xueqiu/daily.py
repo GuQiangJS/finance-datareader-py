@@ -121,10 +121,10 @@ class XueQiuDailyReader(_DailyBaseReader):
                                                 headers=headers).cookies
         response = self._get_response(url, params=params, headers=headers)
         # txt = str(self._sanitize_response(response))
-        s_txt,e_txt='"item":',']]'
-        txt=response.text
+        s_txt, e_txt = '"item":', ']]'
+        txt = response.text
         if txt.__contains__(s_txt) and txt.__contains__(e_txt):
-            txt = txt[txt.index(s_txt) + len(s_txt) :txt.rindex(e_txt) + len(
+            txt = txt[txt.index(s_txt) + len(s_txt):txt.rindex(e_txt) + len(
                 e_txt)]
         else:
             return pd.DataFrame()
