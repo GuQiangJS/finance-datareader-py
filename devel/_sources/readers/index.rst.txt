@@ -10,3 +10,4 @@ Data Readers
    szse
    sina
    gtimg
+   xueqiu

@@ -6,6 +6,7 @@ devel/_sources/readers/sina.rst.txt
 devel/_sources/readers/sohu.rst.txt
 devel/_sources/readers/sse.rst.txt
 devel/_sources/readers/szse.rst.txt
+devel/_sources/readers/xueqiu.rst.txt
 devel/_static/ajax-loader.gif
 devel/_static/basic.css
 devel/_static/comment-bright.png
@@ -72,5 +73,6 @@ devel/readers/sina.html
 devel/readers/sohu.html
 devel/readers/sse.html
 devel/readers/szse.html
+devel/readers/xueqiu.html
 devel/search.html
 devel/searchindex.js
