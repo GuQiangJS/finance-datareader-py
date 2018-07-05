@@ -12,18 +12,23 @@ python:
   - "3.5"
   - "3.6"
   - "3.7-dev"
+  
+matrix:
+  include:
+    - python: '3.6'
+      env: DOCBUILD=true
+  
 install:
   - pip install flake8
   - pip install coverage
-  - pip install sphinxcontrib-napoleon
   - pip install xlrd
   - pip install git+https://github.com/pydata/pandas-datareader.git
   - pip install beautifulsoup4
   - pip install numpy
   - pip install coveralls
   - python setup.py install
-  - if [[ "$PYTHON" == "3.6" ]]; then
-    pip install sphinx sphinx_rtd_theme doctr;
+  - if [[ $DOCBUILD ]]; then
+    pip install sphinx sphinx_rtd_theme doctr sphinxcontrib-napoleon;
     fi
 script: 
   - coverage run -m unittest discover finance_datareader_py "test_*.py"
@@ -32,7 +37,7 @@ script:
 after_success: 
   - coverage report
   - |
-    if [[ "$PYTHON" == "3.6" ]]; then
+    if [[ $DOCBUILD ]]; then
       cd docs
       make html && make html
       cd ..
