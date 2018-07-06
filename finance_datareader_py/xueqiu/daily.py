@@ -12,7 +12,7 @@ __all__ = ['XueQiuDailyReader']
 
 
 class XueQiuDailyReader(_DailyBaseReader):
-    """从 雪球 读取每日成交汇总数据（可直接获取前复权、后复权的数据）
+    """从 雪球 读取每日成交汇总数据（支持获取前复权、后复权的数据）
 
     Args:
         symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002
