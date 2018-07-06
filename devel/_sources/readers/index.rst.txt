@@ -4,8 +4,9 @@ Data Readers
 .. toctree::
    :maxdepth: 3
 
-   sohu
+   eastmoney
    netease
+   sohu
    sse
    szse
    sina

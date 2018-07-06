@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Gtimg &mdash; finance-datareader-py 0+untagged.50.g7385d0b 文档</title>
+  <title>Gtimg &mdash; finance-datareader-py 0+untagged.50.gbd7bd55 文档</title>
   
 
   
@@ -84,8 +84,9 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Data Readers</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="sohu.html">Sohu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eastmoney.html">EastMoney</a></li>
 <li class="toctree-l2"><a class="reference internal" href="netease.html">NetEase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sohu.html">Sohu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sse.html">SSE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="szse.html">SZSE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sina.html">Sina</a></li>
@@ -222,6 +223,78 @@
 
 </dd></dl>
 
+<span class="target" id="module-finance_datareader_py.gtimg.daily"></span><dl class="class">
+<dt id="finance_datareader_py.gtimg.daily.GtimgDailyReader">
+<em class="property">class </em><code class="descclassname">finance_datareader_py.gtimg.daily.</code><code class="descname">GtimgDailyReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>type=''</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>7</em>, <em>5)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.gtimg.daily.GtimgDailyReader" title="永久链接至目标">¶</a></dt>
+<dd><p>从 gtimg 读取每日成交汇总数据（支持获取前复权、后复权的数据）</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first last simple">
+<li><strong>symbols</strong> – 股票代码。<strong>此参数只接收单一股票代码</strong>。For example:600001,000002</li>
+<li><strong>type</strong> – <ul>
+<li>‘’: 不复权（默认）</li>
+<li>’qfq: 前复权</li>
+<li>’hfq: 后复权</li>
+</ul>
+</li>
+<li><strong>start</strong> – 开始日期。默认值：2004-10-08</li>
+<li><strong>end</strong> – 结束日期。默认值：当前日期的 <strong>前一天</strong> 。</li>
+<li><strong>retry_count</strong> – 重试次数</li>
+<li><strong>pause</strong> – 重试间隔时间</li>
+<li><strong>session</strong> – </li>
+<li><strong>chunksize</strong> – </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="finance_datareader_py.gtimg.daily.GtimgDailyReader.read">
+<code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.gtimg.daily.GtimgDailyReader.read" title="永久链接至目标">¶</a></dt>
+<dd><p>读取数据</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 实例。<code class="docutils literal notranslate"><span class="pre">成交时间</span></code> 列为索引列。<p>读取后的数据 <strong>排序顺序为倒序</strong>。</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finance_datareader_py.gtimg.daily</span> <span class="kn">import</span> <span class="n">GtimgDailyReader</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">GtimgDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="c1"># 后复权</span>
+<span class="c1"># df = GtimgDailyReader(symbols=&#39;000002&#39;, type=&#39;hfq&#39;).read()</span>
+<span class="c1"># 前复权</span>
+<span class="c1"># df = GtimgDailyReader(symbols=&#39;000002&#39;, type=&#39;qfq&#39;).read()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>日期          Open   Close    High     Low      交易量(手)
+2004-10-08   5.420   5.560   5.600   5.280  117073.850
+2004-10-11   5.560   5.540   5.650   5.510  264020.250
+2004-10-12   5.530   5.790   5.870   5.500  600868.640
+...            ...     ...     ...     ...         ...
+2018-07-03  23.100  23.420  23.480  22.800  549964.000
+2018-07-04  23.460  23.000  23.750  23.000  249881.000
+2018-07-05  23.020  23.050  23.410  22.850  267278.000
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="finance_datareader_py.gtimg.daily.GtimgDailyReader.url">
+<code class="descname">url</code><a class="headerlink" href="#finance_datareader_py.gtimg.daily.GtimgDailyReader.url" title="永久链接至目标">¶</a></dt>
+<dd><p>API URL</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -266,7 +339,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0+untagged.50.g7385d0b',
+            VERSION:'0+untagged.50.gbd7bd55',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
