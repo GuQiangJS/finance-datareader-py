@@ -35,13 +35,22 @@ def get_szse_symbols(kind: str = '2', retry_count=3, timeout=30, pause=None):
     Returns:
         ``pandas.DataFrame`` 实例。包含 `symbol`、`name` 列，其中 `symbol` 列为索引列。
 
-        ======== ========
-         symbol   name
-        ======== ========
-         000001   平安银行
-         000002   万  科Ａ
-         000004   国农科技
-        ======== ========
+    Examples:
+        .. testcode:: python
+
+            from finance_datareader_py.szse import get_szse_symbols
+
+            df2 = get_szse_symbols('2')  # A股
+
+            print(df2)
+
+        .. testoutput::
+
+            symbol   name
+            000001   平安银行
+            000002  万  科Ａ
+            000004   国农科技
+            000005   世纪星源
     """
     global _ticker_cache
     if timeout < 0:

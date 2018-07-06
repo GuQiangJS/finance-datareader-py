@@ -18,6 +18,7 @@ class sina_TestCase(unittest.TestCase):
         self.assertIsNotNone(df2)
         self.assertFalse(df2.empty)
         print(df1)
+        print('------------')
         print(df2)
 
         dt = datetime.date(2018, 5, 5)

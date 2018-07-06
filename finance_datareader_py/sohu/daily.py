@@ -69,28 +69,22 @@ class SohuDailyReader(_DailyBaseReader):
 
             读取后的数据 **排序顺序为倒序**。最新日期排在最前面。
 
-            =========  =====
-            列名        解释
-            =========  =====
-            Date       日期
-            Open       开盘价
-            Close      收盘价
-            Change     涨跌额
-            Quote      涨跌幅
-            High       最高价
-            Low        最低价
-            Turnover   成交金额
-            Rate       换手率
-            =========  =====
+    Examples:
+        .. testcode:: python
 
-            ==========  =====  ===== ======  =====  =====  =====  ======  =========  ====
-                  Date   Open  Close Change  Quote    Low   High  Volume   Turnover  Rate
-            ==========  =====  ===== ======  =====  =====  =====  ======  =========  ====
-            2018-06-28  23.86  23.88  -0.34  -1.40  23.50  24.57  462513  111465.38  0.48
-            2018-06-27  25.50  24.22  -1.32  -5.17  23.81  25.51  672347  165239.47  0.69
-            2018-06-26  25.82  25.54  -0.95  -3.59  24.83  26.06  591809  150393.69  0.61
-            ==========  =====  ===== ======  =====  =====  =====  ======  =========  ====
+            from finance_datareader_py.sohu.daily import SohuDailyReader
 
+            # df = SohuDailyReader(symbols='399300', prefix='zs_').read() # 获取指数数据
+            df2 = SohuDailyReader(symbols='000002').read()
+
+            print(df2)
+
+        .. testoutput::
+
+            Date        Open  Close Change  Quote    Low   High  Volume   Turnover  Rate
+            2018-07-05  23.02  23.05   0.05   0.22  22.85  23.41  267279   61939.30  0.28
+            2018-07-04  23.46  23.00  -0.42  -1.79  23.00  23.75  249881   58247.02  0.26
+            2018-07-03  23.10  23.42   0.62   2.72  22.80  23.48  549965  127402.35  0.57
         """
         try:
             return super(SohuDailyReader, self).read()

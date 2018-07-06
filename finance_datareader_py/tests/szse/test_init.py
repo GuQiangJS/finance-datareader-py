@@ -24,6 +24,7 @@ class sse_TestCase(unittest.TestCase):
         self.assertFalse(df2.empty)
         self.assertFalse(df5.empty)
         self.assertFalse(df6.empty)
+        print(df2)
         print(df2.count())
         print(df5.count())
         print(df6.count())

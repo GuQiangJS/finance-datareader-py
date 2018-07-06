@@ -23,13 +23,22 @@ def get_sse_symbols(retry_count=3, timeout=30, pause=None):
     Returns:
         ``pandas.DataFrame`` 实例。包含 `symbol`、`name` 列，其中 `symbol` 列为索引列。
 
-        ======== ========
-         symbol   name
-        ======== ========
-         600000  浦发银行
-         600004  白云机场
-         600006  东风汽车
-        ======== ========
+    Examples:
+        .. testcode:: python
+
+            from finance_datareader_py.sse import get_sse_symbols
+
+            df2 = get_sse_symbols()
+
+            print(df2)
+
+        .. testoutput::
+
+            symbol   name
+            600000  浦发银行
+            600004  白云机场
+            600006  东风汽车
+            600007  中国国贸
     """
     global _ticker_cache
     if timeout < 0:
