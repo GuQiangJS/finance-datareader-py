@@ -41,14 +41,21 @@ class sina_TestCase(unittest.TestCase):
         self.assertTrue(pd.isna(df2.loc[dt, '募集资金合计(元)']))
 
     def test_read_err_symbol(self):
-        """测试读取错误的股票代码
-
-        Returns:
-
-        """
+        """测试读取错误的股票代码"""
         df1, df2 = get_dividends('123')
-        self.assertIsNone(df1)
-        self.assertIsNone(df2)
+        self.assertIsNotNone(df1)
+        self.assertTrue(df1.empty)
+        self.assertIsNotNone(df2)
+        self.assertTrue(df2.empty)
+
+    def test_read_fh(self):
+        """测试读取只有分红没有配股数据"""
+        df1, df2 = get_dividends('300378')
+        self.assertIsNotNone(df1)
+        self.assertFalse(df1.empty)
+        print(df1)
+        self.assertIsNotNone(df2)
+        self.assertTrue(df2.empty)
 
 
 if __name__ == '__main__':

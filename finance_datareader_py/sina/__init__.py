@@ -23,7 +23,8 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
     Returns:
         ``[DataFrame,DataFrame]``:
 
-        任意数据表无数据时返回``None``
+        任意数据表无数据时返回 空白的 ``pandas.DataFrame`` 。
+        参见 ``pandas.DataFrame.empty``。
 
     Examples:
         .. testcode:: python
@@ -79,8 +80,8 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
                     retry_count -= 1
                     time.sleep(pause)
 
-    return _dividends_cache[symbol] if symbol in _dividends_cache else [None,
-                                                                        None]
+    return _dividends_cache[symbol] if symbol in _dividends_cache else [
+        pd.DataFrame(), pd.DataFrame()]
 
 
 def _download_dividends(symbol: str):
@@ -97,7 +98,7 @@ def _download_dividends(symbol: str):
         pg = re.search(
             '<!--配股 begin-->[\s\S]*<tbody>([\s\S]*)<\/tbody>[\s\S]*<!--配股 end-->',
             txt)
-        df1, df2 = None, None
+        df1, df2 = pd.DataFrame(), pd.DataFrame()
         # 分红数据
         r = _parse_body(bs(fh.group(1), 'lxml'), _parse_divided_line)
         if r:
@@ -167,7 +168,7 @@ def _parse_allotment_line(tr):
     if not tr:
         return None
     tds = tr.find_all('td')
-    if tds:
+    if tds and len(tds) >= 9:
         return {
             '公告日期': tds[0].text.strip(),
             '配股方案(每10股配股股数)': tds[1].text.strip(),
