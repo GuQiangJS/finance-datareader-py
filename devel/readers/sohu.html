@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sohu &mdash; finance-datareader-py 0+untagged.50.g48fd422 文档</title>
+  <title>Sohu &mdash; finance-datareader-py 0+untagged.50.g7385d0b 文档</title>
   
 
   
@@ -163,7 +163,7 @@
 <span id="sohu"></span><h1>Sohu<a class="headerlink" href="#module-finance_datareader_py.sohu.daily" title="永久链接至标题">¶</a></h1>
 <dl class="class">
 <dt id="finance_datareader_py.sohu.daily.SohuDailyReader">
-<em class="property">class </em><code class="descclassname">finance_datareader_py.sohu.daily.</code><code class="descname">SohuDailyReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>prefix='cn_'</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>7</em>, <em>4)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.sohu.daily.SohuDailyReader" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="descclassname">finance_datareader_py.sohu.daily.</code><code class="descname">SohuDailyReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>prefix='cn_'</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>7</em>, <em>5)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.sohu.daily.SohuDailyReader" title="永久链接至目标">¶</a></dt>
 <dd><p>从sohu读取每日成交汇总数据</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -187,118 +187,30 @@
 <dt id="finance_datareader_py.sohu.daily.SohuDailyReader.read">
 <code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.sohu.daily.SohuDailyReader.read" title="永久链接至目标">¶</a></dt>
 <dd><p>读取数据</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 实例。<code class="docutils literal notranslate"><span class="pre">Date</span></code> 列为索引列。<p>成交量的单位为 <em>手</em>，成交金额的单位为 <em>万元</em>。</p>
-<p>读取后的数据 <strong>排序顺序为倒序</strong>。最新日期排在最前面。</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="53%" />
-<col width="47%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">列名</th>
-<th class="head">解释</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Date</td>
-<td>日期</td>
-</tr>
-<tr class="row-odd"><td>Open</td>
-<td>开盘价</td>
-</tr>
-<tr class="row-even"><td>Close</td>
-<td>收盘价</td>
-</tr>
-<tr class="row-odd"><td>Change</td>
-<td>涨跌额</td>
-</tr>
-<tr class="row-even"><td>Quote</td>
-<td>涨跌幅</td>
-</tr>
-<tr class="row-odd"><td>High</td>
-<td>最高价</td>
-</tr>
-<tr class="row-even"><td>Low</td>
-<td>最低价</td>
-</tr>
-<tr class="row-odd"><td>Turnover</td>
-<td>成交金额</td>
-</tr>
-<tr class="row-even"><td>Rate</td>
-<td>换手率</td>
-</tr>
-</tbody>
-</table>
-<table border="1" class="docutils">
-<colgroup>
-<col width="17%" />
-<col width="8%" />
-<col width="8%" />
-<col width="10%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
-<col width="10%" />
-<col width="15%" />
-<col width="7%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Date</th>
-<th class="head">Open</th>
-<th class="head">Close</th>
-<th class="head">Change</th>
-<th class="head">Quote</th>
-<th class="head">Low</th>
-<th class="head">High</th>
-<th class="head">Volume</th>
-<th class="head">Turnover</th>
-<th class="head">Rate</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>2018-06-28</td>
-<td>23.86</td>
-<td>23.88</td>
-<td>-0.34</td>
-<td>-1.40</td>
-<td>23.50</td>
-<td>24.57</td>
-<td>462513</td>
-<td>111465.38</td>
-<td>0.48</td>
-</tr>
-<tr class="row-odd"><td>2018-06-27</td>
-<td>25.50</td>
-<td>24.22</td>
-<td>-1.32</td>
-<td>-5.17</td>
-<td>23.81</td>
-<td>25.51</td>
-<td>672347</td>
-<td>165239.47</td>
-<td>0.69</td>
-</tr>
-<tr class="row-even"><td>2018-06-26</td>
-<td>25.82</td>
-<td>25.54</td>
-<td>-0.95</td>
-<td>-3.59</td>
-<td>24.83</td>
-<td>26.06</td>
-<td>591809</td>
-<td>150393.69</td>
-<td>0.61</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-</tbody>
-</table>
+<blockquote>
+<div><dl class="docutils">
+<dt>Returns:</dt>
+<dd><p class="first"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 实例。<code class="docutils literal notranslate"><span class="pre">Date</span></code> 列为索引列。</p>
+<p>成交量的单位为 <em>手</em>，成交金额的单位为 <em>万元</em>。</p>
+<p class="last">读取后的数据 <strong>排序顺序为倒序</strong>。最新日期排在最前面。</p>
+</dd>
+</dl>
+</div></blockquote>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finance_datareader_py.sohu.daily</span> <span class="kn">import</span> <span class="n">SohuDailyReader</span>
+
+<span class="c1"># df = SohuDailyReader(symbols=&#39;399300&#39;, prefix=&#39;zs_&#39;).read() # 获取指数数据</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">SohuDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Date        Open  Close Change  Quote    Low   High  Volume   Turnover  Rate
+2018-07-05  23.02  23.05   0.05   0.22  22.85  23.41  267279   61939.30  0.28
+2018-07-04  23.46  23.00  -0.42  -1.79  23.00  23.75  249881   58247.02  0.26
+2018-07-03  23.10  23.42   0.62   2.72  22.80  23.48  549965  127402.35  0.57
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="attribute">
@@ -353,7 +265,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0+untagged.50.g48fd422',
+            VERSION:'0+untagged.50.g7385d0b',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
