@@ -37,9 +37,9 @@ class GtimgDailyReader(_DailyBaseReader):
         Args:
             symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001
             type:
-                * default: 不复权（默认）
-                * before: 前复权
-                * after: 后复权
+                * '': 不复权（默认）
+                * 'qfq: 前复权
+                * 'hfq: 后复权
             start: 开始日期。默认值：2004-10-08
             end: 结束日期。默认值：当前日期的 **前一天** 。
             retry_count: 重试次数
@@ -57,11 +57,7 @@ class GtimgDailyReader(_DailyBaseReader):
         # http://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz000002,day,2010-01-01,2018-12-31,6400,
         # http://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz000002,day,2010-01-01,2018-12-31,6400,qfq
         # http://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz000002,day,2010-01-01,2018-12-31,6400,hfq
-        return 'http://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param' \
-               '={symbol},day,{start},{end},{count},{fq}' \
-            .format(symbol=self._parse_symbol(), start=self.start.strftime(
-            '%Y-%m-%d'), end=self.end.strftime('%Y-%m-%d'),
-                    fq=self._type, count=self._parse_count())
+        return 'http://web.ifzq.gtimg.cn/appstock/app/fqkline/get'
 
     def _parse_symbol(self):
         # 深市前加sz，沪市前加sh
@@ -71,7 +67,11 @@ class GtimgDailyReader(_DailyBaseReader):
         return (self.end - self.start).days + 1
 
     def _get_params(self, *args, **kwargs):
-        return {}
+        f = '%Y-%m-%d'
+        return {'param': '{symbol},day,{start},{end},{count},{fq}'.format(
+            symbol=self._parse_symbol(), start=self.start.strftime(f),
+            end=self.end.strftime(f), fq=self._type,
+            count=self._parse_count())}
 
     def read(self):
         """读取数据
@@ -100,8 +100,10 @@ class GtimgDailyReader(_DailyBaseReader):
                 2004-10-08   5.420   5.560   5.600   5.280  117073.850
                 2004-10-11   5.560   5.540   5.650   5.510  264020.250
                 2004-10-12   5.530   5.790   5.870   5.500  600868.640
-                2004-10-13   5.810   5.790   5.850   5.690  252038.880
-                2004-10-14   5.800   5.670   5.800   5.560  265166.960
+                ...            ...     ...     ...     ...         ...
+                2018-07-03  23.100  23.420  23.480  22.800  549964.000
+                2018-07-04  23.460  23.000  23.750  23.000  249881.000
+                2018-07-05  23.020  23.050  23.410  22.850  267278.000
 
         """
         try:
@@ -117,13 +119,13 @@ class GtimgDailyReader(_DailyBaseReader):
         :return:
         """
         response = self._get_response(url, params=params)
-        txt = self._get_split_txt(response.text)
+        txt = GtimgDailyReader._get_split_txt(response.text)
         if not txt:
             return pd.DataFrame()
         pd_data = pd.DataFrame(json.loads(txt))
         return pd_data
 
-    def _get_split_txt(self, txt):
+    def _get_split_txt(txt):
         """自动截取文本中的每日数据。（区分前复权、后复权、不复权）"""
         s_txts = ['"qfqday":', '"hfqday":', '"day":']
         e_txt = ']]'

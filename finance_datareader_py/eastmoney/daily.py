@@ -113,13 +113,13 @@ class EastMoneyDailyReader(_DailyBaseReader):
         :return:
         """
         response = self._get_response(url, params=params)
-        txt = self._get_split_txt(response.text)
+        txt = EastMoneyDailyReader._get_split_txt(response.text)
         if not txt:
             return pd.DataFrame()
         pd_data = pd.DataFrame([f.split(',') for f in json.loads(txt)])
         return pd_data
 
-    def _get_split_txt(self, txt):
+    def _get_split_txt(txt):
         """自动截取文本中的每日数据。（区分前复权、后复权、不复权）"""
         s_txts = ['"data":']
         e_txt = ']'
