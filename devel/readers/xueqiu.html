@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>XueQiu &mdash; finance-datareader-py 0+untagged.50.gbd7bd55 文档</title>
+  <title>XueQiu &mdash; finance-datareader-py 0+untagged.50.g914f05b 文档</title>
   
 
   
@@ -171,10 +171,11 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first last simple">
 <li><strong>symbols</strong> – 股票代码。<strong>此参数只接收单一股票代码</strong>。For example:600001,000002</li>
-<li><strong>type</strong> – <ul>
-<li>default: 不复权（默认）</li>
-<li>before: 前复权</li>
-<li>after: 后复权</li>
+<li><strong>type</strong> – <p>{‘default’, ‘before’, ‘after’}, 默认值 ‘default’</p>
+<ul>
+<li>’default’: 不复权（默认）</li>
+<li>’before’: 前复权</li>
+<li>’after’: 后复权</li>
 </ul>
 </li>
 <li><strong>start</strong> – 开始日期。默认值：2004-10-08</li>
@@ -196,8 +197,9 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 实例。<code class="docutils literal notranslate"><span class="pre">成交时间</span></code> 列为索引列。<p>读取后的数据 <strong>排序顺序为倒序</strong>。</p>
-</td>
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">无数据时返回空白的 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 。参见 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame.empty</span></code>。</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -268,7 +270,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0+untagged.50.gbd7bd55',
+            VERSION:'0+untagged.50.g914f05b',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

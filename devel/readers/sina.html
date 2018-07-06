@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sina &mdash; finance-datareader-py 0+untagged.50.gbd7bd55 文档</title>
+  <title>Sina &mdash; finance-datareader-py 0+untagged.50.g914f05b 文档</title>
   
 
   
@@ -178,9 +178,10 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first last"><p><code class="docutils literal notranslate"><span class="pre">[DataFrame,DataFrame]</span></code></p>
-<p><strong>任意数据表无数据时返回None</strong></p>
-</p>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">任意数据表无数据时返回``None``</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">[DataFrame,DataFrame]</span></code></p>
 </td>
 </tr>
 </tbody>
@@ -235,15 +236,16 @@
 <dt id="finance_datareader_py.sina.daily_details.SinaDailyDetailsReader.read">
 <code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.sina.daily_details.SinaDailyDetailsReader.read" title="永久链接至目标">¶</a></dt>
 <dd><p>读取数据</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>Returns:</dt>
-<dd><p class="first"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 实例。<code class="docutils literal notranslate"><span class="pre">成交时间</span></code> 为索引列。</p>
-<p>读取后的数据 <strong>排序顺序为倒序</strong>。</p>
-<p class="last"><em>无数据时返回空白的 `DataFrame` 。参见 `DataFrame.empty`。</em></p>
-</dd>
-</dl>
-</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">无数据时返回空白的 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 。参见 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame.empty</span></code>。</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Examples</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finance_datareader_py.sina.daily_details</span> <span class="kn">import</span> <span class="n">SinaDailyDetailsReader</span>
 
@@ -315,7 +317,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0+untagged.50.gbd7bd55',
+            VERSION:'0+untagged.50.g914f05b',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
