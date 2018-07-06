@@ -63,28 +63,28 @@ class SohuDailyReader(_DailyBaseReader):
         """读取数据
 
         Returns:
-            ``pandas.DataFrame`` 实例。``Date`` 列为索引列。
+            ``pandas.DataFrame`` 实例。
 
             成交量的单位为 *手*，成交金额的单位为 *万元*。
 
-            读取后的数据 **排序顺序为倒序**。最新日期排在最前面。
+            无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
-    Examples:
-        .. testcode:: python
+        Examples:
+            .. testcode:: python
 
-            from finance_datareader_py.sohu.daily import SohuDailyReader
+                from finance_datareader_py.sohu.daily import SohuDailyReader
 
-            # df = SohuDailyReader(symbols='399300', prefix='zs_').read() # 获取指数数据
-            df2 = SohuDailyReader(symbols='000002').read()
+                # df = SohuDailyReader(symbols='399300', prefix='zs_').read() # 获取指数数据
+                df2 = SohuDailyReader(symbols='000002').read()
 
-            print(df2)
+                print(df2)
 
-        .. testoutput::
+            .. testoutput::
 
-            Date        Open  Close Change  Quote    Low   High  Volume   Turnover  Rate
-            2018-07-05  23.02  23.05   0.05   0.22  22.85  23.41  267279   61939.30  0.28
-            2018-07-04  23.46  23.00  -0.42  -1.79  23.00  23.75  249881   58247.02  0.26
-            2018-07-03  23.10  23.42   0.62   2.72  22.80  23.48  549965  127402.35  0.57
+                Date        Open  Close Change  Quote    Low   High  Volume   Turnover  Rate
+                2018-07-05  23.02  23.05   0.05   0.22  22.85  23.41  267279   61939.30  0.28
+                2018-07-04  23.46  23.00  -0.42  -1.79  23.00  23.75  249881   58247.02  0.26
+                2018-07-03  23.10  23.42   0.62   2.72  22.80  23.48  549965  127402.35  0.57
         """
         try:
             return super(SohuDailyReader, self).read()

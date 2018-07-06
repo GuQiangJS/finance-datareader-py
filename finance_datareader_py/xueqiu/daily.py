@@ -16,10 +16,12 @@ class XueQiuDailyReader(_DailyBaseReader):
 
     Args:
         symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002
-        type:
-            * default: 不复权（默认）
-            * before: 前复权
-            * after: 后复权
+        type: {'default', 'before', 'after'}, 默认值 'default'
+
+            * 'default': 不复权（默认）
+            * 'before': 前复权
+            * 'after': 后复权
+
         start: 开始日期。默认值：2004-10-08
         end: 结束日期。默认值：当前日期的 **前一天** 。
         retry_count: 重试次数
@@ -37,10 +39,12 @@ class XueQiuDailyReader(_DailyBaseReader):
 
         Args:
             symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001
-            type:
-                * default: 不复权（默认）
-                * before: 前复权
-                * after: 后复权
+            type: {'default', 'before', 'after'}, 默认值 'default'
+
+                * 'default': 不复权（默认）
+                * 'before': 前复权
+                * 'after': 后复权
+
             start: 开始日期。默认值：2004-10-08
             end: 结束日期。默认值：当前日期的 **前一天** 。
             retry_count: 重试次数
@@ -83,9 +87,9 @@ class XueQiuDailyReader(_DailyBaseReader):
         """读取数据
 
         Returns:
-            ``pandas.DataFrame`` 实例。``成交时间`` 列为索引列。
+            ``pandas.DataFrame``:
 
-            读取后的数据 **排序顺序为倒序**。
+            无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
         Examples:
             .. testcode:: python
@@ -111,12 +115,6 @@ class XueQiuDailyReader(_DailyBaseReader):
             self.close()
 
     def _read_url_as_StringIO(self, url, params=None):
-        """
-        从 sohu 读取原始数据
-        :param url:
-        :param params:
-        :return:
-        """
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) '
                           'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
@@ -138,11 +136,7 @@ class XueQiuDailyReader(_DailyBaseReader):
         return pd_data
 
     def _read_lines(self, out):
-        """
-        加工原始数据
-        :param out:
-        :return:
-        """
+        """加工原始数据"""
         if out.empty:
             return out
         # 设置标题

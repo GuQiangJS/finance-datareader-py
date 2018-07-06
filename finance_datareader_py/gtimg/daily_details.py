@@ -50,11 +50,12 @@ class GtimgDailyDetailsReader(_DailyBaseReader):
     @property
     def url(self):
         # http://stock.gtimg.cn/data/index.php?appn=detail&action=download&c=sz000002&d=20180704
-        return 'http://stock.gtimg.cn/data/index.php?appn=detail&action=download&c={0}&d={1}'.format(
-            self._parse_symbol(), self._date.strftime('%Y%m%d'))
+        return 'http://stock.gtimg.cn/data/index.php'
 
     def _get_params(self, *args, **kwargs):
-        return {}
+        return {'appn': 'detail', 'action': 'download',
+                'c': self._parse_symbol(),
+                'd': self._date.strftime('%Y%m%d')}
 
     def _parse_symbol(self):
         # 深市前加1，沪市前加0
@@ -64,11 +65,9 @@ class GtimgDailyDetailsReader(_DailyBaseReader):
         """读取数据
 
         Returns:
-            ``pandas.DataFrame`` 实例。``成交时间`` 为索引列。
+            ``pandas.DataFrame``:
 
-            读取后的数据 **排序顺序为倒序**。
-
-            *无数据时返回空白的 `DataFrame` 。参见 `DataFrame.empty`。*
+            无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
         Examples:
             .. testcode:: python

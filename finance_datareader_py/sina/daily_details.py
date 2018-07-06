@@ -66,30 +66,28 @@ class SinaDailyDetailsReader(_DailyBaseReader):
         """读取数据
 
         Returns:
-            ``pandas.DataFrame`` 实例。``成交时间`` 为索引列。
+            ``pandas.DataFrame``:
 
-            读取后的数据 **排序顺序为倒序**。
+            无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
-            *无数据时返回空白的 `DataFrame` 。参见 `DataFrame.empty`。*
+        Examples:
+            .. testcode:: python
 
-    Examples:
-        .. testcode:: python
+                from finance_datareader_py.sina.daily_details import SinaDailyDetailsReader
 
-            from finance_datareader_py.sina.daily_details import SinaDailyDetailsReader
+                df = SinaDailyDetailsReader(symbols='000002', start=datetime.date(2018, 7, 2),
+                                            end=datetime.date(2018, 7, 2)).read()
 
-            df = SinaDailyDetailsReader(symbols='000002', start=datetime.date(2018, 7, 2),
-                                        end=datetime.date(2018, 7, 2)).read()
+                print(df)
 
-            print(df)
+            .. testoutput::
 
-        .. testoutput::
-
-            成交时间           成交价格  价格变动  成交量(手)    成交额(元)   性质
-            2018-07-02 15:00:04  22.80  0.01    5763  13139640   卖盘
-            2018-07-02 14:57:00  22.79  0.00       9     20511   卖盘
-            2018-07-02 14:56:57  22.79  0.00      98    225241   买盘
-            2018-07-02 14:56:54  22.79  0.00     171    389700   买盘
-            2018-07-02 14:56:51  22.79  0.04     164    373234   买盘
+                成交时间           成交价格  价格变动  成交量(手)    成交额(元)   性质
+                2018-07-02 15:00:04  22.80  0.01    5763  13139640   卖盘
+                2018-07-02 14:57:00  22.79  0.00       9     20511   卖盘
+                2018-07-02 14:56:57  22.79  0.00      98    225241   买盘
+                2018-07-02 14:56:54  22.79  0.00     171    389700   买盘
+                2018-07-02 14:56:51  22.79  0.04     164    373234   买盘
 
         """
         try:
@@ -123,7 +121,6 @@ class SinaDailyDetailsReader(_DailyBaseReader):
 
     def _read_lines(self, out):
         if out:
-            # return read_csv(out,sep=r'\t',index_col=0,parse_dates=[0],na_values=('--', 'null'),date_parser=self._date_parser)
             df = read_csv(out, sep=r'\t', index_col=0, parse_dates=[0],
                           na_values=('--', 'null'), engine='python',
                           date_parser=lambda x: pd.to_datetime(x).replace(

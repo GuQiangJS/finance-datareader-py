@@ -46,19 +46,24 @@ class NetEaseDailyReader(_DailyBaseReader):
 
     @property
     def url(self):
-        # http://quotes.money.163.com/trade/lsjysj_002024.html#06f01
-        # http://quotes.money.163.com/service/chddata.html?code=1002024&start=20040707&end=20180629&fields=TCLOSE;HIGH;LOW;TOPEN;CHG;PCHG;TURNOVER;VOTURNOVER;VATURNOVER
-        # http://quotes.money.163.com/service/chddata.html?code=0601398&start=20061027&end=20180628&fields=TCLOSE;HIGH;LOW;TOPEN;CHG;PCHG;TURNOVER;VOTURNOVER;VATURNOVER
-        return 'http://quotes.money.163.com/service/chddata.html?code={symbol}&start={start}&end={end}&fields=TCLOSE;HIGH;LOW;TOPEN;CHG;PCHG;TURNOVER;VOTURNOVER;VATURNOVER'.format(
-            symbol=self._parse_symbol(), start=self.start.strftime('%Y%m%d'),
-            end=self.end.strftime('%Y%m%d'))
+        # http://quotes.money.163.com/service/chddata.html?code=1002024
+        # &start=20040707&end=20180629
+        # &fields=TCLOSE;HIGH;LOW;TOPEN;CHG;PCHG;TURNOVER;VOTURNOVER;VATURNOVER
+        # http://quotes.money.163.com/service/chddata.html?code=0601398
+        # &start=20061027&end=20180628
+        # &fields=TCLOSE;HIGH;LOW;TOPEN;CHG;PCHG;TURNOVER;VOTURNOVER;VATURNOVER
+        return 'http://quotes.money.163.com/service/chddata.html'
 
     def _parse_symbol(self):
         # 深市前加1，沪市前加0
         return ('0' if self.symbols[0] == '6' else '1') + self.symbols
 
     def _get_params(self, *args, **kwargs):
-        return ''
+        return {'code': self._parse_symbol(),
+                'start': self.start.strftime('%Y%m%d'),
+                'end': self.end.strftime('%Y%m%d'),
+                'fields': 'TCLOSE;HIGH;LOW;TOPEN;CHG;PCHG;TURNOVER;VOTURNOVER'
+                          ';VATURNOVER'}
 
     def _read_url_as_StringIO(self, url, params=None):
         response = self._get_response(url, params=params)
@@ -92,13 +97,11 @@ class NetEaseDailyReader(_DailyBaseReader):
         """读取数据
 
         Returns:
-            ``pandas.DataFrame`` 实例。``Date`` 列为索引列。
+            ``pandas.DataFrame``:
 
             成交量的单位为 *手*，成交金额的单位为 *万元*。
 
-            读取后的数据 **排序顺序为正序**。最新日期排在最后面。
-
-            *无数据时返回空白的 `DataFrame` 。参见 `DataFrame.empty`。*
+            无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
         Examples:
             .. testcode:: python

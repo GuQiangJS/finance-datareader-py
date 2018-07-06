@@ -33,7 +33,7 @@ def get_szse_symbols(kind: str = '2', retry_count=3, timeout=30, pause=None):
         pause:
 
     Returns:
-        ``pandas.DataFrame`` 实例。包含 `symbol`、`name` 列，其中 `symbol` 列为索引列。
+        ``pandas.DataFrame``:
 
     Examples:
         .. testcode:: python

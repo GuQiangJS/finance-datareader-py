@@ -13,10 +13,6 @@ def readme():
         return f.read()
 
 
-INSTALL_REQUIRES = (
-    ['pandas-datareader', 'numpy', 'beautifulsoup4']
-)
-
 setup(
     name=NAME,
     version=versioneer.get_version(),
@@ -38,7 +34,7 @@ setup(
         'Topic :: Scientific/Engineering',
     ],
     keywords='data',
-    install_requires=INSTALL_REQUIRES,
+    install_requires=['pandas', 'pandas-datareader', 'numpy', 'beautifulsoup4'],
     packages=find_packages(),
     zip_safe=False,
     exclude_package_data={'': ['test_*.py']}

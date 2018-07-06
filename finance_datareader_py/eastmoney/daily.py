@@ -16,10 +16,12 @@ class EastMoneyDailyReader(_DailyBaseReader):
 
     Args:
         symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002
-        type:
-            * '': 不复权（默认）
-            * 'fa: 前复权
-            * 'ba: 后复权
+        type: {None, 'fa', 'ba' }, 默认值 None
+
+            * None: 不复权（默认）
+            * 'fa': 前复权
+            * 'ba': 后复权
+
         start: 开始日期。默认值：2004-10-08
         end: 结束日期。默认值：当前日期的 **前一天** 。
         retry_count: 重试次数
@@ -28,7 +30,7 @@ class EastMoneyDailyReader(_DailyBaseReader):
         chunksize:
     """
 
-    def __init__(self, symbols=None, type='',
+    def __init__(self, symbols=None, type=None,
                  start=datetime.date(2004, 10, 8),
                  end=datetime.date.today() + datetime.timedelta(days=-1),
                  retry_count=3, pause=1, session=None,
@@ -37,10 +39,12 @@ class EastMoneyDailyReader(_DailyBaseReader):
 
         Args:
             symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001
-            type:
-                * '': 不复权（默认）
+            type: {None, 'fa', 'ba'}, 默认值 None
+
+                * None: 不复权（默认）
                 * 'fa': 前复权
                 * 'ba': 后复权
+
             start: 开始日期。默认值：2004-10-08
             end: 结束日期。默认值：当前日期的 **前一天** 。
             retry_count: 重试次数
@@ -65,15 +69,15 @@ class EastMoneyDailyReader(_DailyBaseReader):
 
     def _get_params(self, *args, **kwargs):
         return {'rtntype': '5', 'id': self._parse_symbol(), 'type': 'k',
-                'authorityType': self._type}
+                'authorityType': self._type if self._type else ''}
 
     def read(self):
         """读取数据
 
         Returns:
-            ``pandas.DataFrame`` 实例。``成交时间`` 列为索引列。
+            ``pandas.DataFrame``:
 
-            读取后的数据 **排序顺序为正序**。
+            无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
         Examples:
             .. testcode:: python
@@ -106,12 +110,7 @@ class EastMoneyDailyReader(_DailyBaseReader):
             self.close()
 
     def _read_url_as_StringIO(self, url, params=None):
-        """
-        读取原始数据
-        :param url:
-        :param params:
-        :return:
-        """
+        """读取原始数据"""
         response = self._get_response(url, params=params)
         txt = EastMoneyDailyReader._get_split_txt(response.text)
         if not txt:
@@ -130,11 +129,7 @@ class EastMoneyDailyReader(_DailyBaseReader):
         return ''
 
     def _read_lines(self, out):
-        """
-        加工原始数据
-        :param out:
-        :return:
-        """
+        """加工原始数据"""
         if out.empty:
             return out
         # 设置标题

@@ -21,9 +21,9 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
         pause:
 
     Returns:
-        ``[DataFrame,DataFrame]``
+        ``[DataFrame,DataFrame]``:
 
-        **任意数据表无数据时返回None**
+        任意数据表无数据时返回``None``
 
     Examples:
         .. testcode:: python
@@ -87,9 +87,9 @@ def _download_dividends(symbol: str):
     reader = _BaseReader('')
 
     try:
-        response = reader._get_response(
-            r'http://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/{0}.phtml'.format(
-                symbol))
+        response = reader._get_response(r'http://vip.stock.finance.sina.com.cn/'
+                                        r'corp/go.php/vISSUE_ShareBonus/stockid'
+                                        r'/{0}.phtml'.format(symbol))
         txt = str(response.content, encoding='gb2312')
         fh = re.search(
             '<!--分红 begin-->[\s\S]*<tbody>([\s\S]*)<\/tbody>[\s\S]*<!--分红 end-->',
@@ -133,12 +133,7 @@ def _translate_dtype(df):
 
 
 def _parse_body(tbody, func_parse_line):
-    """解析 tbody 内容
-
-    :param tbody:
-    :param func_parse_line: 解析每一行用的方法
-    :return:
-    """
+    """解析 tbody 内容"""
     if not tbody:
         return None
     result = []
@@ -150,10 +145,7 @@ def _parse_body(tbody, func_parse_line):
 
 
 def _parse_divided_line(tr):
-    """解析分红数据tr行
-
-    :return:
-    """
+    """解析分红数据tr行"""
     if not tr:
         return None
     tds = tr.find_all('td')
@@ -171,11 +163,7 @@ def _parse_divided_line(tr):
 
 
 def _parse_allotment_line(tr):
-    """解析配股数据tr行
-
-    :param tr:
-    :return:
-    """
+    """解析配股数据tr行"""
     if not tr:
         return None
     tds = tr.find_all('td')
