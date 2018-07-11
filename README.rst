@@ -3,10 +3,6 @@ finance-datareader-py
     
 .. image:: https://api.travis-ci.org/GuQiangJS/finance-datareader-py.svg?branch=master
     :target: https://travis-ci.org/GuQiangJS/finance-datareader-py
-
-.. image:: https://landscape.io/github/GuQiangJS/finance-datareader-py/master/landscape.svg?style=flat-square
-   :target: https://landscape.io/github/GuQiangJS/finance-datareader-py/master
-   :alt: Code Health
    
 .. image:: https://coveralls.io/repos/github/GuQiangJS/finance-datareader-py/badge.svg?branch=master
    :target: https://coveralls.io/github/GuQiangJS/finance-datareader-py?branch=master
@@ -50,11 +46,12 @@ Python 金融数据读取器
 
     In[2]: from finance_datareader_py.netease.daily import NetEaseDailyReader
     In[3]: df = NetEaseDailyReader(symbols='000002').read()
-    In[4]: df[1:5]
+    In[4]: df.tail()
     
     Out[5]:
                 Close  High   Low  Open Change    Quote    Rate    Volume  Turnover
-    2004-10-11   5.54  5.65  5.51  5.56  -0.02  -0.3597  1.6744  264020.0   14775.0
-    2004-10-12   5.79  5.87  5.50  5.53   0.25   4.5126  3.8106  600869.0   34637.0
-    2004-10-13   5.79  5.85  5.69  5.81    0.0      0.0  1.5984  252039.0   14604.0
-    2004-10-14   5.67  5.80  5.56  5.80  -0.12  -2.0725  1.6816  265167.0   15041.0
+    2018-07-04  23.00  23.75  23.00  23.46  -0.42  -1.7933  0.2570  249881.0  58247.0  
+    2018-07-05  23.05  23.41  22.85  23.02   0.05   0.2174  0.2749  267279.0  61939.0  
+    2018-07-06  23.21  23.60  22.65  23.34   0.16   0.6941  0.3568  346930.0  80511.0 
+    2018-07-09  24.01  24.05  23.37  23.37    0.8   3.4468  0.4161  404627.0  96480.0 
+    2018-07-10  24.15  24.49  23.77  24.20   0.14   0.5831  0.4003  389259.0  93653.0
