@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finance-datareader-py &mdash; finance-datareader-py 0.1.0 文档</title>
+  <title>finance-datareader-py &mdash; finance-datareader-py 0.1.0+1.g20fd822 文档</title>
   
 
   
@@ -150,7 +150,6 @@
   <div class="section" id="finance-datareader-py">
 <h1>finance-datareader-py<a class="headerlink" href="#finance-datareader-py" title="永久链接至标题">¶</a></h1>
 <a class="reference external image-reference" href="https://travis-ci.org/GuQiangJS/finance-datareader-py"><img alt="https://api.travis-ci.org/GuQiangJS/finance-datareader-py.svg?branch=master" src="https://api.travis-ci.org/GuQiangJS/finance-datareader-py.svg?branch=master" /></a>
-<a class="reference external image-reference" href="https://landscape.io/github/GuQiangJS/finance-datareader-py/master"><img alt="Code Health" src="https://landscape.io/github/GuQiangJS/finance-datareader-py/master/landscape.svg?style=flat-square" /></a>
 <a class="reference external image-reference" href="https://coveralls.io/github/GuQiangJS/finance-datareader-py?branch=master"><img alt="https://coveralls.io/repos/github/GuQiangJS/finance-datareader-py/badge.svg?branch=master" src="https://coveralls.io/repos/github/GuQiangJS/finance-datareader-py/badge.svg?branch=master" /></a>
 <p>Python 金融数据读取器</p>
 <p>基于 <code class="docutils literal notranslate"><span class="pre">pandas-datareader</span></code> 开发，用来读取 上证、深证（股票列表、每日成交汇总）</p>
@@ -183,14 +182,15 @@
 <h2>使用示例<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">finance_datareader_py.netease.daily</span> <span class="kn">import</span> <span class="n">NetEaseDailyReader</span>
 <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">df</span> <span class="o">=</span> <span class="n">NetEaseDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">df</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
 
 <span class="n">Out</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span>
             <span class="n">Close</span>  <span class="n">High</span>   <span class="n">Low</span>  <span class="n">Open</span> <span class="n">Change</span>    <span class="n">Quote</span>    <span class="n">Rate</span>    <span class="n">Volume</span>  <span class="n">Turnover</span>
-<span class="mi">2004</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">11</span>   <span class="mf">5.54</span>  <span class="mf">5.65</span>  <span class="mf">5.51</span>  <span class="mf">5.56</span>  <span class="o">-</span><span class="mf">0.02</span>  <span class="o">-</span><span class="mf">0.3597</span>  <span class="mf">1.6744</span>  <span class="mf">264020.0</span>   <span class="mf">14775.0</span>
-<span class="mi">2004</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">12</span>   <span class="mf">5.79</span>  <span class="mf">5.87</span>  <span class="mf">5.50</span>  <span class="mf">5.53</span>   <span class="mf">0.25</span>   <span class="mf">4.5126</span>  <span class="mf">3.8106</span>  <span class="mf">600869.0</span>   <span class="mf">34637.0</span>
-<span class="mi">2004</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">13</span>   <span class="mf">5.79</span>  <span class="mf">5.85</span>  <span class="mf">5.69</span>  <span class="mf">5.81</span>    <span class="mf">0.0</span>      <span class="mf">0.0</span>  <span class="mf">1.5984</span>  <span class="mf">252039.0</span>   <span class="mf">14604.0</span>
-<span class="mi">2004</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">14</span>   <span class="mf">5.67</span>  <span class="mf">5.80</span>  <span class="mf">5.56</span>  <span class="mf">5.80</span>  <span class="o">-</span><span class="mf">0.12</span>  <span class="o">-</span><span class="mf">2.0725</span>  <span class="mf">1.6816</span>  <span class="mf">265167.0</span>   <span class="mf">15041.0</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mo">04</span>  <span class="mf">23.00</span>  <span class="mf">23.75</span>  <span class="mf">23.00</span>  <span class="mf">23.46</span>  <span class="o">-</span><span class="mf">0.42</span>  <span class="o">-</span><span class="mf">1.7933</span>  <span class="mf">0.2570</span>  <span class="mf">249881.0</span>  <span class="mf">58247.0</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mo">05</span>  <span class="mf">23.05</span>  <span class="mf">23.41</span>  <span class="mf">22.85</span>  <span class="mf">23.02</span>   <span class="mf">0.05</span>   <span class="mf">0.2174</span>  <span class="mf">0.2749</span>  <span class="mf">267279.0</span>  <span class="mf">61939.0</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mo">06</span>  <span class="mf">23.21</span>  <span class="mf">23.60</span>  <span class="mf">22.65</span>  <span class="mf">23.34</span>   <span class="mf">0.16</span>   <span class="mf">0.6941</span>  <span class="mf">0.3568</span>  <span class="mf">346930.0</span>  <span class="mf">80511.0</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mi">09</span>  <span class="mf">24.01</span>  <span class="mf">24.05</span>  <span class="mf">23.37</span>  <span class="mf">23.37</span>    <span class="mf">0.8</span>   <span class="mf">3.4468</span>  <span class="mf">0.4161</span>  <span class="mf">404627.0</span>  <span class="mf">96480.0</span>
+<span class="mi">2018</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mi">10</span>  <span class="mf">24.15</span>  <span class="mf">24.49</span>  <span class="mf">23.77</span>  <span class="mf">24.20</span>   <span class="mf">0.14</span>   <span class="mf">0.5831</span>  <span class="mf">0.4003</span>  <span class="mf">389259.0</span>  <span class="mf">93653.0</span>
 </pre></div>
 </div>
 <div class="section" id="documentation">
@@ -263,7 +263,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.0',
+            VERSION:'0.1.0+1.g20fd822',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
