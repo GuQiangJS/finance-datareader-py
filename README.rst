@@ -48,6 +48,8 @@ Python 金融数据读取器
     In[3]: df = NetEaseDailyReader(symbols='000002').read()
     In[4]: df.tail()
     
+.. code-block::
+
     Out[5]:
                 Close  High   Low  Open Change    Quote    Rate    Volume  Turnover
     2018-07-04  23.00  23.75  23.00  23.46  -0.42  -1.7933  0.2570  249881.0  58247.0  
