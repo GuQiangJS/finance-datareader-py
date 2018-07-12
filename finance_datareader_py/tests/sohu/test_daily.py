@@ -3,6 +3,8 @@
 
 import unittest
 
+import numpy as np
+
 from finance_datareader_py.sohu.daily import SohuDailyReader
 
 
@@ -22,6 +24,11 @@ class SohuDailyReader_TestCase(unittest.TestCase):
         self.assertIsNotNone(df)
         self.assertFalse(df.empty)
         print(df)
+
+    def test_read_column_dtype_is_numeric(self):
+        df = SohuDailyReader(symbols='000002').read()
+        for col_name in df.columns:
+            self.assertEqual(df[col_name].dtype, np.float64)
 
 
 if __name__ == '__main__':

@@ -4,9 +4,12 @@
 import re
 import time
 
+import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup as bs
 from pandas_datareader.base import _BaseReader
+
+from finance_datareader_py import _AbsDailyReader
 
 _dividends_cache = None
 
@@ -90,7 +93,8 @@ def _download_dividends(symbol: str):
     try:
         response = reader._get_response(r'http://vip.stock.finance.sina.com.cn/'
                                         r'corp/go.php/vISSUE_ShareBonus/stockid'
-                                        r'/{0}.phtml'.format(symbol))
+                                        r'/{0}.phtml'.format(symbol)
+                                        , _AbsDailyReader._headers)
         txt = str(response.content, encoding='gb2312')
         fh = re.search(
             '<!--分红 begin-->[\s\S]*<tbody>([\s\S]*)<\/tbody>[\s\S]*<!--分红 end-->',
@@ -102,16 +106,22 @@ def _download_dividends(symbol: str):
         # 分红数据
         r = _parse_body(bs(fh.group(1), 'lxml'), _parse_divided_line)
         if r:
-            df1 = _translate_dtype(pd.DataFrame(r)).set_index('公告日期')
+            df1 = _create_df(r)
         # 配股数据
         r = _parse_body(bs(pg.group(1), 'lxml'), _parse_allotment_line)
         if r:
-            df2 = _translate_dtype(pd.DataFrame(r)).set_index('公告日期')
+            df2 = _create_df(r)
     except Exception:
         raise
     finally:
         reader.close()
     return [df1, df2]
+
+
+def _create_df(r):
+    df = _translate_dtype(pd.DataFrame(r)).set_index('公告日期')
+    df = df.replace({'--': np.nan, '': np.nan})
+    return df
 
 
 def _translate_dtype(df):
@@ -128,8 +138,7 @@ def _translate_dtype(df):
                 df[col] = pd.to_datetime(df[col], format='%Y-%m-%d',
                                          errors='coerce')
             else:
-                df[col] = pd.to_numeric(df[col], downcast='float',
-                                        errors='coerce')
+                df[col] = df[col].astype(np.float64, errors='ignore', copy=True)
     return df
 
 
@@ -161,6 +170,11 @@ def _parse_divided_line(tr):
             '红股上市日': tds[7].text.strip()
         }
     return None
+
+
+def _get_value(v):
+    result = v.text.strip()
+    return result if result else np.nan
 
 
 def _parse_allotment_line(tr):

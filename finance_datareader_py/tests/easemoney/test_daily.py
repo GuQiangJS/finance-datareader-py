@@ -3,6 +3,8 @@
 
 import unittest
 
+import numpy as np
+
 from finance_datareader_py.eastmoney.daily import EastMoneyDailyReader
 
 
@@ -22,6 +24,12 @@ class EastMoneyDailyReader_TestCase(unittest.TestCase):
         df = EastMoneyDailyReader(symbols='123').read()
         self.assertIsNotNone(df)
         self.assertTrue(df.empty)
+
+    def test_read_column_dtype_is_numeric(self):
+        df = EastMoneyDailyReader(symbols='000002').read()
+        ss = 'Open', 'Close', 'High', 'Low', '交易量(手)', '换手率', '振幅(%)'
+        for s in ss:
+            self.assertEqual(df[s].dtype, np.float64)
 
 
 if __name__ == '__main__':

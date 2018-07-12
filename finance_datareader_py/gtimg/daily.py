@@ -5,12 +5,13 @@ import datetime
 import json
 
 import pandas as pd
-from pandas_datareader.base import _DailyBaseReader
+
+from finance_datareader_py import _AbsDailyReader
 
 __all__ = ['GtimgDailyReader']
 
 
-class GtimgDailyReader(_DailyBaseReader):
+class GtimgDailyReader(_AbsDailyReader):
     """从 gtimg 读取每日成交汇总数据（支持获取前复权、后复权的数据）
 
     Args:
@@ -151,4 +152,5 @@ class GtimgDailyReader(_DailyBaseReader):
         # out['换手率'] = out['换手率'].str.replace('%', '')
         # 将 Date 列设为索引列
         out.set_index("日期", inplace=True)
+        out = self._convert_numeric_allcolumns(out)
         return out

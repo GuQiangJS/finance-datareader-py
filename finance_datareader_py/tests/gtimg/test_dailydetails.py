@@ -9,7 +9,7 @@ import numpy as np
 from finance_datareader_py.gtimg.daily_details import GtimgDailyDetailsReader
 
 
-class SinaDailyDetailsReader_TestCase(unittest.TestCase):
+class GtimgDailyDetailsReader_TestCase(unittest.TestCase):
     def test_read_single(self):
         df = GtimgDailyDetailsReader(symbols='000002',
                                      start=datetime.date(2018, 7, 2),
@@ -87,6 +87,13 @@ class SinaDailyDetailsReader_TestCase(unittest.TestCase):
                                      end=datetime.date(2018, 7, 2)).read()
         self.assertIsNotNone(df)
         self.assertTrue(df.empty)
+
+    def test_read_column_dtype_is_numeric(self):
+        df = GtimgDailyDetailsReader(symbols='000002',
+                                     start=datetime.date(2018, 7, 2),
+                                     end=datetime.date(2018, 7, 2)).read()
+        for s in '成交价格', '价格变动', '成交量(手)', '成交额(元)':
+            self.assertEqual(df[s].dtype, np.float64)
 
 
 if __name__ == '__main__':

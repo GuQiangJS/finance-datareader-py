@@ -4,13 +4,12 @@
 import datetime
 
 import pandas as pd
-import pandas.compat as compat
 from pandas import read_csv
-from pandas.compat import StringIO, bytes_to_str
-from pandas_datareader.base import _DailyBaseReader
+
+from finance_datareader_py import _AbsDailyReader
 
 
-class GtimgDailyDetailsReader(_DailyBaseReader):
+class GtimgDailyDetailsReader(_AbsDailyReader):
     """从 gtimg 读取每日成交明细
 
     Args:
@@ -46,6 +45,10 @@ class GtimgDailyDetailsReader(_DailyBaseReader):
                                                       retry_count, pause,
                                                       session, chunksize)
         self._date = start
+        # 解析 url 回传内容时，如果长度小于等于200，被认为是无效数据
+        self._read_url_as_StringIO_min_len = 200
+        # 解析 url 回传内容时使用的字符编码
+        self._encoding = 'gb2312'
 
     @property
     def url(self):
@@ -100,23 +103,6 @@ class GtimgDailyDetailsReader(_DailyBaseReader):
         finally:
             self.close()
 
-    def _read_url_as_StringIO(self, url, params=None):
-        """
-        Open url (and retry)
-        """
-        response = self._get_response(url, params=params)
-        text = self._sanitize_response(response)
-        out = StringIO()
-        if len(text) <= 200:
-            # 今日没有数据
-            return None
-        if isinstance(text, compat.binary_type):
-            out.write(bytes_to_str(text, encoding='gb2312'))
-        else:
-            out.write(text)
-        out.seek(0)
-        return out
-
     def _read_lines(self, out):
         if out:
             # return read_csv(out,sep=r'\t',index_col=0,parse_dates=[0],na_values=('--', 'null'),date_parser=self._date_parser)
@@ -128,5 +114,6 @@ class GtimgDailyDetailsReader(_DailyBaseReader):
                               day=self._date.day))
             if df is not None and not df.empty:
                 df = df.fillna(0).round(2)[::-1]
+                df = self._convert_numeric_allcolumns(df)
                 return df
         return None

@@ -4,6 +4,8 @@
 import datetime
 import unittest
 
+import numpy as np
+
 from finance_datareader_py.xueqiu.daily import XueQiuDailyReader
 
 
@@ -30,6 +32,11 @@ class XueQiuDailyReader_TestCase(unittest.TestCase):
         self.assertIsNotNone(df)
         self.assertTrue(df.empty)
         print(df)
+
+    def test_read_column_dtype_is_numeric(self):
+        df = XueQiuDailyReader(symbols='000002').read()
+        for col_name in df.columns:
+            self.assertEqual(df[col_name].dtype, np.float64)
 
 
 if __name__ == '__main__':

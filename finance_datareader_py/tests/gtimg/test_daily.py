@@ -4,6 +4,8 @@
 import datetime
 import unittest
 
+import numpy as np
+
 from finance_datareader_py.gtimg.daily import GtimgDailyReader
 
 
@@ -38,6 +40,11 @@ class GtimgDailyReader_TestCase(unittest.TestCase):
         df = GtimgDailyReader(symbols='123').read()
         self.assertIsNotNone(df)
         self.assertTrue(df.empty)
+
+    def test_read_column_dtype_is_numeric(self):
+        df = GtimgDailyReader(symbols='000002').read()
+        for col_name in df.columns:
+            self.assertEqual(df[col_name].dtype, np.float64)
 
 
 if __name__ == '__main__':

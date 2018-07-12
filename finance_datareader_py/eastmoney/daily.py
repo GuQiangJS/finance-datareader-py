@@ -6,12 +6,13 @@ import json
 
 import numpy as np
 import pandas as pd
-from pandas_datareader.base import _DailyBaseReader
+
+from finance_datareader_py import _AbsDailyReader
 
 __all__ = ['EastMoneyDailyReader']
 
 
-class EastMoneyDailyReader(_DailyBaseReader):
+class EastMoneyDailyReader(_AbsDailyReader):
     """从 eastmoney 读取每日成交汇总数据（支持获取前复权、后复权的数据）
 
     Args:
@@ -135,7 +136,7 @@ class EastMoneyDailyReader(_DailyBaseReader):
         # 设置标题
         out.rename(
             columns={0: '日期', 1: 'Open', 2: 'Close', 3: 'High', 4: 'Low',
-                     5: '交易量(手)', 6: '成交金额', 7: '振幅', 8: '换手率'},
+                     5: '交易量(手)', 6: '成交金额', 7: '振幅(%)', 8: '换手率'},
             inplace=True)
         if 6 in out:
             out.drop([6], axis=1, inplace=True)
@@ -145,5 +146,7 @@ class EastMoneyDailyReader(_DailyBaseReader):
         # out['涨跌幅'] = out['涨跌幅'].str.replace('%', '')
         # out['换手率'] = out['换手率'].str.replace('%', '')
         # 将 Date 列设为索引列
+        out['振幅(%)'] = out['振幅(%)'].str.replace('%', '')
         out.set_index("日期", inplace=True)
+        out = self._convert_numeric_allcolumns(out)
         return out[self.start:self.end]

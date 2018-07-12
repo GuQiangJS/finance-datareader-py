@@ -7,6 +7,8 @@ import time
 import pandas as pd
 from pandas_datareader.base import _BaseReader
 
+from finance_datareader_py import _AbsDailyReader
+
 __all__ = ['get_sse_symbols']
 _RE = re.compile('val:"(6\d{5})",val2:"(.*)",val3:"(.*)"')
 _ticker_cache = None
@@ -72,7 +74,8 @@ def _download_sse_symbols(timeout):
     try:
         result = []
         response = reader._get_response(
-            r'http://www.sse.com.cn/js/common/ssesuggestdataAll.js')
+            r'http://www.sse.com.cn/js/common/ssesuggestdataAll.js'
+            , headers=_AbsDailyReader._headers)
         matches = _RE.finditer(response.text)
         for match in matches:
             result.append({'symbol': match.group(1), 'name': match.group(2)})

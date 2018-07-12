@@ -6,12 +6,13 @@ import json
 
 import pandas as pd
 from pandas.io.json import json_normalize
-from pandas_datareader.base import _DailyBaseReader
+
+from finance_datareader_py import _AbsDailyReader
 
 __all__ = ['SohuDailyReader']
 
 
-class SohuDailyReader(_DailyBaseReader):
+class SohuDailyReader(_AbsDailyReader):
     """从sohu读取每日成交汇总数据
 
     Args:
@@ -121,4 +122,5 @@ class SohuDailyReader(_DailyBaseReader):
         out['Rate'] = out['Rate'].str.replace('%', '')
         # 将 Date 列设为索引列
         out.set_index("Date", inplace=True)
+        out = self._convert_numeric_allcolumns(out)
         return out

@@ -4,14 +4,14 @@
 
 import datetime
 
-import pandas.compat as compat
-from pandas.compat import StringIO, bytes_to_str
-from pandas_datareader.base import _DailyBaseReader, _BaseReader
+from pandas_datareader.base import _BaseReader
+
+from finance_datareader_py import _AbsDailyReader
 
 __all__ = ['NetEaseDailyReader']
 
 
-class NetEaseDailyReader(_DailyBaseReader):
+class NetEaseDailyReader(_AbsDailyReader):
     """从 163 读取每日成交汇总数据
 
     Args:
@@ -43,6 +43,8 @@ class NetEaseDailyReader(_DailyBaseReader):
         super(NetEaseDailyReader, self).__init__(symbols, start, end,
                                                  retry_count, pause, session,
                                                  chunksize)
+        # 解析 url 回传内容时使用的字符编码
+        self._encoding = 'gb2312'
 
     @property
     def url(self):
@@ -64,21 +66,6 @@ class NetEaseDailyReader(_DailyBaseReader):
                 'end': self.end.strftime('%Y%m%d'),
                 'fields': 'TCLOSE;HIGH;LOW;TOPEN;CHG;PCHG;TURNOVER;VOTURNOVER'
                           ';VATURNOVER'}
-
-    def _read_url_as_StringIO(self, url, params=None):
-        response = self._get_response(url, params=params)
-        text = self._sanitize_response(response)
-        out = StringIO()
-        if len(text) == 0:
-            service = self.__class__.__name__
-            raise IOError("{} request returned no data; check URL for invalid "
-                          "inputs: {}".format(service, self.url))
-        if isinstance(text, compat.binary_type):
-            out.write(bytes_to_str(text, encoding='GB2312'))
-        else:
-            out.write(text)
-        out.seek(0)
-        return out
 
     def _read_lines(self, out):
         out = _BaseReader._read_lines(self, out)

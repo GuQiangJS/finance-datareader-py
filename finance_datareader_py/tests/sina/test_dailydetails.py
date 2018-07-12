@@ -88,6 +88,11 @@ class SinaDailyDetailsReader_TestCase(unittest.TestCase):
         self.assertIsNotNone(df)
         self.assertTrue(df.empty)
 
+    def test_read_column_dtype_is_numeric(self):
+        df = SinaDailyDetailsReader(symbols='399300').read()
+        for col_name in '成交价格', '价格变动', '成交量(手)', '成交额(元)':
+            self.assertEqual(df[col_name].dtype, np.float64)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -5,13 +5,13 @@ import datetime
 import json
 
 import pandas as pd
-import requests
-from pandas_datareader.base import _DailyBaseReader
+
+from finance_datareader_py import _AbsDailyReader
 
 __all__ = ['XueQiuDailyReader']
 
 
-class XueQiuDailyReader(_DailyBaseReader):
+class XueQiuDailyReader(_AbsDailyReader):
     """从 雪球 读取每日成交汇总数据（支持获取前复权、后复权的数据）
 
     Args:
@@ -102,11 +102,12 @@ class XueQiuDailyReader(_DailyBaseReader):
 
             .. testoutput::
 
-                成交时间        成交价格  价格变动  成交量(手)    成交额(元)   性质
-                2018-07-02 15:00:04  22.80  0.01    5763  13139640   卖盘
-                2018-07-02 14:57:00  22.79  0.00       9     20511   卖盘
-                2018-07-02 14:56:57  22.79  0.00      98    225241   买盘
-                2018-07-02 14:56:54  22.79  0.00     171    389700   买盘
+                日期             成交金额   Open   High    Low  Close   涨跌额   涨跌幅   换手率
+                2010-01-03   96983253  10.85  10.87  10.60  10.60 -0.21 -1.94  1.00
+                2010-01-04  184862078  10.51  10.52  10.20  10.36 -0.24 -2.26  1.91
+                2010-01-05  135860406  10.35  10.51  10.20  10.36  0.00  0.00  1.41
+                2010-01-06  115244198  10.36  10.43  10.24  10.28 -0.08 -0.77  1.19
+                2010-01-07  108530422  10.28  10.38  10.19  10.35  0.07  0.68  1.12
 
         """
         try:
@@ -115,14 +116,9 @@ class XueQiuDailyReader(_DailyBaseReader):
             self.close()
 
     def _read_url_as_StringIO(self, url, params=None):
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) '
-                          'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
-                          '66.0.3359.181 Safari/537.36'}
         if self.session:
-            self.session.cookies = requests.get('http://www.xueqiu.com',
-                                                headers=headers).cookies
-        response = self._get_response(url, params=params, headers=headers)
+            self.session.cookies = self._get_cookie('http://www.xueqiu.com')
+        response = self._get_response(url, params=params)
         # txt = str(self._sanitize_response(response))
         s_txt, e_txt = '"item":', ']]'
         txt = response.text
@@ -154,4 +150,5 @@ class XueQiuDailyReader(_DailyBaseReader):
         # out['换手率'] = out['换手率'].str.replace('%', '')
         # 将 Date 列设为索引列
         out.set_index("日期", inplace=True)
+        out = self._convert_numeric_allcolumns(out)
         return out
