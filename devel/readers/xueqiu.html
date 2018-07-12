@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>XueQiu &mdash; finance-datareader-py 0.1.0+2.g5ec2103 文档</title>
+  <title>XueQiu &mdash; finance-datareader-py 0.1.0+7.g4ed3f97 文档</title>
   
 
   
@@ -163,7 +163,7 @@
 <span id="xueqiu"></span><h1>XueQiu<a class="headerlink" href="#module-finance_datareader_py.xueqiu.daily" title="永久链接至标题">¶</a></h1>
 <dl class="class">
 <dt id="finance_datareader_py.xueqiu.daily.XueQiuDailyReader">
-<em class="property">class </em><code class="descclassname">finance_datareader_py.xueqiu.daily.</code><code class="descname">XueQiuDailyReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>type='default'</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>7</em>, <em>10)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.xueqiu.daily.XueQiuDailyReader" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="descclassname">finance_datareader_py.xueqiu.daily.</code><code class="descname">XueQiuDailyReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>type='default'</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>7</em>, <em>11)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.xueqiu.daily.XueQiuDailyReader" title="永久链接至目标">¶</a></dt>
 <dd><p>从 雪球 读取每日成交汇总数据（支持获取前复权、后复权的数据）</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -211,11 +211,12 @@
 <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>成交时间        成交价格  价格变动  成交量(手)    成交额(元)   性质
-2018-07-02 15:00:04  22.80  0.01    5763  13139640   卖盘
-2018-07-02 14:57:00  22.79  0.00       9     20511   卖盘
-2018-07-02 14:56:57  22.79  0.00      98    225241   买盘
-2018-07-02 14:56:54  22.79  0.00     171    389700   买盘
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>日期             成交金额   Open   High    Low  Close   涨跌额   涨跌幅   换手率
+2010-01-03   96983253  10.85  10.87  10.60  10.60 -0.21 -1.94  1.00
+2010-01-04  184862078  10.51  10.52  10.20  10.36 -0.24 -2.26  1.91
+2010-01-05  135860406  10.35  10.51  10.20  10.36  0.00  0.00  1.41
+2010-01-06  115244198  10.36  10.43  10.24  10.28 -0.08 -0.77  1.19
+2010-01-07  108530422  10.28  10.38  10.19  10.35  0.07  0.68  1.12
 </pre></div>
 </div>
 </dd></dl>
@@ -270,7 +271,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0+2.g5ec2103',
+            VERSION:'0.1.0+7.g4ed3f97',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
