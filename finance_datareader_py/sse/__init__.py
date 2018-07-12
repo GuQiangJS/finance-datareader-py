@@ -74,8 +74,8 @@ def _download_sse_symbols(timeout):
     try:
         result = []
         response = reader._get_response(
-            r'http://www.sse.com.cn/js/common/ssesuggestdataAll.js'
-            , headers=_AbsDailyReader._headers)
+            r'http://www.sse.com.cn/js/common/ssesuggestdataAll.js',
+            headers=_AbsDailyReader._headers)
         matches = _RE.finditer(response.text)
         for match in matches:
             result.append({'symbol': match.group(1), 'name': match.group(2)})

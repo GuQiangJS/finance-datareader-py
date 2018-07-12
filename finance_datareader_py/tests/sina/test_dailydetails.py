@@ -5,12 +5,23 @@ import datetime
 import unittest
 
 import numpy as np
+import requests
 
+from finance_datareader_py import _AbsDailyReader
 from finance_datareader_py.sina.daily_details import SinaDailyDetailsReader
 
 
 class SinaDailyDetailsReader_TestCase(unittest.TestCase):
+    def setUp(self):
+        # response.status_code==456 表示当前IP被新浪临时封禁。
+        # 这样后面的测试也就不需要再继续下去了
+        rep = requests.get('http://market.finance.sina.com.cn/downxls.php?date\
+            =2018-07-03&symbol=sz000002', headers=_AbsDailyReader._headers)
+        self._enable = rep.status_code != 456
+
     def test_read_single(self):
+        if not self._enable:
+            return
         df = SinaDailyDetailsReader(symbols='000002',
                                     start=datetime.date(2018, 7, 2),
                                     end=datetime.date(2018, 7, 2)).read()
@@ -59,6 +70,8 @@ class SinaDailyDetailsReader_TestCase(unittest.TestCase):
                 self.assertEqual(value, v)
 
     def test_read_mulit(self):
+        if not self._enable:
+            return
         start = datetime.date(2018, 6, 25)
         end = datetime.date(2018, 7, 2)
 
@@ -82,6 +95,8 @@ class SinaDailyDetailsReader_TestCase(unittest.TestCase):
         Returns:
 
         """
+        if not self._enable:
+            return
         df = SinaDailyDetailsReader(symbols='123',
                                     start=datetime.date(2018, 7, 2),
                                     end=datetime.date(2018, 7, 2)).read()
@@ -89,6 +104,8 @@ class SinaDailyDetailsReader_TestCase(unittest.TestCase):
         self.assertTrue(df.empty)
 
     def test_read_column_dtype_is_numeric(self):
+        if not self._enable:
+            return
         df = SinaDailyDetailsReader(symbols='399300').read()
         for col_name in '成交价格', '价格变动', '成交量(手)', '成交额(元)':
             self.assertEqual(df[col_name].dtype, np.float64)
