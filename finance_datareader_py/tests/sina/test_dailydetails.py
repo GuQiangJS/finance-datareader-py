@@ -17,7 +17,7 @@ class SinaDailyDetailsReader_TestCase(unittest.TestCase):
         # 这样后面的测试也就不需要再继续下去了
         rep = requests.get('http://market.finance.sina.com.cn/downxls.php?date\
             =2018-07-03&symbol=sz000002', headers=_AbsDailyReader._headers)
-        self._enable = rep.status_code != 456
+        self._enable = rep and rep.status_code != 456
 
     def test_read_single(self):
         if not self._enable:
