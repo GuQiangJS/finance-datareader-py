@@ -99,18 +99,22 @@ def _parse_list(reader, txt):
                 for link in alinks:
                     n = link.attrs['title']
                     if '上市公司行业分类结果' in n:
-                        l = _get_link(reader, link.attrs['href'], n)
-                        if l:
-                            result[n] = l
+                        lk = _get_link(reader, link.attrs['href'], n)
+                        if lk:
+                            result[n] = lk
     return result
 
 
 def _get_text(reader, src):
     """读取指定网页的内容"""
 
-    rep = reader._get_response(src)
-    if rep.ok:
-        return str(reader._sanitize_response(rep), encoding='utf-8')
+    try:
+        rep = reader._get_response(src)
+        if rep.ok:
+            return str(reader._sanitize_response(rep), encoding='utf-8')
+    except Exception:
+        print(src)
+        raise
     return None
 
 
