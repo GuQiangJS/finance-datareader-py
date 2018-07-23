@@ -1,4 +1,4 @@
-Sina
+CSRC
 ------------
 
 .. py:module:: finance_datareader_py.csrc.category
