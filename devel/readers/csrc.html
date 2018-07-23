@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sina &mdash; finance-datareader-py 0.1.0+13.g31939a6 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> finance-datareader-py
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Data Readers</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">finance-datareader-py</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Sina</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/readers/csrc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-finance_datareader_py.csrc.category">
+<span id="sina"></span><h1>Sina<a class="headerlink" href="#module-finance_datareader_py.csrc.category" title="永久链接至标题">¶</a></h1>
+<dl class="function">
+<dt id="finance_datareader_py.csrc.category.get_pdf">
+<code class="descclassname">finance_datareader_py.csrc.category.</code><code class="descname">get_pdf</code><span class="sig-paren">(</span><em>top=1</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.csrc.category.get_pdf" title="永久链接至目标">¶</a></dt>
+<dd><p>从 中国证券监督管理委员会会 获取 上市公司行业分类结果</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><strong>top</strong> – 获取总条数。</td>
+</tr>
+</tbody>
+</table>
+<p>Returns: {文件名,pdf文件路径}</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">from</span> <span class="nn">finance_datareader_py.csrc</span> <span class="kn">import</span> <span class="n">category</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">category</span><span class="o">.</span><span class="n">get_pdf</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{
+    &quot;2018年1季度上市公司行业分类结果&quot;:
+    &quot;http://www.csrc.gov.cn/pub/newsite/scb/ssgshyfljg/201805/W020180521522232342268.pdf&quot;
+}
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">提示</p>
+<p>对于 pdf 文件的解析，可以参考 <a class="reference external" href="https://github.com/chezou/tabula-py">tabula-py</a>。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">tabula</span><span class="o">.</span><span class="n">read_pdf</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;http://www.csrc.gov.cn/pub/newsite/scb/ssgshyfljg/201805/W020180521522232342268.pdf&#39;</span><span class="p">,</span>
+                     <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;gbk&#39;</span><span class="p">,</span> <span class="n">pages</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span>
+                     <span class="n">silent</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">pandas_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;上市公司代码&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span> <span class="o">==</span> <span class="bp">True</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="last highlight-none notranslate"><div class="highlight"><pre><span></span>门类名称及代码 行业大类代码 行业大类名称  上市公司代码 上市公司简称
+农、林、牧、渔业     01     农业  000998   隆平高科
+(A)     01     农业  002041   登海种业
+(A)     01     农业  002772   众兴菌业
+(A)     01     农业  300087   荃银高科
+...    ...    ...     ...    ...
+业(R)     87  文化艺术业  300144   宋城演艺
+业(R)     87  文化艺术业  300592   华凯创意
+业(R)     87  文化艺术业  300640   德艺文创
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, GuQiangJS.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0+13.g31939a6',
+            LANGUAGE:'zh_CN',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

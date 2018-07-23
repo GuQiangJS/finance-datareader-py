@@ -1,4 +1,5 @@
 devel/_sources/index.rst.txt
+devel/_sources/readers/csrc.rst.txt
 devel/_sources/readers/eastmoney.rst.txt
 devel/_sources/readers/gtimg.rst.txt
 devel/_sources/readers/index.rst.txt
@@ -67,6 +68,7 @@ devel/genindex.html
 devel/index.html
 devel/objects.inv
 devel/py-modindex.html
+devel/readers/csrc.html
 devel/readers/eastmoney.html
 devel/readers/gtimg.html
 devel/readers/index.html
