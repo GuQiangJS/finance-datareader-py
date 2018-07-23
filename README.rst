@@ -25,6 +25,7 @@ Python 金融数据读取器
 编译帮助文档时使用：
 
 * sphinx
+* sphinxcontrib-napoleon
 
 快速安装
 ~~~~~~~~~
