@@ -25,7 +25,7 @@ def get_pdf(top=1):
 
             from from finance_datareader_py.csrc import category
 
-            d = category.get_pdf()
+            df = category.get_pdf()
 
             print(df)
 
@@ -41,6 +41,8 @@ def get_pdf(top=1):
 
         .. testcode:: python
 
+            import tabula
+
             df = tabula.read_pdf(r'http://www.csrc.gov.cn/pub/newsite/scb/ssgshyfljg/201805/W020180521522232342268.pdf',
                                  encoding='gbk', pages='all', format='json',
                                  silent=True, pandas_options={'header': 0})
@@ -51,15 +53,18 @@ def get_pdf(top=1):
 
         .. testoutput::
 
-                门类名称及代码 行业大类代码 行业大类名称  上市公司代码 上市公司简称
-                农、林、牧、渔业     01     农业  000998   隆平高科
-                (A)     01     农业  002041   登海种业
-                (A)     01     农业  002772   众兴菌业
-                (A)     01     农业  300087   荃银高科
-                ...    ...    ...     ...    ...
-                业(R)     87  文化艺术业  300144   宋城演艺
-                业(R)     87  文化艺术业  300592   华凯创意
-                业(R)     87  文化艺术业  300640   德艺文创
+                   门类名称及代码 行业大类代码 行业大类名称  上市公司代码 上市公司简称
+            0     农、林、牧、渔业     01     农业  000998   隆平高科
+            1          (A)     01     农业  002041   登海种业
+            2          (A)     01     农业  002772   众兴菌业
+            3          (A)     01     农业  300087   荃银高科
+            4          (A)     01     农业  300189   神农基因
+            ...        ...    ...    ...     ...    ...
+            3572      业(R)     87  文化艺术业  300144   宋城演艺
+            3573      业(R)     87  文化艺术业  300592   华凯创意
+            3574      业(R)     87  文化艺术业  300640   德艺文创
+            3575      业(R)     87  文化艺术业  600576   祥源文化
+            3576      业(R)     87  文化艺术业  603466    风语筑
 
     """
 
