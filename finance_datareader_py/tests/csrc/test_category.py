@@ -8,9 +8,9 @@ from finance_datareader_py.csrc import category
 
 class csrc_TestCase(unittest.TestCase):
     def test_get_get_pdf(self):
-        l = (0, 1, 15, 30)
+        nums = (0, 1, 15, 30)
         # 当前一页20条，最多只有22条。截止2018一季度
-        for i in l:
+        for i in nums:
             d = category.get_pdf(top=i)
             if i == 0:
                 self.assertFalse(d)

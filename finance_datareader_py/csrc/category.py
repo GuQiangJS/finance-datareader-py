@@ -112,7 +112,7 @@ def _get_text(reader, src):
         rep = reader._get_response(src)
         if rep.ok:
             return str(reader._sanitize_response(rep), encoding='utf-8')
-    except Exception:
+    except:
         print(src)
         raise
     return None
