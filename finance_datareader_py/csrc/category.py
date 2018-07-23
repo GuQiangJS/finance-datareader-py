@@ -108,13 +108,9 @@ def _parse_list(reader, txt):
 def _get_text(reader, src):
     """读取指定网页的内容"""
 
-    try:
-        rep = reader._get_response(src)
-        if rep.ok:
-            return str(reader._sanitize_response(rep), encoding='utf-8')
-    except:
-        print(src)
-        raise
+    rep = reader._get_response(src)
+    if rep.ok:
+        return str(reader._sanitize_response(rep), encoding='utf-8')
     return None
 
 
