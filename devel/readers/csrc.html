@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sina &mdash; finance-datareader-py 0.1.0+13.g31939a6 文档</title>
+  <title>Sina &mdash; finance-datareader-py 0.1.0+15.g7900646 文档</title>
   
 
   
@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" /> 
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="EastMoney" href="eastmoney.html" />
+    <link rel="prev" title="Data Readers" href="index.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -80,8 +82,19 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Data Readers</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Data Readers</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sina</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eastmoney.html">EastMoney</a></li>
+<li class="toctree-l2"><a class="reference internal" href="netease.html">NetEase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sohu.html">Sohu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sse.html">SSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="szse.html">SZSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sina.html">Sina</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gtimg.html">Gtimg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xueqiu.html">XueQiu</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -127,6 +140,8 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
+          <li><a href="index.html">Data Readers</a> &raquo;</li>
+        
       <li>Sina</li>
     
     
@@ -164,7 +179,7 @@
 <p class="rubric">Examples</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">from</span> <span class="nn">finance_datareader_py.csrc</span> <span class="kn">import</span> <span class="n">category</span>
 
-<span class="n">d</span> <span class="o">=</span> <span class="n">category</span><span class="o">.</span><span class="n">get_pdf</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">category</span><span class="o">.</span><span class="n">get_pdf</span><span class="p">()</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
@@ -178,7 +193,9 @@
 <div class="admonition hint">
 <p class="first admonition-title">提示</p>
 <p>对于 pdf 文件的解析，可以参考 <a class="reference external" href="https://github.com/chezou/tabula-py">tabula-py</a>。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">tabula</span><span class="o">.</span><span class="n">read_pdf</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;http://www.csrc.gov.cn/pub/newsite/scb/ssgshyfljg/201805/W020180521522232342268.pdf&#39;</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tabula</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">tabula</span><span class="o">.</span><span class="n">read_pdf</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;http://www.csrc.gov.cn/pub/newsite/scb/ssgshyfljg/201805/W020180521522232342268.pdf&#39;</span><span class="p">,</span>
                      <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;gbk&#39;</span><span class="p">,</span> <span class="n">pages</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span>
                      <span class="n">silent</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">pandas_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;上市公司代码&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span> <span class="o">==</span> <span class="bp">True</span><span class="p">]</span>
@@ -187,15 +204,18 @@
 <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="last highlight-none notranslate"><div class="highlight"><pre><span></span>门类名称及代码 行业大类代码 行业大类名称  上市公司代码 上市公司简称
-农、林、牧、渔业     01     农业  000998   隆平高科
-(A)     01     农业  002041   登海种业
-(A)     01     农业  002772   众兴菌业
-(A)     01     农业  300087   荃银高科
-...    ...    ...     ...    ...
-业(R)     87  文化艺术业  300144   宋城演艺
-业(R)     87  文化艺术业  300592   华凯创意
-业(R)     87  文化艺术业  300640   德艺文创
+<div class="last highlight-none notranslate"><div class="highlight"><pre><span></span>       门类名称及代码 行业大类代码 行业大类名称  上市公司代码 上市公司简称
+0     农、林、牧、渔业     01     农业  000998   隆平高科
+1          (A)     01     农业  002041   登海种业
+2          (A)     01     农业  002772   众兴菌业
+3          (A)     01     农业  300087   荃银高科
+4          (A)     01     农业  300189   神农基因
+...        ...    ...    ...     ...    ...
+3572      业(R)     87  文化艺术业  300144   宋城演艺
+3573      业(R)     87  文化艺术业  300592   华凯创意
+3574      业(R)     87  文化艺术业  300640   德艺文创
+3575      业(R)     87  文化艺术业  600576   祥源文化
+3576      业(R)     87  文化艺术业  603466    风语筑
 </pre></div>
 </div>
 </div>
@@ -208,6 +228,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="eastmoney.html" class="btn btn-neutral float-right" title="EastMoney" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Data Readers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -236,7 +265,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0+13.g31939a6',
+            VERSION:'0.1.0+15.g7900646',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
