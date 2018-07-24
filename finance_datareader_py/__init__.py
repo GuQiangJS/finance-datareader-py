@@ -21,10 +21,16 @@ class _AbsDailyReader(_DailyBaseReader):
 
     封装了_get_response。默认提供仿浏览器浏览的headers
     """
-    _headers = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) '
-                      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
-                      '66.0.3359.181 Safari/537.36'}
+    _headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X '
+                              '10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) '
+                              'Chrome 66.0.3359.181 Safari/537.36',
+                'Accept': '*/*',
+                'Accept-Encoding': 'gzip, deflate',
+                'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-US;q=0.7', }
+
+    def _append_header(self, name, value):
+        """将指定的值加入到 _headers 中"""
+        self._headers[name] = value
 
     def __init__(self, symbols=None, start=None, end=None, retry_count=3,
                  pause=0.001, session=None, chunksize=25):
