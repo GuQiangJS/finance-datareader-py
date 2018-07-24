@@ -134,7 +134,6 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
             2004-06-10  2004-06-07          10  2004-06-11        100000  2004-06-14
 
         """
-    # http://vip.stock.finance.sina.com.cn/corp/go.php/vISSUE_ShareBonus/stockid/000541.phtml
 
     if not symbol:
         raise ValueError('symbol')
