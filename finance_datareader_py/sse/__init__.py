@@ -280,17 +280,17 @@ def _parse_sg_dataframe(df):
     """处理送股表格，删除不需要的列，给列头赋值"""
     """
     {
-        送股比例(10:?) "BONUS_RATE": "10", 
-        公告刊登日 "ANNOUNCE_DATE": "2004-06-07", 
-        *** "ANNOUNCE_DESTINATION": "-", 
-        红股上市日 "TRADE_DATE_A": "2004-06-14", 
-        *** "SECURITY_NAME_A": "东风汽车", 
-        股权登记日总股本(万股) "ISS_VOL": "100000", 
-        *** "COMPANY_NAME": "东风汽车股份有限公司", 
-        股权登记日 "RECORD_DATE_A": "2004-06-10", 
-        "SECURITY_CODE_A": "600006", 
-        除权基准日 "EX_RIGHT_DATE_A": "2004-06-11", 
-        "COMPANY_CODE": "600006", 
+        送股比例(10:?) "BONUS_RATE": "10",
+        公告刊登日 "ANNOUNCE_DATE": "2004-06-07",
+        *** "ANNOUNCE_DESTINATION": "-",
+        红股上市日 "TRADE_DATE_A": "2004-06-14",
+        *** "SECURITY_NAME_A": "东风汽车",
+        股权登记日总股本(万股) "ISS_VOL": "100000",
+        *** "COMPANY_NAME": "东风汽车股份有限公司",
+        股权登记日 "RECORD_DATE_A": "2004-06-10",
+        "SECURITY_CODE_A": "600006",
+        除权基准日 "EX_RIGHT_DATE_A": "2004-06-11",
+        "COMPANY_CODE": "600006",
         "CHANGE_RATE": "7"
         }
     """
