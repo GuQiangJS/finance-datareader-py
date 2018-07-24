@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SSE &mdash; finance-datareader-py 0.1.0+17.g76efab2 文档</title>
+  <title>SSE &mdash; finance-datareader-py 0.1.0+21.gbc0b153 文档</title>
   
 
   
@@ -203,6 +203,58 @@
 </div>
 </dd></dl>
 
+<dl class="function">
+<dt id="finance_datareader_py.sse.get_dividends">
+<code class="descclassname">finance_datareader_py.sse.</code><code class="descname">get_dividends</code><span class="sig-paren">(</span><em>symbol: str</em>, <em>retry_count=3</em>, <em>timeout=30</em>, <em>pause=None</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.sse.get_dividends" title="永久链接至目标">¶</a></dt>
+<dd><p>从 上海证券交易所 获取分红配送数据</p>
+<p><strong>只能获取上证数据</strong></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>symbol</strong> – 股票代码</li>
+<li><strong>retry_count</strong> – </li>
+<li><strong>timeout</strong> – </li>
+<li><strong>pause</strong> – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">任意数据表无数据时返回 空白的 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 。
+参见 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame.empty</span></code>。</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">[DataFrame,DataFrame]</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finance_datareader_py.sse</span> <span class="kn">import</span> <span class="n">get_dividends</span>
+
+<span class="n">df1</span><span class="p">,</span> <span class="n">df2</span> <span class="o">=</span> <span class="n">get_dividends</span><span class="p">(</span><span class="s1">&#39;600006&#39;</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;------------&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>            每股红利(除税)  每股红利(含税)       除息交易日  股权登记日总股本(万股)  除息前日收盘价   除息报价
+股权登记日
+2018-06-15   0.03030    0.0303  2018-06-19        200000     4.34   4.35
+2017-07-13   0.03300    0.0330  2017-07-14        200000     5.87   5.89
+2016-06-29   0.05200    0.0520  2016-06-30        200000     8.95   9.00
+2015-07-23   0.02014    0.0212  2015-07-24        200000    10.33  10.18
+2014-06-19   0.00722    0.0076  2014-06-20        200000     2.91   2.92
+2013-06-14   0.00314    0.0033  2013-06-17        200000     3.07   3.07
+------------
+            公告刊登日  送股比例(10:?)       除权基准日  股权登记日总股本(万股)       红股上市日
+股权登记日
+2004-06-10  2004-06-07          10  2004-06-11        100000  2004-06-14
+</pre></div>
+</div>
+</dd></dl>
+
 </div>
 
 
@@ -247,7 +299,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0+17.g76efab2',
+            VERSION:'0.1.0+21.gbc0b153',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
