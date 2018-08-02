@@ -12,9 +12,10 @@ class csindex_TestCase(unittest.TestCase):
         self.assertEqual(300, len(df.index))
         print(df)
 
-    def test_get_stock_holdings(self):
+    def test_get_stock_holdings_ValueError(self):
         self.assertRaises(ValueError, get_stock_holdings, '')
         self.assertRaises(ValueError, get_stock_holdings, None)
+
 
 if __name__ == '__main__':
     unittest.main()
