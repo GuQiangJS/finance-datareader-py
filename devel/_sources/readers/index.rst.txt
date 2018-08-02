@@ -4,6 +4,7 @@ Data Readers
 .. toctree::
    :maxdepth: 3
 
+   csindex
    csrc
    eastmoney
    netease
