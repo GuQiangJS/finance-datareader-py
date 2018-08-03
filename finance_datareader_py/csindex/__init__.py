@@ -11,6 +11,9 @@ def get_stock_holdings(index: str):
         index: 指数代码
 
     Returns:
+        ``pandas.DataFrame``:
+
+    Examples:
         .. testcode:: python
 
             from finance_datareader_py.csindex import get_stock_holdings
@@ -20,6 +23,7 @@ def get_stock_holdings(index: str):
             print(df)
 
         .. testoutput::
+
             symbol  name
             600000  浦发银行
             600008  首创股份
