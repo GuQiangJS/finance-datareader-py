@@ -82,6 +82,6 @@ def get_stock_holdings_weight(index: str):
     df.rename(columns={'成分券代码Constituent Code': 'symbol',
                        '成分券名称Constituent Name': 'name'}, inplace=True)
     df.set_index("symbol", inplace=True)
-    df['权重(%)Weight(%)'] = pd.to_numeric(df['权重(%)Weight(%)']
-                                         , downcast='float')
+    df['权重(%)Weight(%)'] = pd.to_numeric(df['权重(%)Weight(%)'], 
+                                              downcast='float')
     return df
