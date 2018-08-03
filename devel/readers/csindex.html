@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CSIndex &mdash; finance-datareader-py 0.1.0+23.ge2bd581 文档</title>
+  <title>CSIndex &mdash; finance-datareader-py 0.1.0+24.gcd35665 文档</title>
   
 
   
@@ -174,20 +174,28 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><strong>index</strong> – 指数代码</td>
 </tr>
-<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finance_datareader_py.csindex</span> <span class="kn">import</span> <span class="n">get_stock_holdings</span>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finance_datareader_py.csindex</span> <span class="kn">import</span> <span class="n">get_stock_holdings</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">get_stock_holdings</span><span class="p">(</span><span class="s1">&#39;000300&#39;</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>symbol  name
+600000  浦发银行
+600008  首创股份
+600009  上海机场
+600010  包钢股份
+...      ...
 </pre></div>
 </div>
-</td>
-</tr>
-</tbody>
-</table>
 </dd></dl>
 
 </div>
@@ -234,7 +242,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0+23.ge2bd581',
+            VERSION:'0.1.0+24.gcd35665',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
