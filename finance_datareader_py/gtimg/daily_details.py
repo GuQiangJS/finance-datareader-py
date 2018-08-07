@@ -73,7 +73,7 @@ class GtimgDailyDetailsReader(_AbsDailyReader):
             无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
         Examples:
-            .. testcode:: python
+            .. code-block:: python
 
                 from finance_datareader_py.gtimg.daily_details import GtimgDailyDetailsReader
 
@@ -82,7 +82,7 @@ class GtimgDailyDetailsReader(_AbsDailyReader):
 
                 print(df)
 
-            .. testoutput::
+            .. code-block::
 
                 成交时间        成交价格  价格变动  成交量(手)    成交额(元)   性质
                 2018-07-02 15:00:04  22.80  0.01    5763  13139640   卖盘

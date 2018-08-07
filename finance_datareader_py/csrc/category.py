@@ -18,10 +18,12 @@ def get_pdf(top=1):
     Args:
         top: 获取总条数。
 
-    Returns: {文件名,pdf文件路径}
+    Returns:
+         dict
+        {文件名:pdf文件路径}
 
     Examples:
-        .. testcode:: python
+        .. code-block:: python
 
             from from finance_datareader_py.csrc import category
 
@@ -29,7 +31,7 @@ def get_pdf(top=1):
 
             print(df)
 
-        .. testoutput::
+        .. code-block::
 
             {
                 "2018年1季度上市公司行业分类结果":
@@ -39,7 +41,7 @@ def get_pdf(top=1):
     .. hint::
         对于 pdf 文件的解析，可以参考 `tabula-py <https://github.com/chezou/tabula-py>`_。
 
-        .. testcode:: python
+        .. code-block:: python
 
             import tabula
 
@@ -51,7 +53,7 @@ def get_pdf(top=1):
 
             print(df)
 
-        .. testoutput::
+        .. code-block::
 
                    门类名称及代码 行业大类代码 行业大类名称  上市公司代码 上市公司简称
             0     农、林、牧、渔业     01     农业  000998   隆平高科

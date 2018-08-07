@@ -88,7 +88,7 @@ class GtimgDailyReader(_AbsDailyReader):
             无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
         Examples:
-            .. testcode:: python
+            .. code-block:: python
 
                 from finance_datareader_py.gtimg.daily import GtimgDailyReader
 
@@ -100,7 +100,7 @@ class GtimgDailyReader(_AbsDailyReader):
 
                 print(df)
 
-            .. testoutput::
+            .. code-block::
 
                 日期          Open   Close    High     Low      交易量(手)
                 2004-10-08   5.420   5.560   5.600   5.280  117073.850

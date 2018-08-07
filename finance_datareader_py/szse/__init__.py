@@ -36,7 +36,7 @@ def get_szse_symbols(kind: str = '2', retry_count=3, timeout=30, pause=None):
         ``pandas.DataFrame``:
 
     Examples:
-        .. testcode:: python
+        .. code-block:: python
 
             from finance_datareader_py.szse import get_szse_symbols
 
@@ -44,7 +44,7 @@ def get_szse_symbols(kind: str = '2', retry_count=3, timeout=30, pause=None):
 
             print(df2)
 
-        .. testoutput::
+        .. code-block::
 
             symbol   name
             000001   平安银行

@@ -30,7 +30,7 @@ def get_sse_symbols(retry_count=3, timeout=30, pause=None):
         ``pandas.DataFrame``:
 
     Examples:
-        .. testcode:: python
+        .. code-block:: python
 
             from finance_datareader_py.sse import get_sse_symbols
 
@@ -38,7 +38,7 @@ def get_sse_symbols(retry_count=3, timeout=30, pause=None):
 
             print(df2)
 
-        .. testoutput::
+        .. code-block::
 
             symbol   name
             600000  浦发银行
@@ -108,7 +108,7 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
         参见 ``pandas.DataFrame.empty``。
 
     Examples:
-        .. testcode:: python
+        .. code-block:: python
 
             from finance_datareader_py.sse import get_dividends
 
@@ -118,7 +118,7 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
             print('------------')
             print(df2)
 
-        .. testoutput::
+        .. code-block::
 
                         每股红利(除税)  每股红利(含税)       除息交易日  股权登记日总股本(万股)  除息前日收盘价   除息报价
             股权登记日

@@ -15,7 +15,7 @@ def get_stock_holdings(index: str):
         ``pandas.DataFrame``:
 
     Examples:
-        .. testcode:: python
+        .. code-block:: python
 
             from finance_datareader_py.csindex import get_stock_holdings
 
@@ -23,7 +23,7 @@ def get_stock_holdings(index: str):
 
             print(df)
 
-        .. testoutput::
+        .. code-block::
 
             symbol  name
             600000  浦发银行
@@ -55,7 +55,7 @@ def get_stock_holdings_weight(index: str):
             ``pandas.DataFrame``:
 
         Examples:
-            .. testcode:: python
+            .. code-block:: python
 
                 from finance_datareader_py.csindex import get_stock_holdings_weight
 
@@ -63,7 +63,7 @@ def get_stock_holdings_weight(index: str):
 
                 print(df)
 
-            .. testoutput::
+            .. code-block::
 
                 symbol  name      权重(%)Weight(%)
                 600000  浦发银行            1.11

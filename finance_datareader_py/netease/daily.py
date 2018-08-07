@@ -91,7 +91,7 @@ class NetEaseDailyReader(_AbsDailyReader):
             无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
         Examples:
-            .. testcode:: python
+            .. code-block:: python
 
                 from finance_datareader_py.netease.daily import NetEaseDailyReader
 
@@ -99,7 +99,7 @@ class NetEaseDailyReader(_AbsDailyReader):
 
                 print(df)
 
-            .. testoutput::
+            .. code-block::
 
                 Date         Close   High    Low   Open Change    Quote    Rate    Volume   Turnover
                 2004-10-08   5.56   5.60   5.28   5.42   0.14    2.583  0.7425  117074.0   6369.0

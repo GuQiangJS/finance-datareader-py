@@ -92,7 +92,7 @@ class XueQiuDailyReader(_AbsDailyReader):
             无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
         Examples:
-            .. testcode:: python
+            .. code-block:: python
 
                 from finance_datareader_py.xueqiu.daily import XueQiuDailyReader
 
@@ -100,7 +100,7 @@ class XueQiuDailyReader(_AbsDailyReader):
 
                 print(df)
 
-            .. testoutput::
+            .. code-block::
 
                 日期             成交金额   Open   High    Low  Close   涨跌额   涨跌幅   换手率
                 2010-01-03   96983253  10.85  10.87  10.60  10.60 -0.21 -1.94  1.00

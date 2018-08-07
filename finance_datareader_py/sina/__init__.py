@@ -30,7 +30,7 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
         参见 ``pandas.DataFrame.empty``。
 
     Examples:
-        .. testcode:: python
+        .. code-block:: python
 
             from finance_datareader_py.sina import get_dividends
 
@@ -40,7 +40,7 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
             print('------------')
             print(df2)
 
-        .. testoutput::
+        .. code-block::
 
             公告日期     派息(税前)(元)      红股上市日      股权登记日  转增(股)  送股(股)      除权除息日
             2018-05-05      3.290        NaT 2018-05-10    1.0    0.0 2018-05-11

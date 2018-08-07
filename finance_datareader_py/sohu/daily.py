@@ -71,7 +71,7 @@ class SohuDailyReader(_AbsDailyReader):
             无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
         Examples:
-            .. testcode:: python
+            .. code-block:: python
 
                 from finance_datareader_py.sohu.daily import SohuDailyReader
 
@@ -80,7 +80,7 @@ class SohuDailyReader(_AbsDailyReader):
 
                 print(df2)
 
-            .. testoutput::
+            .. code-block::
 
                 Date        Open  Close Change  Quote    Low   High  Volume   Turnover  Rate
                 2018-07-05  23.02  23.05   0.05   0.22  22.85  23.41  267279   61939.30  0.28

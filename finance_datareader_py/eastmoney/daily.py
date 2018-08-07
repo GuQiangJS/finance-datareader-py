@@ -81,7 +81,7 @@ class EastMoneyDailyReader(_AbsDailyReader):
             无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
         Examples:
-            .. testcode:: python
+            .. code-block:: python
 
                 from finance_datareader_py.eastmoney.daily import EastMoneyDailyReader
 
@@ -93,7 +93,7 @@ class EastMoneyDailyReader(_AbsDailyReader):
 
                 print(df)
 
-            .. testoutput::
+            .. code-block::
 
                    日期    Open  Close   High    Low  交易量(手)   成交金额     振幅   换手率
                 2004-10-08   5.42   5.56   5.60   5.28  117073  6369万   5.9%  0.74
