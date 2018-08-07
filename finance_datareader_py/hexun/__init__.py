@@ -1,10 +1,10 @@
 # Copyright (C) 2018 GuQiangJs.
 # Licensed under Apache License 2.0 <see LICENSE file>
 
-from finance_datareader_py import _AbsDailyReader
-from bs4 import BeautifulSoup as bs
 import numpy as np
-import datetime
+from bs4 import BeautifulSoup as bs
+
+from finance_datareader_py import _AbsDailyReader
 
 
 def get_deposit_interest_rate():
