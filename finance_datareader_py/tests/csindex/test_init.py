@@ -24,7 +24,8 @@ class csindex_TestCase(unittest.TestCase):
         self.assertEqual(300, len(df.index))
         print(df)
         self.assertEqual(df.dtypes[0], 'object')
-        self.assertEqual(df.dtypes[1], 'float32')
+        self.assertEqual(df.dtypes[1], 'object')
+        self.assertEqual(df.dtypes[2], 'float32')
 
     def test_get_stock_holdings_weight_ValueError(self):
         self.assertRaises(ValueError, get_stock_holdings_weight, '')
