@@ -35,8 +35,12 @@ script:
   - coverage run -m unittest discover finance_datareader_py "test_*.py"
   - flake8 --version
   - flake8 finance_datareader_py --ignore=E501
+    
+after_success: 
+  - coverage report
+  - coveralls
 
-deploy：
+after_script：
   - |
     if [[ $DOCBUILD ]]; then
       cd docs
@@ -44,7 +48,3 @@ deploy：
       cd ..
       doctr deploy devel --build-tags
     fi
-    
-after_success: 
-  - coverage report
-  - coveralls
