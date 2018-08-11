@@ -36,8 +36,6 @@ script:
   - flake8 finance_datareader_py --ignore=E501
 after_success: 
   - coverage report
-  - coveralls
-deploy:
   - |
     if [[ $DOCBUILD ]]; then
       cd docs
@@ -45,3 +43,4 @@ deploy:
       cd ..
       doctr deploy devel --build-tags
     fi
+  - coveralls
