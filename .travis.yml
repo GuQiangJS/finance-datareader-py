@@ -30,12 +30,13 @@ install:
   - if [[ $DOCBUILD ]]; then
     pip install sphinx sphinx_rtd_theme doctr sphinxcontrib-napoleon;
     fi
+
 script: 
   - coverage run -m unittest discover finance_datareader_py "test_*.py"
   - flake8 --version
   - flake8 finance_datareader_py --ignore=E501
-after_success: 
-  - coverage report
+
+deploy：
   - |
     if [[ $DOCBUILD ]]; then
       cd docs
@@ -43,4 +44,7 @@ after_success:
       cd ..
       doctr deploy devel --build-tags
     fi
+    
+after_success: 
+  - coverage report
   - coveralls
