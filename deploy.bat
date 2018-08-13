@@ -1,9 +1,8 @@
 @echo off
-echo ·¢°æÇ°ÏÈÈ·ÈÏµ±Ç°GithubÉÏÃ»ÓĞcommit»¹Î´±»release¡£
-echo ·¢°æÊ±»á×Ô¶¯Ê¹ÓÃreleaseµÄ°æ±¾ºÅ¡£
+echo å‘ç‰ˆå‰å…ˆç¡®è®¤å½“å‰Githubä¸Šæ²¡æœ‰commitè¿˜æœªè¢«releaseã€‚
+echo å‘ç‰ˆæ—¶ä¼šè‡ªåŠ¨ä½¿ç”¨releaseçš„ç‰ˆæœ¬å·ã€‚
 pause
 rmdir /s/q %~dp0dist
-pause
 python setup.py sdist
 python setup.py bdist_wheel --universal
 twine upload dist/*
