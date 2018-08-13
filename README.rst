@@ -1,14 +1,13 @@
-finance-datareader-py
-=======================
-    
+Python 金融数据读取器
+=====================
+
 .. image:: https://api.travis-ci.org/GuQiangJS/finance-datareader-py.svg?branch=master
     :target: https://travis-ci.org/GuQiangJS/finance-datareader-py
-   
+    
 .. image:: https://coveralls.io/repos/github/GuQiangJS/finance-datareader-py/badge.svg?branch=master
-   :target: https://coveralls.io/github/GuQiangJS/finance-datareader-py?branch=master
+    :target: https://coveralls.io/github/GuQiangJS/finance-datareader-py?branch=master
 
 
-Python 金融数据读取器
 
 基于 ``pandas-datareader`` 开发，用来读取 上证、深证（股票列表、每日成交汇总）
 
@@ -28,33 +27,42 @@ Python 金融数据读取器
 * sphinxcontrib-napoleon
 
 快速安装
-~~~~~~~~~
+--------
+
+安装发布版本
+~~~~~~~~~~~~
 
 .. code-block:: shell
 
-    $ pip install git+https://github.com/GuQiangJS/finance-datareader-py.git
+   $ pip install finance-datareader-py
+
+安装开发版本
+~~~~~~~~~~~~
+
+.. code-block:: shell
+
+   $ pip install git+https://github.com/GuQiangJS/finance-datareader-py.git
 
 文档
-~~~~~
+----
 
 `开发文档 <https://guqiangjs.github.io/finance-datareader-py/devel/>`__
-会在每次提交变更后自动生成。
 
 使用示例
-~~~~~~~~~
+--------
 
 .. code-block:: python
 
-    In[2]: from finance_datareader_py.netease.daily import NetEaseDailyReader
-    In[3]: df = NetEaseDailyReader(symbols='000002').read()
-    In[4]: df.tail()
-    
-.. code-block::
+    >>> from finance_datareader_py.sohu.daily import SohuDailyReader
 
-    Out[5]:
-                Close  High   Low  Open Change    Quote    Rate    Volume  Turnover
-    2018-07-04  23.00  23.75  23.00  23.46  -0.42  -1.7933  0.2570  249881.0  58247.0  
-    2018-07-05  23.05  23.41  22.85  23.02   0.05   0.2174  0.2749  267279.0  61939.0  
-    2018-07-06  23.21  23.60  22.65  23.34   0.16   0.6941  0.3568  346930.0  80511.0 
-    2018-07-09  24.01  24.05  23.37  23.37    0.8   3.4468  0.4161  404627.0  96480.0 
-    2018-07-10  24.15  24.49  23.77  24.20   0.14   0.5831  0.4003  389259.0  93653.0
+    >>> df = SohuDailyReader(symbols='000002').read()
+
+    >>> print(df.tail())
+
+                Open  Close  Change  Quote   Low  High    Volume  Turnover  Rate
+    Date
+    2004-10-14  5.80   5.67   -0.12  -2.07  5.56  5.80  265167.0  15041.02  1.68
+    2004-10-13  5.81   5.79    0.00   0.00  5.69  5.85  252039.0  14604.28  1.60
+    2004-10-12  5.53   5.79    0.25   4.51  5.50  5.87  600869.0  34637.16  3.82
+    2004-10-11  5.56   5.54   -0.02  -0.36  5.51  5.65  264020.0  14775.34  1.68
+    2004-10-08  5.42   5.56    0.14   2.58  5.28  5.60  117074.0   6368.60  0.74
