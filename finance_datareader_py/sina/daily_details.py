@@ -12,10 +12,6 @@ from finance_datareader_py import _AbsDailyReader
 class SinaDailyDetailsReader(_AbsDailyReader):
     """从 Sina 读取每日成交明细
 
-    .. warning::
-
-       频繁从Sina读取数据，可能会被暂时封禁IP。
-
     Args:
         symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002,300002
         start: 开始日期。默认值：2004-10-08
