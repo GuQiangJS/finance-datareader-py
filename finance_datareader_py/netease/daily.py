@@ -93,19 +93,17 @@ class NetEaseDailyReader(_AbsDailyReader):
         Examples:
             .. code-block:: python
 
-                from finance_datareader_py.netease.daily import NetEaseDailyReader
+                >>> from finance_datareader_py.netease.daily import NetEaseDailyReader
 
-                df = NetEaseDailyReader(symbols='000002').read()
+                >>> print(NetEaseDailyReader(symbols='000002').read().tail())
 
-                print(df)
+                            Close   High    Low   Open Change    Quote    Rate     Volume  Turnover
 
-            .. code-block::
-
-                Date         Close   High    Low   Open Change    Quote    Rate    Volume   Turnover
-                2004-10-08   5.56   5.60   5.28   5.42   0.14    2.583  0.7425  117074.0   6369.0
-                2004-10-11   5.54   5.65   5.51   5.56  -0.02  -0.3597  1.6744  264020.0  14775.0
-                2004-10-12   5.79   5.87   5.50   5.53   0.25   4.5126  3.8106  600869.0  34637.0
-                2004-10-13   5.79   5.85   5.69   5.81    0.0      0.0  1.5984  252039.0  14604.0
+                2018-08-06  20.86  21.32  20.52  21.18  -0.22  -1.0436  0.3247   315702.0   66288.0
+                2018-08-07  21.86  21.86  20.93  21.15    1.0   4.7939  0.4645   451653.0   96917.0
+                2018-08-08  21.50  22.29  21.50  21.89  -0.36  -1.6468  0.4224   410720.0   90302.0
+                2018-08-09  22.48  22.55  21.40  21.50   0.98   4.5581  0.9216   896200.0  199710.0
+                2018-08-10  23.18  24.07  22.93  23.00    0.7   3.1139  1.2352  1201163.0  282009.0
 
         """
         try:

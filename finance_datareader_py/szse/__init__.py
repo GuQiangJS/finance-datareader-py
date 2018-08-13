@@ -38,19 +38,16 @@ def get_szse_symbols(kind: str = '2', retry_count=3, timeout=30, pause=None):
     Examples:
         .. code-block:: python
 
-            from finance_datareader_py.szse import get_szse_symbols
+            >>> from finance_datareader_py.szse import get_szse_symbols
 
-            df2 = get_szse_symbols('2')  # A股
+            >>> print(get_szse_symbols().tail())
 
-            print(df2)
-
-        .. code-block::
-
-            symbol   name
-            000001   平安银行
-            000002  万  科Ａ
-            000004   国农科技
-            000005   世纪星源
+                  symbol   name
+            2101  300743   天地数码
+            2102  300745   欣锐科技
+            2103  300746   汉嘉设计
+            2104  300747   锐科激光
+            2105  300750   宁德时代
     """
     global _ticker_cache
     if timeout < 0:
@@ -86,5 +83,5 @@ def _download_szse_symbols(kind: str):
     df = pd.read_excel(url, convert_float=False, dtype=object)
     df = df[['公司代码', '公司简称']]
     df.rename(columns={'公司代码': 'symbol', '公司简称': 'name'}, inplace=True)
-    df.set_index("symbol", inplace=True)
+    # df.set_index("symbol", inplace=True)
     return df

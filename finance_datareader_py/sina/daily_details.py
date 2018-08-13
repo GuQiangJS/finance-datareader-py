@@ -12,6 +12,10 @@ from finance_datareader_py import _AbsDailyReader
 class SinaDailyDetailsReader(_AbsDailyReader):
     """从 Sina 读取每日成交明细
 
+    .. warning::
+
+        Sina 已下线该功能。
+
     Args:
         symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002,300002
         start: 开始日期。默认值：2004-10-08
@@ -68,6 +72,10 @@ class SinaDailyDetailsReader(_AbsDailyReader):
     def read(self):
         """读取数据
 
+        .. warning::
+
+            Sina 已下线该功能。
+
         Returns:
             ``pandas.DataFrame``:
 
@@ -76,21 +84,17 @@ class SinaDailyDetailsReader(_AbsDailyReader):
         Examples:
             .. code-block:: python
 
-                from finance_datareader_py.sina.daily_details import SinaDailyDetailsReader
+                >>> from finance_datareader_py.sina.daily_details import SinaDailyDetailsReader
 
-                df = SinaDailyDetailsReader(symbols='000002', start=datetime.date(2018, 7, 2),
-                                            end=datetime.date(2018, 7, 2)).read()
+                >>> import datetime
 
-                print(df)
+                >>> df = SinaDailyDetailsReader(symbols='000002', start=datetime.date(2018, 7, 2), end=datetime.date(2018, 7, 2)).read()
 
-            .. code-block::
+                >>> print(df.tail())
 
-                成交时间           成交价格  价格变动  成交量(手)    成交额(元)   性质
-                2018-07-02 15:00:04  22.80  0.01    5763  13139640   卖盘
-                2018-07-02 14:57:00  22.79  0.00       9     20511   卖盘
-                2018-07-02 14:56:57  22.79  0.00      98    225241   买盘
-                2018-07-02 14:56:54  22.79  0.00     171    389700   买盘
-                2018-07-02 14:56:51  22.79  0.04     164    373234   买盘
+                Empty DataFrame
+                Columns: []
+                Index: []
 
         """
         try:

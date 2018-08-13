@@ -75,20 +75,21 @@ class GtimgDailyDetailsReader(_AbsDailyReader):
         Examples:
             .. code-block:: python
 
-                from finance_datareader_py.gtimg.daily_details import GtimgDailyDetailsReader
+                >>> from finance_datareader_py.gtimg.daily_details import GtimgDailyDetailsReader
 
-                df = GtimgDailyDetailsReader(symbols='000002', start=datetime.date(2018, 7, 2),
-                                             end=datetime.date(2018, 7, 2)).read()
+                >>> import datetime
 
-                print(df)
+                >>> df = GtimgDailyDetailsReader(symbols='000002', start=datetime.date(2018, 7, 2), end=datetime.date(2018, 7, 2)).read()
 
-            .. code-block::
+                >>> print(df.tail())
 
-                成交时间        成交价格  价格变动  成交量(手)    成交额(元)   性质
-                2018-07-02 15:00:04  22.80  0.01    5763  13139640   卖盘
-                2018-07-02 14:57:00  22.79  0.00       9     20511   卖盘
-                2018-07-02 14:56:57  22.79  0.00      98    225241   买盘
-                2018-07-02 14:56:54  22.79  0.00     171    389700   买盘
+                                      成交价格  价格变动  成交量(手)     成交额(元)  性质
+                成交时间
+                2018-07-02 09:30:12  24.48 -0.01    21.0    51347.0  买盘
+                2018-07-02 09:30:10  24.49  0.01   350.0   856316.0  买盘
+                2018-07-02 09:30:06  24.48  0.05   727.0  1779751.0  买盘
+                2018-07-02 09:30:03  24.43 -0.07  1672.0  4092375.0  卖盘
+                2018-07-02 09:25:04  24.50 -0.10   871.0  2133950.0  卖盘
 
         """
         try:

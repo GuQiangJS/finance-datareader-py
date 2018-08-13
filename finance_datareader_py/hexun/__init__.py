@@ -16,11 +16,9 @@ def get_deposit_interest_rate():
     Examples:
         .. code-block:: python
 
-            from finance_datareader_py.hexun import get_deposit_interest_rate
+            >>> from finance_datareader_py.hexun import get_deposit_interest_rate
 
-            print(get_deposit_interest_rate())
-
-        .. code-block::
+            >>> print(get_deposit_interest_rate())
 
             {
                 "日期": "2015-10-24",
@@ -29,11 +27,11 @@ def get_deposit_interest_rate():
                 "整存整取-3个月": 1.1,
                 "整存整取-6个月": 1.3,
                 "整存整取-一年": 1.5,
-                "整存整取-二年": 2.1,
+                " 整存整取-二年": 2.1,
                 "整存整取-三年": 2.75,
                 "整存整取-五年": "--",
                 "零存整取/整存零取-一年": 1.1,
-                "零存整取/整存零取-三年": 1.3,
+                "零存整取/整存零取-三 年": 1.3,
                 "零存整取/整存零取-五年": "--",
                 "协定存款": 1.15,
                 "一天通知存款": 0.8,

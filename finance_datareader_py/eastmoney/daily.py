@@ -83,26 +83,19 @@ class EastMoneyDailyReader(_AbsDailyReader):
         Examples:
             .. code-block:: python
 
-                from finance_datareader_py.eastmoney.daily import EastMoneyDailyReader
+                >>> from finance_datareader_py.eastmoney.daily import EastMoneyDailyReader
 
-                df = EastMoneyDailyReader(symbols='000002').read()
-                # 前复权
-                # df = EastMoneyDailyReader(symbols='000002', type='fa').read()
-                # 后复权
-                # df = EastMoneyDailyReader(symbols='000002', type='ba').read()
+                >>> df = EastMoneyDailyReader(symbols='000002').read()
 
-                print(df)
+                >>> print(df.tail())
 
-            .. code-block::
-
-                   日期    Open  Close   High    Low  交易量(手)   成交金额     振幅   换手率
-                2004-10-08   5.42   5.56   5.60   5.28  117073  6369万   5.9%  0.74
-                2004-10-11   5.56   5.54   5.65   5.51  264020  1.48亿  2.52%  1.67
-                2004-10-12   5.53   5.79   5.87   5.50  600868  3.46亿  6.68%  3.81
-                ...           ...    ...    ...    ...     ...    ...    ...   ...
-                2018-07-03  23.10  23.42  23.48  22.80  549965  12.7亿  2.98%  0.57
-                2018-07-04  23.46  23.00  23.75  23.00  249881  5.82亿   3.2%  0.26
-                2018-07-05  23.02  23.05  23.41  22.85  267279  6.19亿  2.43%  0.28
+                             Open  Close   High    Low     交易量(手)          成交金额  振幅(%)   换手率
+                日期
+                2018-08-06  21.18  20.86  21.32  20.52   315702.0  6.628799e+08   3.80  0.32
+                2018-08-07  21.15  21.86  21.86  20.93   451653.0  9.691662e+08   4.46  0.46
+                2018-08-08  21.89  21.50  22.29  21.50   410720.0  9.030237e+08   3.61  0.42
+                2018-08-09  21.50  22.48  22.55  21.40   896200.0  1.997096e+09   5.35  0.92
+                2018-08-10  23.00  23.18  24.07  22.93  1201163.0  2.820092e+09   5.07  1.24
 
         """
         try:

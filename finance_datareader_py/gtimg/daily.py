@@ -90,26 +90,19 @@ class GtimgDailyReader(_AbsDailyReader):
         Examples:
             .. code-block:: python
 
-                from finance_datareader_py.gtimg.daily import GtimgDailyReader
+                >>> from finance_datareader_py.gtimg.daily import GtimgDailyReader
 
-                df = GtimgDailyReader(symbols='000002').read()
-                # 后复权
-                # df = GtimgDailyReader(symbols='000002', type='hfq').read()
-                # 前复权
-                # df = GtimgDailyReader(symbols='000002', type='qfq').read()
+                >>> df = GtimgDailyReader(symbols='000002').read()
 
-                print(df)
+                >>> print(df.tail())
 
-            .. code-block::
-
-                日期          Open   Close    High     Low      交易量(手)
-                2004-10-08   5.420   5.560   5.600   5.280  117073.850
-                2004-10-11   5.560   5.540   5.650   5.510  264020.250
-                2004-10-12   5.530   5.790   5.870   5.500  600868.640
-                ...            ...     ...     ...     ...         ...
-                2018-07-03  23.100  23.420  23.480  22.800  549964.000
-                2018-07-04  23.460  23.000  23.750  23.000  249881.000
-                2018-07-05  23.020  23.050  23.410  22.850  267278.000
+                             Open  Close   High    Low     交易量(手)
+                日期
+                2018-08-06  21.18  20.86  21.32  20.52   315702.0
+                2018-08-07  21.15  21.86  21.86  20.93   451653.0
+                2018-08-08  21.89  21.50  22.29  21.50   410720.0
+                2018-08-09  21.50  22.48  22.55  21.40   896200.0
+                2018-08-10  23.00  23.18  24.07  22.93  1201163.0
 
         """
         try:

@@ -25,17 +25,12 @@ def get_pdf(top=1):
     Examples:
         .. code-block:: python
 
-            from from finance_datareader_py.csrc import category
+            >>> from finance_datareader_py.csrc import category
 
-            df = category.get_pdf()
-
-            print(df)
-
-        .. code-block::
+            >>> print(category.get_pdf())
 
             {
-                "2018年1季度上市公司行业分类结果":
-                "http://www.csrc.gov.cn/pub/newsite/scb/ssgshyfljg/201805/W020180521522232342268.pdf"
+                "2018年2季度上市公司行业分类结果": "http://www.csrc.gov.cn/pub/newsite/scb/ssgshyfljg/201807/W020180730329934473366.pdf"
             }
 
     .. hint::
@@ -43,30 +38,22 @@ def get_pdf(top=1):
 
         .. code-block:: python
 
-            import tabula
+            >>> import tabula
 
-            df = tabula.read_pdf(r'http://www.csrc.gov.cn/pub/newsite/scb/ssgshyfljg/201805/W020180521522232342268.pdf',
-                                 encoding='gbk', pages='all', format='json',
-                                 silent=True, pandas_options={'header': 0})
-            df = df.loc[df['上市公司代码'].str.isnumeric() == True]
-            df = fillna(method='ffill')
+            >>> df = tabula.read_pdf(r'http://www.csrc.gov.cn/pub/newsite/scb/ssgshyfljg/201805/W020180521522232342268.pdf',encoding='gbk', pages='all', format='json',silent=True, pandas_options={'header': 0})
 
-            print(df)
+            >>> df = df.loc[df['上市公司代码'].str.isnumeric() == True]
 
-        .. code-block::
+            >>> df = df.fillna(method='ffill')
 
-                   门类名称及代码 行业大类代码 行业大类名称  上市公司代码 上市公司简称
-            0     农、林、牧、渔业     01     农业  000998   隆平高科
-            1          (A)     01     农业  002041   登海种业
-            2          (A)     01     农业  002772   众兴菌业
-            3          (A)     01     农业  300087   荃银高科
-            4          (A)     01     农业  300189   神农基因
-            ...        ...    ...    ...     ...    ...
-            3572      业(R)     87  文化艺术业  300144   宋城演艺
-            3573      业(R)     87  文化艺术业  300592   华凯创意
-            3574      业(R)     87  文化艺术业  300640   德艺文创
-            3575      业(R)     87  文化艺术业  600576   祥源文化
-            3576      业(R)     87  文化艺术业  603466    风语筑
+            >>> print(df.tail())
+
+                 门类名称及代码 行业大类代码 行业大类名称  上市公司代码 上市公司简称
+            3597   综合(S)     90     综合  600777   新潮能源
+            3598   综合(S)     90     综合  600783   鲁信创投
+            3599   综合(S)     90     综合  600784   鲁银投资
+            3600   综合(S)     90     综合  600805   悦达投资
+            3601   综合(S)     90     综合  600895   张江高科
 
     """
 

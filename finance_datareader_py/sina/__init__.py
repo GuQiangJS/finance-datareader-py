@@ -32,27 +32,28 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
     Examples:
         .. code-block:: python
 
-            from finance_datareader_py.sina import get_dividends
+            >>> from finance_datareader_py.sina import get_dividends
 
-            df1, df2 = get_dividends('000541')
+            >>> df1, df2 = get_dividends('000541')
 
-            print(df1)
-            print('------------')
-            print(df2)
+            >>> print(df1.tail())
 
-        .. code-block::
+                        派息(税前)(元)      红股上市日      股权登记日  转增(股)  送股(股)      除权除息日
+            公告日期
+            1997-07-22       4.77        NaT 1997-07-29    0.0    0.0 1997-07-30
+            1996-09-12       0.00 1996-09-19 1996-09-16    5.0    0.0 1996-09-17
+            1996-05-30       6.80        NaT 1996-06-07    0.0    0.0 1996-06-10
+            1995-07-21       8.10        NaT 1995-07-25    0.0    0.0 1995-07-26
+            1994-04-23       3.00        NaT 1994-05-05    1.0    4.0 1994-05-06
 
-            公告日期     派息(税前)(元)      红股上市日      股权登记日  转增(股)  送股(股)      除权除息日
-            2018-05-05      3.290        NaT 2018-05-10    1.0    0.0 2018-05-11
-            2017-06-01      4.200        NaT 2017-06-07    0.0    0.0 2017-06-08
-            2016-05-07      0.125        NaT 2016-05-12    0.0    0.0 2016-05-13
-            2015-06-05      2.200        NaT 2015-06-11    3.0    0.0 2015-06-12
-            ------------
-            公告日期     募集资金合计(元)     基准股本(万股)      缴款终止日      缴款起始日      股权登记日  \
+            >>> print(df2.tail())
 
+                        募集资金合计(元)     基准股本(万股)      缴款终止日      缴款起始日      股权登记日  \
+            公告日期
             1994-12-24        NaN  115755000.0 1995-01-27 1995-01-16 1995-01-03
 
-            公告日期         配股上市日  配股价格(元)  配股方案(每10股配股股数)        除权日
+                            配股上市日  配股价格(元)  配股方案(每10股配股股数)        除权日
+            公告日期
             1994-12-24 1995-02-22      8.0             2.0 1995-01-04
 
         """
@@ -119,7 +120,7 @@ def _download_dividends(symbol: str):
 
 
 def _create_df(r):
-    df = _translate_dtype(pd.DataFrame(r)).set_index('公告日期')
+    df = _translate_dtype(pd.DataFrame(r))
     df = df.replace({'--': np.nan, '': np.nan})
     return df
 

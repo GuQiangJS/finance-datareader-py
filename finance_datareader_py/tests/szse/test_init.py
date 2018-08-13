@@ -3,6 +3,8 @@
 
 import unittest
 
+import numpy as np
+
 from finance_datareader_py.szse import _download_szse_symbols, get_szse_symbols
 
 
@@ -28,8 +30,13 @@ class sse_TestCase(unittest.TestCase):
         print(df2.count())
         print(df5.count())
         print(df6.count())
-        self.assertTrue(df2.filter(regex='^002', axis=0).equals(df5))
-        self.assertTrue(df2.filter(regex='^3', axis=0).equals(df6))
+
+        self.assertTrue(np.array_equal(
+            df2[df2['symbol'].str.contains('^002', regex=True)].values,
+            df5.values))
+        self.assertTrue(np.array_equal(
+            df2[df2['symbol'].str.contains('^3', regex=True)].values,
+            df6.values))
 
 
 if __name__ == '__main__':

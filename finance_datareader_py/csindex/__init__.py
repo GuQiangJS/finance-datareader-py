@@ -17,20 +17,16 @@ def get_stock_holdings(index: str):
     Examples:
         .. code-block:: python
 
-            from finance_datareader_py.csindex import get_stock_holdings
+            >>> from finance_datareader_py.csindex import get_stock_holdings
 
-            df = get_stock_holdings('000300')
-
-            print(df)
-
-        .. code-block::
+            >>> print(get_stock_holdings('000300').tail())
 
                  symbol  name
-            0    600000  浦发银行
-            1    600008  首创股份
-            2    600009  上海机场
-            3    600010  包钢股份
-            ...      ...
+            295  300136  信维通信
+            296  300144  宋城演艺
+            297  300251  光线传媒
+            298  300408  三环集团
+            299  300433  蓝思科技
     """
     if not index:
         raise ValueError()
@@ -58,7 +54,9 @@ def get_stock_holdings_weight(index: str):
             .. code-block:: python
 
                 >>> from finance_datareader_py.csindex import get_stock_holdings_weight
+
                 >>> print(get_stock_holdings_weight('000300').tail())
+
                      symbol  name  权重(%)Weight(%)
                 295  300136  信维通信            0.25
                 296  300144  宋城演艺            0.17

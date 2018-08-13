@@ -32,19 +32,16 @@ def get_sse_symbols(retry_count=3, timeout=30, pause=None):
     Examples:
         .. code-block:: python
 
-            from finance_datareader_py.sse import get_sse_symbols
+            >>> from finance_datareader_py.sse import get_sse_symbols
 
-            df2 = get_sse_symbols()
+            >>> print(get_sse_symbols().tail())
 
-            print(df2)
-
-        .. code-block::
-
-            symbol   name
-            600000  浦发银行
-            600004  白云机场
-            600006  东风汽车
-            600007  中国国贸
+                  name  symbol
+            1425  洛阳钼业  603993
+            1426  中新科技  603996
+            1427  继峰股份  603997
+            1428  方盛制药  603998
+            1429  读者传媒  603999
     """
     global _ticker_cache
     if timeout < 0:
@@ -84,7 +81,7 @@ def _download_sse_symbols(timeout):
         for match in matches:
             result.append({'symbol': match.group(1), 'name': match.group(2)})
         data = pd.DataFrame(result)
-        data.set_index("symbol", inplace=True)
+        # data.set_index("symbol", inplace=True)
         return data
     finally:
         reader.close()
@@ -110,26 +107,23 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
     Examples:
         .. code-block:: python
 
-            from finance_datareader_py.sse import get_dividends
+            >>> from finance_datareader_py.sse import get_dividends
 
-            df1, df2 = get_dividends('600006')
+            >>> df1, df2 = get_dividends('600006')
 
-            print(df1)
-            print('------------')
-            print(df2)
-
-        .. code-block::
+            >>> print(df1.tail())
 
                         每股红利(除税)  每股红利(含税)       除息交易日  股权登记日总股本(万股)  除息前日收盘价   除息报价
             股权登记日
-            2018-06-15   0.03030    0.0303  2018-06-19        200000     4.34   4.35
-            2017-07-13   0.03300    0.0330  2017-07-14        200000     5.87   5.89
-            2016-06-29   0.05200    0.0520  2016-06-30        200000     8.95   9.00
-            2015-07-23   0.02014    0.0212  2015-07-24        200000    10.33  10.18
-            2014-06-19   0.00722    0.0076  2014-06-20        200000     2.91   2.92
-            2013-06-14   0.00314    0.0033  2013-06-17        200000     3.07   3.07
-            ------------
-                        公告刊登日  送股比例(10:?)       除权基准日  股权登记日总股本(万股)       红股上市日
+            2004-06-10      0.10      0.20  2004-06-11        100000     4.91   4.91
+            2002-05-21      0.16      0.20  2002-05-22        100000    12.64  12.79
+            2001-10-29      0.04      0.05  2001-10-30        100000     9.65   9.70
+            2001-06-12      0.16      0.20  2001-06-13        100000    10.02  10.13
+            2000-06-23      0.08      0.10  2000-06-26        100000     5.93   5.98
+
+            >>> print(df2.tail())
+
+                             公告刊登日  送股比例(10:?)       除权基准日  股权登记日总股本(万股)       红股上市日
             股权登记日
             2004-06-10  2004-06-07          10  2004-06-11        100000  2004-06-14
 

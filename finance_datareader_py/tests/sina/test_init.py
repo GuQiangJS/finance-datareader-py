@@ -22,23 +22,25 @@ class sina_TestCase(unittest.TestCase):
         print(df2)
 
         dt = datetime.date(2018, 5, 5)
-        self.assertEqual(np.float64(3.29), df1.loc[dt, '派息(税前)(元)'])
-        self.assertTrue(pd.isna(df1.loc[dt, '红股上市日']))
-        self.assertEqual(pd.Timestamp(2018, 5, 10), df1.loc[dt, '股权登记日'])
-        self.assertEqual(np.float64(1), df1.loc[dt, '转增(股)'])
-        self.assertEqual(np.float64(0), df1.loc[dt, '送股(股)'])
-        self.assertEqual(pd.Timestamp(2018, 5, 11), df1.loc[dt, '除权除息日'])
+        df1 = df1.loc[df1['公告日期'] == dt]
+        self.assertEqual(np.float64(3.29), df1.at[0, '派息(税前)(元)'])
+        self.assertTrue(pd.isna(df1.at[0, '红股上市日']))
+        self.assertEqual(pd.Timestamp(2018, 5, 10), df1.at[0, '股权登记日'])
+        self.assertEqual(np.float64(1), df1.at[0, '转增(股)'])
+        self.assertEqual(np.float64(0), df1.at[0, '送股(股)'])
+        self.assertEqual(pd.Timestamp(2018, 5, 11), df1.at[0, '除权除息日'])
 
         dt = datetime.date(1994, 12, 24)
-        self.assertEqual(np.float64(2), df2.loc[dt, '配股方案(每10股配股股数)'])
-        self.assertEqual(np.float64(8), df2.loc[dt, '配股价格(元)'])
-        self.assertEqual(np.float64(115755000), df2.loc[dt, '基准股本(万股)'])
-        self.assertEqual(pd.Timestamp(1995, 1, 4), df2.loc[dt, '除权日'])
-        self.assertEqual(pd.Timestamp(1995, 1, 3), df2.loc[dt, '股权登记日'])
-        self.assertEqual(pd.Timestamp(1995, 1, 16), df2.loc[dt, '缴款起始日'])
-        self.assertEqual(pd.Timestamp(1995, 1, 27), df2.loc[dt, '缴款终止日'])
-        self.assertEqual(pd.Timestamp(1995, 2, 22), df2.loc[dt, '配股上市日'])
-        self.assertTrue(pd.isna(df2.loc[dt, '募集资金合计(元)']))
+        df2 = df2.loc[df2['公告日期'] == dt]
+        self.assertEqual(np.float64(2), df2.at[0, '配股方案(每10股配股股数)'])
+        self.assertEqual(np.float64(8), df2.at[0, '配股价格(元)'])
+        self.assertEqual(np.float64(115755000), df2.at[0, '基准股本(万股)'])
+        self.assertEqual(pd.Timestamp(1995, 1, 4), df2.at[0, '除权日'])
+        self.assertEqual(pd.Timestamp(1995, 1, 3), df2.at[0, '股权登记日'])
+        self.assertEqual(pd.Timestamp(1995, 1, 16), df2.at[0, '缴款起始日'])
+        self.assertEqual(pd.Timestamp(1995, 1, 27), df2.at[0, '缴款终止日'])
+        self.assertEqual(pd.Timestamp(1995, 2, 22), df2.at[0, '配股上市日'])
+        self.assertTrue(pd.isna(df2.at[0, '募集资金合计(元)']))
 
     def test_read_err_symbol(self):
         """测试读取错误的股票代码"""
