@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Gtimg &mdash; finance-datareader-py 0.1.0+41.gd9374a7 文档</title>
+  <title>Gtimg &mdash; finance-datareader-py 0.1.0+42.gd969373 文档</title>
   
 
   
@@ -200,12 +200,21 @@
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finance_datareader_py.gtimg.daily_details</span> <span class="kn">import</span> <span class="n">GtimgDailyDetailsReader</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.gtimg.daily_details</span> <span class="kn">import</span> <span class="n">GtimgDailyDetailsReader</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">GtimgDailyDetailsReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
-                             <span class="n">end</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">GtimgDailyDetailsReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+
+<span class="go">                      成交价格  价格变动  成交量(手)     成交额(元)  性质</span>
+<span class="go">成交时间</span>
+<span class="go">2018-07-02 09:30:12  24.48 -0.01    21.0    51347.0  买盘</span>
+<span class="go">2018-07-02 09:30:10  24.49  0.01   350.0   856316.0  买盘</span>
+<span class="go">2018-07-02 09:30:06  24.48  0.05   727.0  1779751.0  买盘</span>
+<span class="go">2018-07-02 09:30:03  24.43 -0.07  1672.0  4092375.0  卖盘</span>
+<span class="go">2018-07-02 09:25:04  24.50 -0.10   871.0  2133950.0  卖盘</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -261,15 +270,19 @@
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finance_datareader_py.gtimg.daily</span> <span class="kn">import</span> <span class="n">GtimgDailyReader</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.gtimg.daily</span> <span class="kn">import</span> <span class="n">GtimgDailyReader</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">GtimgDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="c1"># 后复权</span>
-<span class="c1"># df = GtimgDailyReader(symbols=&#39;000002&#39;, type=&#39;hfq&#39;).read()</span>
-<span class="c1"># 前复权</span>
-<span class="c1"># df = GtimgDailyReader(symbols=&#39;000002&#39;, type=&#39;qfq&#39;).read()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">GtimgDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+
+<span class="go">             Open  Close   High    Low     交易量(手)</span>
+<span class="go">日期</span>
+<span class="go">2018-08-06  21.18  20.86  21.32  20.52   315702.0</span>
+<span class="go">2018-08-07  21.15  21.86  21.86  20.93   451653.0</span>
+<span class="go">2018-08-08  21.89  21.50  22.29  21.50   410720.0</span>
+<span class="go">2018-08-09  21.50  22.48  22.55  21.40   896200.0</span>
+<span class="go">2018-08-10  23.00  23.18  24.07  22.93  1201163.0</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -326,7 +339,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0+41.gd9374a7',
+            VERSION:'0.1.0+42.gd969373',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

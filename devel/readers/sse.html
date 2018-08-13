@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SSE &mdash; finance-datareader-py 0.1.0+41.gd9374a7 文档</title>
+  <title>SSE &mdash; finance-datareader-py 0.1.0+42.gd969373 文档</title>
   
 
   
@@ -188,11 +188,16 @@
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finance_datareader_py.sse</span> <span class="kn">import</span> <span class="n">get_sse_symbols</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sse</span> <span class="kn">import</span> <span class="n">get_sse_symbols</span>
 
-<span class="n">df2</span> <span class="o">=</span> <span class="n">get_sse_symbols</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">get_sse_symbols</span><span class="p">()</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+<span class="go">      name  symbol</span>
+<span class="go">1425  洛阳钼业  603993</span>
+<span class="go">1426  中新科技  603996</span>
+<span class="go">1427  继峰股份  603997</span>
+<span class="go">1428  方盛制药  603998</span>
+<span class="go">1429  读者传媒  603999</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -224,13 +229,25 @@
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finance_datareader_py.sse</span> <span class="kn">import</span> <span class="n">get_dividends</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sse</span> <span class="kn">import</span> <span class="n">get_dividends</span>
 
-<span class="n">df1</span><span class="p">,</span> <span class="n">df2</span> <span class="o">=</span> <span class="n">get_dividends</span><span class="p">(</span><span class="s1">&#39;600006&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span> <span class="o">=</span> <span class="n">get_dividends</span><span class="p">(</span><span class="s1">&#39;600006&#39;</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s1">&#39;------------&#39;</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df1</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+
+<span class="go">            每股红利(除税)  每股红利(含税)       除息交易日  股权登记日总股本(万股)  除息前日收盘价   除息报价</span>
+<span class="go">股权登记日</span>
+<span class="go">2004-06-10      0.10      0.20  2004-06-11        100000     4.91   4.91</span>
+<span class="go">2002-05-21      0.16      0.20  2002-05-22        100000    12.64  12.79</span>
+<span class="go">2001-10-29      0.04      0.05  2001-10-30        100000     9.65   9.70</span>
+<span class="go">2001-06-12      0.16      0.20  2001-06-13        100000    10.02  10.13</span>
+<span class="go">2000-06-23      0.08      0.10  2000-06-26        100000     5.93   5.98</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+
+<span class="go">                 公告刊登日  送股比例(10:?)       除权基准日  股权登记日总股本(万股)       红股上市日</span>
+<span class="go">股权登记日</span>
+<span class="go">2004-06-10  2004-06-07          10  2004-06-11        100000  2004-06-14</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -279,7 +296,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0+41.gd9374a7',
+            VERSION:'0.1.0+42.gd969373',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sohu &mdash; finance-datareader-py 0.1.0+41.gd9374a7 文档</title>
+  <title>Sohu &mdash; finance-datareader-py 0.1.0+42.gd969373 文档</title>
   
 
   
@@ -201,12 +201,19 @@
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finance_datareader_py.sohu.daily</span> <span class="kn">import</span> <span class="n">SohuDailyReader</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sohu.daily</span> <span class="kn">import</span> <span class="n">SohuDailyReader</span>
 
-<span class="c1"># df = SohuDailyReader(symbols=&#39;399300&#39;, prefix=&#39;zs_&#39;).read() # 获取指数数据</span>
-<span class="n">df2</span> <span class="o">=</span> <span class="n">SohuDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">SohuDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+
+<span class="go">            Open  Close  Change  Quote   Low  High    Volume  Turnover  Rate</span>
+<span class="go">Date</span>
+<span class="go">2004-10-14  5.80   5.67   -0.12  -2.07  5.56  5.80  265167.0  15041.02  1.68</span>
+<span class="go">2004-10-13  5.81   5.79    0.00   0.00  5.69  5.85  252039.0  14604.28  1.60</span>
+<span class="go">2004-10-12  5.53   5.79    0.25   4.51  5.50  5.87  600869.0  34637.16  3.82</span>
+<span class="go">2004-10-11  5.56   5.54   -0.02  -0.36  5.51  5.65  264020.0  14775.34  1.68</span>
+<span class="go">2004-10-08  5.42   5.56    0.14   2.58  5.28  5.60  117074.0   6368.60  0.74</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -263,7 +270,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0+41.gd9374a7',
+            VERSION:'0.1.0+42.gd969373',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

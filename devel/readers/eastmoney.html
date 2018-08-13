@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>EastMoney &mdash; finance-datareader-py 0.1.0+41.gd9374a7 文档</title>
+  <title>EastMoney &mdash; finance-datareader-py 0.1.0+42.gd969373 文档</title>
   
 
   
@@ -207,15 +207,19 @@
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finance_datareader_py.eastmoney.daily</span> <span class="kn">import</span> <span class="n">EastMoneyDailyReader</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.eastmoney.daily</span> <span class="kn">import</span> <span class="n">EastMoneyDailyReader</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">EastMoneyDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="c1"># 前复权</span>
-<span class="c1"># df = EastMoneyDailyReader(symbols=&#39;000002&#39;, type=&#39;fa&#39;).read()</span>
-<span class="c1"># 后复权</span>
-<span class="c1"># df = EastMoneyDailyReader(symbols=&#39;000002&#39;, type=&#39;ba&#39;).read()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">EastMoneyDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+
+<span class="go">             Open  Close   High    Low     交易量(手)          成交金额  振幅(%)   换手率</span>
+<span class="go">日期</span>
+<span class="go">2018-08-06  21.18  20.86  21.32  20.52   315702.0  6.628799e+08   3.80  0.32</span>
+<span class="go">2018-08-07  21.15  21.86  21.86  20.93   451653.0  9.691662e+08   4.46  0.46</span>
+<span class="go">2018-08-08  21.89  21.50  22.29  21.50   410720.0  9.030237e+08   3.61  0.42</span>
+<span class="go">2018-08-09  21.50  22.48  22.55  21.40   896200.0  1.997096e+09   5.35  0.92</span>
+<span class="go">2018-08-10  23.00  23.18  24.07  22.93  1201163.0  2.820092e+09   5.07  1.24</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -272,7 +276,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0+41.gd9374a7',
+            VERSION:'0.1.0+42.gd969373',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

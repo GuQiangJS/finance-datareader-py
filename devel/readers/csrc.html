@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CSRC &mdash; finance-datareader-py 0.1.0+41.gd9374a7 文档</title>
+  <title>CSRC &mdash; finance-datareader-py 0.1.0+42.gd969373 文档</title>
   
 
   
@@ -180,25 +180,34 @@
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">from</span> <span class="nn">finance_datareader_py.csrc</span> <span class="kn">import</span> <span class="n">category</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.csrc</span> <span class="kn">import</span> <span class="n">category</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">category</span><span class="o">.</span><span class="n">get_pdf</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">category</span><span class="o">.</span><span class="n">get_pdf</span><span class="p">())</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="go">{</span>
+<span class="go">    &quot;2018年2季度上市公司行业分类结果&quot;: &quot;http://www.csrc.gov.cn/pub/newsite/scb/ssgshyfljg/201807/W020180730329934473366.pdf&quot;</span>
+<span class="go">}</span>
 </pre></div>
 </div>
 <div class="admonition hint">
 <p class="first admonition-title">提示</p>
 <p>对于 pdf 文件的解析，可以参考 <a class="reference external" href="https://github.com/chezou/tabula-py">tabula-py</a>。</p>
-<div class="last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tabula</span>
+<div class="last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">tabula</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">tabula</span><span class="o">.</span><span class="n">read_pdf</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;http://www.csrc.gov.cn/pub/newsite/scb/ssgshyfljg/201805/W020180521522232342268.pdf&#39;</span><span class="p">,</span>
-                     <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;gbk&#39;</span><span class="p">,</span> <span class="n">pages</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span>
-                     <span class="n">silent</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">pandas_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;上市公司代码&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span> <span class="o">==</span> <span class="bp">True</span><span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">tabula</span><span class="o">.</span><span class="n">read_pdf</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;http://www.csrc.gov.cn/pub/newsite/scb/ssgshyfljg/201805/W020180521522232342268.pdf&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;gbk&#39;</span><span class="p">,</span> <span class="n">pages</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="n">silent</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">pandas_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;上市公司代码&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span> <span class="o">==</span> <span class="bp">True</span><span class="p">]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+
+<span class="go">     门类名称及代码 行业大类代码 行业大类名称  上市公司代码 上市公司简称</span>
+<span class="go">3597   综合(S)     90     综合  600777   新潮能源</span>
+<span class="go">3598   综合(S)     90     综合  600783   鲁信创投</span>
+<span class="go">3599   综合(S)     90     综合  600784   鲁银投资</span>
+<span class="go">3600   综合(S)     90     综合  600805   悦达投资</span>
+<span class="go">3601   综合(S)     90     综合  600895   张江高科</span>
 </pre></div>
 </div>
 </div>
@@ -248,7 +257,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0+41.gd9374a7',
+            VERSION:'0.1.0+42.gd969373',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
