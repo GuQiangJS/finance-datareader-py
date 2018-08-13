@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CSIndex &mdash; finance-datareader-py 0.1.0+40.g6c1a5e3 文档</title>
+  <title>CSIndex &mdash; finance-datareader-py 0.1.0+41.gd9374a7 文档</title>
   
 
   
@@ -207,11 +207,14 @@
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">finance_datareader_py.csindex</span> <span class="kn">import</span> <span class="n">get_stock_holdings_weight</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">get_stock_holdings</span><span class="p">(</span><span class="s1">&#39;000300&#39;</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.csindex</span> <span class="kn">import</span> <span class="n">get_stock_holdings_weight</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">get_stock_holdings_weight</span><span class="p">(</span><span class="s1">&#39;000300&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+<span class="go">     symbol  name  权重(%)Weight(%)</span>
+<span class="go">295  300136  信维通信            0.25</span>
+<span class="go">296  300144  宋城演艺            0.17</span>
+<span class="go">297  300251  光线传媒            0.08</span>
+<span class="go">298  300408  三环集团            0.24</span>
+<span class="go">299  300433  蓝思科技            0.09</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -260,7 +263,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0+40.g6c1a5e3',
+            VERSION:'0.1.0+41.gd9374a7',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
