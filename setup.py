@@ -34,7 +34,8 @@ setup(
         'Topic :: Scientific/Engineering',
     ],
     keywords='data',
-    install_requires=['pandas', 'pandas-datareader', 'numpy', 'beautifulsoup4'],
+    install_requires=['xlrd', 'pandas', 'pandas-datareader', 'numpy',
+                      'beautifulsoup4'],
     packages=find_packages(),
     zip_safe=False,
     exclude_package_data={'': ['test_*.py']}

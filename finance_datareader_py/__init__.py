@@ -10,7 +10,7 @@ from pandas_datareader.base import _DailyBaseReader
 from ._version import get_versions
 
 __all__ = ['netease', 'sohu', 'sse', 'szse', 'gtimg', 'eastmoney', 'xueqiu',
-           'csrc']
+           'csrc', 'csindex', 'hexun', 'sina']
 
 __version__ = get_versions()['version']
 del get_versions
