@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>finance-datareader-py &mdash; finance-datareader-py 0.1.8 文档</title>
+  <title>Python 金融数据读取器 &mdash; finance-datareader-py 0.1.8+1.g756b8b3 文档</title>
   
 
   
@@ -128,7 +128,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>finance-datareader-py</li>
+      <li>Python 金融数据读取器</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -147,11 +147,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="finance-datareader-py">
-<h1>finance-datareader-py<a class="headerlink" href="#finance-datareader-py" title="永久链接至标题">¶</a></h1>
+  <div class="section" id="python">
+<h1>Python 金融数据读取器<a class="headerlink" href="#python" title="永久链接至标题">¶</a></h1>
 <a class="reference external image-reference" href="https://travis-ci.org/GuQiangJS/finance-datareader-py"><img alt="https://api.travis-ci.org/GuQiangJS/finance-datareader-py.svg?branch=master" src="https://api.travis-ci.org/GuQiangJS/finance-datareader-py.svg?branch=master" /></a>
 <a class="reference external image-reference" href="https://coveralls.io/github/GuQiangJS/finance-datareader-py?branch=master"><img alt="https://coveralls.io/repos/github/GuQiangJS/finance-datareader-py/badge.svg?branch=master" src="https://coveralls.io/repos/github/GuQiangJS/finance-datareader-py/badge.svg?branch=master" /></a>
-<p>Python 金融数据读取器</p>
 <p>基于 <code class="docutils literal notranslate"><span class="pre">pandas-datareader</span></code> 开发，用来读取 上证、深证（股票列表、每日成交汇总）</p>
 <div class="section" id="id1">
 <h2>依赖<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
@@ -167,24 +166,42 @@
 <li>sphinx</li>
 <li>sphinxcontrib-napoleon</li>
 </ul>
-</div>
 <div class="section" id="id2">
-<h2>快速安装<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/GuQiangJS/finance-datareader-py.git
-</pre></div>
+<h3>快速安装<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
 </div>
 </div>
 <div class="section" id="id3">
-<h2>文档<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
-<p><a class="reference external" href="https://guqiangjs.github.io/finance-datareader-py/devel/">开发文档</a>
-会在每次提交变更后自动生成。</p>
+<h2>安装发布版本<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ pip install finance-datareader-py
+</pre></div>
+</div>
 </div>
 <div class="section" id="id4">
-<h2>使用示例<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">finance_datareader_py.netease.daily</span> <span class="kn">import</span> <span class="n">NetEaseDailyReader</span>
-<span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">df</span> <span class="o">=</span> <span class="n">NetEaseDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+<h2>安装开发版本<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/GuQiangJS/finance-datareader-py.git
 </pre></div>
+</div>
+<div class="section" id="id5">
+<h3>文档<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="https://guqiangjs.github.io/finance-datareader-py/devel/">开发文档</a></p>
+</div>
+<div class="section" id="id6">
+<h3>使用示例<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sohu.daily</span> <span class="kn">import</span> <span class="n">SohuDailyReader</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">SohuDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+
+<span class="go">            Open  Close  Change  Quote   Low  High    Volume  Turnover  Rate</span>
+<span class="go">Date</span>
+<span class="go">2004-10-14  5.80   5.67   -0.12  -2.07  5.56  5.80  265167.0  15041.02  1.68</span>
+<span class="go">2004-10-13  5.81   5.79    0.00   0.00  5.69  5.85  252039.0  14604.28  1.60</span>
+<span class="go">2004-10-12  5.53   5.79    0.25   4.51  5.50  5.87  600869.0  34637.16  3.82</span>
+<span class="go">2004-10-11  5.56   5.54   -0.02  -0.36  5.51  5.65  264020.0  14775.34  1.68</span>
+<span class="go">2004-10-08  5.42   5.56    0.14   2.58  5.28  5.60  117074.0   6368.60  0.74</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="documentation">
 <h3>Documentation<a class="headerlink" href="#documentation" title="永久链接至标题">¶</a></h3>
@@ -258,7 +275,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.8',
+            VERSION:'0.1.8+1.g756b8b3',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
