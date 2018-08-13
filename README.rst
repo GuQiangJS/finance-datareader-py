@@ -27,29 +27,29 @@ Python 金融数据读取器
 * sphinxcontrib-napoleon
 
 快速安装
---------
+~~~~~~~
 
 安装发布版本
-~~~~~~~~~~~~
+-----------
 
 .. code-block:: shell
 
    $ pip install finance-datareader-py
 
 安装开发版本
-~~~~~~~~~~~~
+-----------
 
 .. code-block:: shell
 
    $ pip install git+https://github.com/GuQiangJS/finance-datareader-py.git
 
 文档
-----
+~~~~
 
 `开发文档 <https://guqiangjs.github.io/finance-datareader-py/devel/>`__
 
 使用示例
---------
+~~~~~~~~
 
 .. code-block:: python
 
