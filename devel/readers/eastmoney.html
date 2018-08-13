@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>EastMoney &mdash; finance-datareader-py 0.1.0+27.g1ff92ff 文档</title>
+  <title>EastMoney &mdash; finance-datareader-py 0.1.0+40.g6c1a5e3 文档</title>
   
 
   
@@ -166,7 +166,7 @@
 <span id="eastmoney"></span><h1>EastMoney<a class="headerlink" href="#module-finance_datareader_py.eastmoney.daily" title="永久链接至标题">¶</a></h1>
 <dl class="class">
 <dt id="finance_datareader_py.eastmoney.daily.EastMoneyDailyReader">
-<em class="property">class </em><code class="descclassname">finance_datareader_py.eastmoney.daily.</code><code class="descname">EastMoneyDailyReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>type=None</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>2)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.eastmoney.daily.EastMoneyDailyReader" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="descclassname">finance_datareader_py.eastmoney.daily.</code><code class="descname">EastMoneyDailyReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>type=None</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>12)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.eastmoney.daily.EastMoneyDailyReader" title="永久链接至目标">¶</a></dt>
 <dd><p>从 eastmoney 读取每日成交汇总数据（支持获取前复权、后复权的数据）</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -216,16 +216,6 @@
 <span class="c1"># df = EastMoneyDailyReader(symbols=&#39;000002&#39;, type=&#39;ba&#39;).read()</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>   日期    Open  Close   High    Low  交易量(手)   成交金额     振幅   换手率
-2004-10-08   5.42   5.56   5.60   5.28  117073  6369万   5.9%  0.74
-2004-10-11   5.56   5.54   5.65   5.51  264020  1.48亿  2.52%  1.67
-2004-10-12   5.53   5.79   5.87   5.50  600868  3.46亿  6.68%  3.81
-...           ...    ...    ...    ...     ...    ...    ...   ...
-2018-07-03  23.10  23.42  23.48  22.80  549965  12.7亿  2.98%  0.57
-2018-07-04  23.46  23.00  23.75  23.00  249881  5.82亿   3.2%  0.26
-2018-07-05  23.02  23.05  23.41  22.85  267279  6.19亿  2.43%  0.28
 </pre></div>
 </div>
 </dd></dl>
@@ -282,7 +272,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0+27.g1ff92ff',
+            VERSION:'0.1.0+40.g6c1a5e3',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

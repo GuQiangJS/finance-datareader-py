@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CSRC &mdash; finance-datareader-py 0.1.0+27.g1ff92ff 文档</title>
+  <title>CSRC &mdash; finance-datareader-py 0.1.0+40.g6c1a5e3 文档</title>
   
 
   
@@ -174,9 +174,11 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><strong>top</strong> – 获取总条数。</td>
 </tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body">dict<p>{文件名:pdf文件路径}</p>
+</td>
+</tr>
 </tbody>
 </table>
-<p>Returns: {文件名,pdf文件路径}</p>
 <p class="rubric">Examples</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">from</span> <span class="nn">finance_datareader_py.csrc</span> <span class="kn">import</span> <span class="n">category</span>
 
@@ -185,16 +187,10 @@
 <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{
-    &quot;2018年1季度上市公司行业分类结果&quot;:
-    &quot;http://www.csrc.gov.cn/pub/newsite/scb/ssgshyfljg/201805/W020180521522232342268.pdf&quot;
-}
-</pre></div>
-</div>
 <div class="admonition hint">
 <p class="first admonition-title">提示</p>
 <p>对于 pdf 文件的解析，可以参考 <a class="reference external" href="https://github.com/chezou/tabula-py">tabula-py</a>。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tabula</span>
+<div class="last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tabula</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">tabula</span><span class="o">.</span><span class="n">read_pdf</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;http://www.csrc.gov.cn/pub/newsite/scb/ssgshyfljg/201805/W020180521522232342268.pdf&#39;</span><span class="p">,</span>
                      <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;gbk&#39;</span><span class="p">,</span> <span class="n">pages</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span>
@@ -203,20 +199,6 @@
 <span class="n">df</span> <span class="o">=</span> <span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="last highlight-none notranslate"><div class="highlight"><pre><span></span>       门类名称及代码 行业大类代码 行业大类名称  上市公司代码 上市公司简称
-0     农、林、牧、渔业     01     农业  000998   隆平高科
-1          (A)     01     农业  002041   登海种业
-2          (A)     01     农业  002772   众兴菌业
-3          (A)     01     农业  300087   荃银高科
-4          (A)     01     农业  300189   神农基因
-...        ...    ...    ...     ...    ...
-3572      业(R)     87  文化艺术业  300144   宋城演艺
-3573      业(R)     87  文化艺术业  300592   华凯创意
-3574      业(R)     87  文化艺术业  300640   德艺文创
-3575      业(R)     87  文化艺术业  600576   祥源文化
-3576      业(R)     87  文化艺术业  603466    风语筑
 </pre></div>
 </div>
 </div>
@@ -266,7 +248,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0+27.g1ff92ff',
+            VERSION:'0.1.0+40.g6c1a5e3',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NetEase &mdash; finance-datareader-py 0.1.0+27.g1ff92ff 文档</title>
+  <title>NetEase &mdash; finance-datareader-py 0.1.0+40.g6c1a5e3 文档</title>
   
 
   
@@ -166,7 +166,7 @@
 <span id="netease"></span><h1>NetEase<a class="headerlink" href="#module-finance_datareader_py.netease.daily" title="永久链接至标题">¶</a></h1>
 <dl class="class">
 <dt id="finance_datareader_py.netease.daily.NetEaseDailyReader">
-<em class="property">class </em><code class="descclassname">finance_datareader_py.netease.daily.</code><code class="descname">NetEaseDailyReader</code><span class="sig-paren">(</span><em>symbols: str = None</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>2)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.netease.daily.NetEaseDailyReader" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="descclassname">finance_datareader_py.netease.daily.</code><code class="descname">NetEaseDailyReader</code><span class="sig-paren">(</span><em>symbols: str = None</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>12)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.netease.daily.NetEaseDailyReader" title="永久链接至目标">¶</a></dt>
 <dd><p>从 163 读取每日成交汇总数据</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -206,13 +206,6 @@
 <span class="n">df</span> <span class="o">=</span> <span class="n">NetEaseDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Date         Close   High    Low   Open Change    Quote    Rate    Volume   Turnover
-2004-10-08   5.56   5.60   5.28   5.42   0.14    2.583  0.7425  117074.0   6369.0
-2004-10-11   5.54   5.65   5.51   5.56  -0.02  -0.3597  1.6744  264020.0  14775.0
-2004-10-12   5.79   5.87   5.50   5.53   0.25   4.5126  3.8106  600869.0  34637.0
-2004-10-13   5.79   5.85   5.69   5.81    0.0      0.0  1.5984  252039.0  14604.0
 </pre></div>
 </div>
 </dd></dl>
@@ -269,7 +262,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0+27.g1ff92ff',
+            VERSION:'0.1.0+40.g6c1a5e3',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
