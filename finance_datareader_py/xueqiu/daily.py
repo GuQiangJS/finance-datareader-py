@@ -94,20 +94,21 @@ class XueQiuDailyReader(_AbsDailyReader):
         Examples:
             .. code-block:: python
 
-                from finance_datareader_py.xueqiu.daily import XueQiuDailyReader
+                >>> from finance_datareader_py.xueqiu.daily import XueQiuDailyReader
 
-                df = XueQiuDailyReader(symbols='000002', start=datetime.date(2010, 1, 1)).read()
+                >>> import datetime
 
-                print(df)
+                >>> df = XueQiuDailyReader(symbols='000002', start=datetime.date(2010, 1, 1)).read()
 
-            .. code-block::
+                >>> print(df.tail())
 
-                日期             成交金额   Open   High    Low  Close   涨跌额   涨跌幅   换手率
-                2010-01-03   96983253  10.85  10.87  10.60  10.60 -0.21 -1.94  1.00
-                2010-01-04  184862078  10.51  10.52  10.20  10.36 -0.24 -2.26  1.91
-                2010-01-05  135860406  10.35  10.51  10.20  10.36  0.00  0.00  1.41
-                2010-01-06  115244198  10.36  10.43  10.24  10.28 -0.08 -0.77  1.19
-                2010-01-07  108530422  10.28  10.38  10.19  10.35  0.07  0.68  1.12
+                            成交金额   Open   High    Low  Close   涨跌额   涨跌幅   换手率
+                日期
+                2018-08-06   45165309.0  21.15  21.86  20.93  21.86  1.00  4.79  0.46
+                2018-08-07   41072018.0  21.89  22.29  21.50  21.50 -0.36 -1.65  0.42
+                2018-08-08   89620017.0  21.50  22.55  21.40  22.48  0.98  4.56  0.91
+                2018-08-09  120116303.0  23.00  24.07  22.93  23.18  0.70  3.11  1.23
+                2018-08-12   48949476.0  22.60  23.21  22.46  23.04 -0.14 -0.60  0.50
 
         """
         try:

@@ -72,10 +72,6 @@ class SinaDailyDetailsReader(_AbsDailyReader):
     def read(self):
         """读取数据
 
-        .. warning::
-
-            Sina 已下线该功能。
-
         Returns:
             ``pandas.DataFrame``:
 
