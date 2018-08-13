@@ -44,12 +44,8 @@ def get_deposit_interest_rate():
     url = 'http://data.bank.hexun.com/ll/ckll.aspx'
     reader = _AbsDailyReader('')
     rep = reader._get_response(url)
-    print(rep)
-    print(rep.text)
-    b = bs(rep.text, 'lxml')
-    print(b.find('tbody', attrs={'hasdata': 'true'}))
+    b = bs(rep.text, 'html.parser')
     reader.close()
-    print(b.find('tbody', attrs={'hasdata': 'true'}))
     tbody_first_tr = b.find('tbody', attrs={'hasdata': 'true'}).contents[0]
     result = {}
     keys = ['日期', '上浮', '活期',
