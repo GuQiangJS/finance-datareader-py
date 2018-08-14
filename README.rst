@@ -12,7 +12,7 @@ Python 金融数据读取器
 基于 ``pandas-datareader`` 开发，用来读取 上证、深证（股票列表、每日成交汇总）
 
 依赖
-~~~~
+~~~~~
 
 使用 finance-datareader-py 依赖于以下包：
 
@@ -27,17 +27,17 @@ Python 金融数据读取器
 * sphinxcontrib-napoleon
 
 快速安装
-~~~~~~~
+~~~~~~~~
 
 安装发布版本
------------
+------------
 
 .. code-block:: shell
 
    $ pip install finance-datareader-py
 
 安装开发版本
------------
+------------
 
 .. code-block:: shell
 
