@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sina &mdash; finance-datareader-py 0.1.9+3.gf200b52 文档</title>
+  <title>Sina &mdash; finance-datareader-py 0.1.9+4.ga632dd5 文档</title>
   
 
   
@@ -169,8 +169,58 @@
 <p class="last">频繁从Sina读取数据，可能会被暂时封禁IP。建议至少间隔 5 秒。</p>
 </div>
 <span class="target" id="module-finance_datareader_py.sina"></span><dl class="class">
+<dt id="finance_datareader_py.sina.SinaQuoteReader">
+<em class="property">class </em><code class="descclassname">finance_datareader_py.sina.</code><code class="descname">SinaQuoteReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>start=None</em>, <em>end=None</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.sina.SinaQuoteReader" title="永久链接至目标">¶</a></dt>
+<dd><p>从 新浪 获取指定股票（或集合）的最新价格信息</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>symbols</strong> (<em>str</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em>) – 股票代码（或集合）</li>
+<li><strong>start</strong> (<em>datetime.date</em>) – 开始日期。默认值：None。<strong>此方法不用该参数</strong>。</li>
+<li><strong>end</strong> (<em>datetime.date</em>) – 结束日期。默认值：None。<strong>此方法不用该参数</strong>。</li>
+<li><strong>retry_count</strong> – 重试次数</li>
+<li><strong>pause</strong> – 重试间隔时间</li>
+<li><strong>session</strong> – </li>
+<li><strong>chunksize</strong> – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first last">当 <cite>symbols</cite> 是字符串的情况下，返回 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>，
+否则返回 <code class="docutils literal notranslate"><span class="pre">pandas.Panel</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sina</span> <span class="kn">import</span> <span class="n">SinaQuoteReader</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">SinaQuoteReader</span><span class="p">(</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="go">             datetime  price</span>
+<span class="go">0 2018-08-21 15:05:03  23.91</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sina</span> <span class="kn">import</span> <span class="n">SinaQuoteReader</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;000002&#39;</span><span class="p">,</span> <span class="s1">&#39;300027&#39;</span><span class="p">,</span> <span class="s1">&#39;000927&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">SinaQuoteReader</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">l</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;{:8}{:&gt;7} {}.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">][</span><span class="n">s</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">][</span><span class="n">s</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="go">000002    23.91 2018-08-21 15:05:03.</span>
+<span class="go">300027     5.72 2018-08-21 15:05:03.</span>
+<span class="go">000927      3.4 2018-08-21 15:05:03.</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="finance_datareader_py.sina.SinaQuoteReader.url">
+<code class="descname">url</code><a class="headerlink" href="#finance_datareader_py.sina.SinaQuoteReader.url" title="永久链接至目标">¶</a></dt>
+<dd><p>API URL</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
 <dt id="finance_datareader_py.sina.get_dividends">
-<em class="property">class </em><code class="descclassname">finance_datareader_py.sina.</code><code class="descname">get_dividends</code><a class="headerlink" href="#finance_datareader_py.sina.get_dividends" title="永久链接至目标">¶</a></dt>
+<code class="descclassname">finance_datareader_py.sina.</code><code class="descname">get_dividends</code><span class="sig-paren">(</span><em>symbol: str</em>, <em>retry_count=3</em>, <em>timeout=30</em>, <em>pause=None</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.sina.get_dividends" title="永久链接至目标">¶</a></dt>
 <dd><p>从新浪获取分红配送数据</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -327,7 +377,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.9+3.gf200b52',
+            VERSION:'0.1.9+4.ga632dd5',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

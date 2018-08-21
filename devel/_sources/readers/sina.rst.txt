@@ -7,12 +7,14 @@ Sina
 
 .. py:module:: finance_datareader_py.sina
 
-.. autoclass:: get_dividends
+.. autoclass:: SinaQuoteReader
    :members:
-   :undoc-members:
+   :undoc-members: url
+
+.. autofunction:: get_dividends
 
 .. py:module:: finance_datareader_py.sina.daily_details
 
 .. autoclass:: SinaDailyDetailsReader
    :members:
-   :undoc-members:
+   :undoc-members: url
