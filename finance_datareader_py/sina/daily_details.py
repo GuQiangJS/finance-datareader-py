@@ -66,7 +66,6 @@ class SinaDailyDetailsReader(_AbsDailyReader):
             'symbol': _parse_symbol(self.symbols)
         }
 
-
     def read(self):
         """读取数据
 

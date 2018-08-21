@@ -85,12 +85,12 @@ class SinaQuoteReader_TestCase(unittest.TestCase):
             reader.close()
 
     def test_read_mulit(self):
-        l = ('000002', '300027', '000927')
-        reader = SinaQuoteReader(l)
+        lst = ('000002', '300027', '000927')
+        reader = SinaQuoteReader(lst)
         try:
             p = reader.read()
             self.assertIsNotNone(p)
-            for s in l:
+            for s in lst:
                 self.assertTrue(s in p['price'])
                 self.assertTrue(s in p['datetime'])
                 print('{:8}{:>7} {}.'.format(s, p['price'][s][0],
