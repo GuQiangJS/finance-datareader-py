@@ -1,6 +1,7 @@
 # Copyright (C) 2018 GuQiangJs.
 # Licensed under Apache License 2.0 <see LICENSE file>
 
+import datetime
 import re
 import time
 
@@ -12,6 +13,80 @@ from pandas_datareader.base import _BaseReader
 from finance_datareader_py import _AbsDailyReader
 
 _dividends_cache = None
+
+
+def _parse_symbol(symbol):
+    """深市前加 sz，沪市前加 sh
+
+    Args:
+        symbol (str): 股票代码
+    """
+    return ('sh' if symbol[0] == '6' else 'sz') + symbol
+
+
+class SinaQuoteReader(_AbsDailyReader):
+    """从 新浪 获取指定股票（或集合）的最新价格信息
+
+    Args:
+        symbols (str, List[str]): 股票代码（或集合）
+        start (datetime.date): 开始日期。默认值：None。**此方法不用该参数**。
+        end (datetime.date): 结束日期。默认值：None。**此方法不用该参数**。
+        retry_count: 重试次数
+        pause: 重试间隔时间
+        session:
+        chunksize:
+
+    Returns:
+        当 `symbols` 是字符串的情况下，返回 ``pandas.DataFrame``，
+        否则返回 ``pandas.Panel``
+
+    Examples:
+        .. code-block:: python
+
+            >>> from finance_datareader_py.sina import SinaQuoteReader
+            >>> print(SinaQuoteReader('000002').read())
+                         datetime  price
+            0 2018-08-21 15:05:03  23.91
+
+            >>> from finance_datareader_py.sina import SinaQuoteReader
+            >>> l = ('000002', '300027', '000927')
+            >>> p = SinaQuoteReader(l).read()
+            >>> for s in l:
+            >>>     print('{:8}{:>7} {}.'.format(s, p['price'][s][0], p['datetime'][s][0]))
+
+            000002    23.91 2018-08-21 15:05:03.
+            300027     5.72 2018-08-21 15:05:03.
+            000927      3.4 2018-08-21 15:05:03.
+
+    """
+
+    def __init__(self, symbols=None, start=None, end=None,
+                 retry_count=3, pause=1, session=None,
+                 chunksize=25):
+        super(SinaQuoteReader, self).__init__(symbols, start, end,
+                                              retry_count, pause, session,
+                                              chunksize)
+        self._encoding = 'gb2312'
+
+    @property
+    def url(self):
+        # https://hq.sinajs.cn/?list=sz000002,sz000003
+        return "https://hq.sinajs.cn/"
+
+    def _get_params(self, *args, **kwargs):
+        return 'list={0}'.format(_parse_symbol(args[0]))
+        # if isinstance(self.symbols, compat.string_types):
+        #     return 'list={0}'.format(_parse_symbol(self.symbols))
+        # else:
+        #     return 'list=' + ','.join([_parse_symbol(symbol) for symbol in
+        #                                self.symbols])
+
+    def _read_lines(self, out):
+        # var hq_str_sz000002="万 科Ａ,23.390,23.350,23.870,23.910,23.220,23.870,23.880,38877394,917414197.170,3600,23.870,32400,23.860,33700,23.850,6400,23.840,4800,23.830,10900,23.880,26500,23.890,78800,23.900,45800,23.910,59800,23.920,2018-08-21,13:54:42,00";
+        line = out.readline()
+        s = line.split(',')
+        dt = datetime.datetime.strptime(s[-3] + s[-2], '%Y-%m-%d%H:%M:%S')
+        return pd.DataFrame({'price': [float(s[3])], 'datetime': [dt]})
 
 
 def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):

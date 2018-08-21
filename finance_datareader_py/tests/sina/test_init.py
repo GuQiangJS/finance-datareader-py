@@ -7,6 +7,7 @@ import unittest
 import numpy as np
 import pandas as pd
 
+from finance_datareader_py.sina import SinaQuoteReader
 from finance_datareader_py.sina import get_dividends
 
 
@@ -70,6 +71,32 @@ class sina_TestCase(unittest.TestCase):
                 else:
                     self.assertEqual(df[col_name].dtype, np.float64,
                                      msg=col_name)
+
+
+class SinaQuoteReader_TestCase(unittest.TestCase):
+    def test_read_single(self):
+        reader = SinaQuoteReader('000002')
+        try:
+            df = reader.read()
+            self.assertIsNotNone(df)
+            self.assertFalse(df.empty)
+            print(df)
+        finally:
+            reader.close()
+
+    def test_read_mulit(self):
+        l = ('000002', '300027', '000927')
+        reader = SinaQuoteReader(l)
+        try:
+            p = reader.read()
+            self.assertIsNotNone(p)
+            for s in l:
+                self.assertTrue(s in p['price'])
+                self.assertTrue(s in p['datetime'])
+                print('{:8}{:>7} {}.'.format(s, p['price'][s][0],
+                                             p['datetime'][s][0]))
+        finally:
+            reader.close()
 
 
 if __name__ == '__main__':

@@ -7,6 +7,7 @@ import pandas as pd
 from pandas import read_csv
 
 from finance_datareader_py import _AbsDailyReader
+from finance_datareader_py.sina import _parse_symbol
 
 
 class SinaDailyDetailsReader(_AbsDailyReader):
@@ -62,12 +63,9 @@ class SinaDailyDetailsReader(_AbsDailyReader):
     def _get_params(self, *args, **kwargs):
         return {
             'date': self._date.strftime('%Y-%m-%d'),
-            'symbol': self._parse_symbol()
+            'symbol': _parse_symbol(self.symbols)
         }
 
-    def _parse_symbol(self):
-        # 深市前加1，沪市前加0
-        return ('sh' if self.symbols[0] == '6' else 'sz') + self.symbols
 
     def read(self):
         """读取数据
