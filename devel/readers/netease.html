@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NetEase &mdash; finance-datareader-py 0.1.9+6.gc7810de 文档</title>
+  <title>NetEase &mdash; finance-datareader-py 0.1.9+7.g45839c7 文档</title>
   
 
   
@@ -162,12 +162,142 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-finance_datareader_py.netease.daily">
-<span id="netease"></span><h1>NetEase<a class="headerlink" href="#module-finance_datareader_py.netease.daily" title="永久链接至标题">¶</a></h1>
+  <div class="section" id="module-finance_datareader_py.netease">
+<span id="netease"></span><h1>NetEase<a class="headerlink" href="#module-finance_datareader_py.netease" title="永久链接至标题">¶</a></h1>
 <dl class="class">
+<dt id="finance_datareader_py.netease.FinancialIndicatorReader">
+<em class="property">class </em><code class="descclassname">finance_datareader_py.netease.</code><code class="descname">FinancialIndicatorReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.netease.FinancialIndicatorReader" title="永久链接至目标">¶</a></dt>
+<dd><p>从 网易 读取主要财务指标</p>
+<p><strong>从1990-01-01开始获取数据</strong>。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>symbols</strong> – 股票代码。<strong>此参数只接收单一股票代码</strong>。For example:600001,000002,300002</li>
+<li><strong>retry_count</strong> – 重试次数</li>
+<li><strong>pause</strong> – 重试间隔时间</li>
+<li><strong>session</strong> – </li>
+<li><strong>chunksize</strong> – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first"><p>结果按照 公告日期**正序** 排序。 任意数据表无数据时返回 空白的
+<code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 。 参见 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame.empty</span></code>。</p>
+<p>输出列集合：
+.. code-block:: json</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>[</dt>
+<dd><p class="first last">“总资产增长率(%)”,
+“净资产增长率(%)”,
+“净利润增长率(%)”,
+“主营业务收入增长率(%)”,
+“现金流量比率(%)”,
+“经营现金净流量对负债比率(%)”,
+“经营现金净流量与净利润的比率(%)”,
+“资产的经营现金流量回报率(%)”,
+“经营现金净流量对销售收入比率(%)”,
+“流动资产周转天数(天)”,
+“流动资产周转率(次)”,
+“总资产周转天数(天)”,
+“存货周转天数(天)”,
+“总资产周转率(次)”,
+“固定资产周转率(次)”,
+“存货周转率(次)”,
+“应收账款周转天数(天)”,
+“应收账款周转率(次)”,
+“固定资产比重(%)”,
+“清算价值比率(%)”,
+“产权比率(%)”,
+“资本固定化比率(%)”,
+“固定资产净值率(%)”,
+“资本化比率(%)”,
+“长期资产与长期资金比率(%)”,
+“负债与所有者权益比率(%)”,
+“股东权益与固定资产比率(%)”,
+“长期负债比率(%)”,
+“股东权益比率(%)”,
+“长期债务与营运资金比率(%)”,
+“资产负债率(%)”,
+“利息支付倍数(%)”,
+“现金比率(%)”,
+“速动比率(%)”,
+“流动比率(%)”,
+“主营利润比重(%)”,
+“非主营比重(%)”,
+“三项费用比重(%)”,
+“销售毛利率(%)”,
+“资产报酬率(%)”,
+“净资产报酬率(%)”,
+“股本报酬率(%)”,
+“净资产收益率(%)”,
+“销售净利率(%)”,
+“主营业务成本率(%)”,
+“营业利润率(%)”,
+“成本费用利润率(%)”,
+“总资产净利润率(%)”,
+“主营业务利润率(%)”,
+“总资产利润率(%)”,
+“净资产收益率加权(%)”,
+“股东权益不含少数股东权益(万元)”,
+“流动负债(万元)”,
+“总负债(万元)”,
+“流动资产(万元)”,
+“总资产(万元)”,
+“现金及现金等价物净增加额(万元)”,
+“经营活动产生的现金流量净额(万元)”,
+“净利润(扣除非经常性损益后)(万元)”,
+“净利润(万元)”,
+“利润总额(万元)”,
+“营业外收支净额(万元)”,
+“投资收益(万元)”,
+“营业利润(万元)”,
+“主营业务利润(万元)”,
+“主营业务收入(万元)”,
+“每股经营活动产生的现金流量净额(元)”,
+“每股净资产(元)”,
+“基本每股收益(元)”</p>
+</dd>
+</dl>
+<p>]</p>
+</div></blockquote>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.netease</span> <span class="kn">import</span> <span class="n">FinancialIndicatorReader</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">FinancialIndicatorReader</span><span class="p">(</span><span class="s1">&#39;601398&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="s1">&#39;基本每股收益(元)&#39;</span><span class="p">,</span><span class="s1">&#39;每股净资产(元)&#39;</span><span class="p">]])</span>
+
+<span class="go">基本每股收益(元)    0.22</span>
+<span class="go">每股净资产(元)     5.85</span>
+<span class="go">Name: 2018-03-31 00:00:00, dtype: object</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="finance_datareader_py.netease.FinancialIndicatorReader.read">
+<code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.netease.FinancialIndicatorReader.read" title="永久链接至目标">¶</a></dt>
+<dd><p>Read data</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="finance_datareader_py.netease.FinancialIndicatorReader.url">
+<code class="descname">url</code><a class="headerlink" href="#finance_datareader_py.netease.FinancialIndicatorReader.url" title="永久链接至目标">¶</a></dt>
+<dd><p>API URL</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-finance_datareader_py.netease.daily"></span><dl class="class">
 <dt id="finance_datareader_py.netease.daily.NetEaseDailyReader">
-<em class="property">class </em><code class="descclassname">finance_datareader_py.netease.daily.</code><code class="descname">NetEaseDailyReader</code><span class="sig-paren">(</span><em>symbols: str = None</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>20)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.netease.daily.NetEaseDailyReader" title="永久链接至目标">¶</a></dt>
-<dd><p>从 163 读取每日成交汇总数据</p>
+<em class="property">class </em><code class="descclassname">finance_datareader_py.netease.daily.</code><code class="descname">NetEaseDailyReader</code><span class="sig-paren">(</span><em>symbols: str = None</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>22)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.netease.daily.NetEaseDailyReader" title="永久链接至目标">¶</a></dt>
+<dd><p>从 网易 读取每日成交汇总数据</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -268,7 +398,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.9+6.gc7810de',
+            VERSION:'0.1.9+7.g45839c7',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

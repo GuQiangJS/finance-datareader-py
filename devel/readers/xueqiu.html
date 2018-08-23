@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>XueQiu &mdash; finance-datareader-py 0.1.9+6.gc7810de 文档</title>
+  <title>XueQiu &mdash; finance-datareader-py 0.1.9+7.g45839c7 文档</title>
   
 
   
@@ -161,11 +161,95 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-finance_datareader_py.xueqiu.daily">
-<span id="xueqiu"></span><h1>XueQiu<a class="headerlink" href="#module-finance_datareader_py.xueqiu.daily" title="永久链接至标题">¶</a></h1>
+  <div class="section" id="module-finance_datareader_py.xueqiu">
+<span id="xueqiu"></span><h1>XueQiu<a class="headerlink" href="#module-finance_datareader_py.xueqiu" title="永久链接至标题">¶</a></h1>
 <dl class="class">
+<dt id="finance_datareader_py.xueqiu.FinancialIndicatorReader">
+<em class="property">class </em><code class="descclassname">finance_datareader_py.xueqiu.</code><code class="descname">FinancialIndicatorReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.xueqiu.FinancialIndicatorReader" title="永久链接至目标">¶</a></dt>
+<dd><p>从 雪球 读取主要财务指标</p>
+<p><strong>从1990-01-01开始获取数据</strong>。</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
+<li><strong>symbols</strong> – 股票代码。<strong>此参数只接收单一股票代码</strong>。For example:600001,000002,300002</li>
+<li><strong>retry_count</strong> – 重试次数</li>
+<li><strong>pause</strong> – 重试间隔时间</li>
+<li><strong>session</strong> – </li>
+<li><strong>chunksize</strong> – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first"><p>结果按照 公告日期**倒序** 排序。 任意数据表无数据时返回 空白的
+<code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 。 参见 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame.empty</span></code>。</p>
+<p>输出列集合：
+.. code-block:: json</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>[</dt>
+<dd><p class="first last">“基本每股收益”,
+“期末现金及现金等价物余额”,
+“现金及现金等价物净增加额”,
+“汇率变动对现金及现金等价物的影响”,
+“净资产收益率(摊薄)(%)”,
+“每股收益(摊薄)”,
+“每股收益(加权)”,
+“筹资活动产生的现金流量净额”,
+“投资活动产生的现金流量净额”,
+“主营业务收入”,
+“主营业务收入增长率(%)”,
+“主营业务利润”,
+“每股净资产”,
+“净资产增长率(%)”,
+“净利润增长率(%)”,
+“净利润”,
+“每股现金流”,
+“经营活动产生的现金流量净额”,
+“每股经营性现金流”,
+“销售毛利率(%)”,
+“资产总额”,
+“负债总额”,
+“总资产增长率(%)”,
+“利润总额”,
+“股东权益合计”,
+“净资产收益率(加权)(%)”</p>
+</dd>
+</dl>
+<p>]</p>
+</div></blockquote>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.xueqiu</span> <span class="kn">import</span> <span class="n">FinancialIndicatorReader</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">FinancialIndicatorReader</span><span class="p">(</span><span class="s1">&#39;601398&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="go">基本每股收益                     0.22</span>
+<span class="go">期末现金及现金等价物余额        1.46277e+12</span>
+<span class="go">现金及现金等价物净增加额         -5.756e+10</span>
+<span class="go">汇率变动对现金及现金等价物的影响     -2.518e+10</span>
+<span class="go">净资产收益率(摊薄)(%)               NaN</span>
+<span class="go">Name: 2018-03-31 00:00:00, dtype: object</span>
+</pre></div>
+</div>
+<dl class="attribute">
+<dt id="finance_datareader_py.xueqiu.FinancialIndicatorReader.url">
+<code class="descname">url</code><a class="headerlink" href="#finance_datareader_py.xueqiu.FinancialIndicatorReader.url" title="永久链接至目标">¶</a></dt>
+<dd><p>API URL</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-finance_datareader_py.xueqiu.daily"></span><dl class="class">
 <dt id="finance_datareader_py.xueqiu.daily.XueQiuDailyReader">
-<em class="property">class </em><code class="descclassname">finance_datareader_py.xueqiu.daily.</code><code class="descname">XueQiuDailyReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>type='default'</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>20)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.xueqiu.daily.XueQiuDailyReader" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="descclassname">finance_datareader_py.xueqiu.daily.</code><code class="descname">XueQiuDailyReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>type='default'</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>22)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.xueqiu.daily.XueQiuDailyReader" title="永久链接至目标">¶</a></dt>
 <dd><p>从 雪球 读取每日成交汇总数据（支持获取前复权、后复权的数据）</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -275,7 +359,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.9+6.gc7810de',
+            VERSION:'0.1.9+7.g45839c7',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
