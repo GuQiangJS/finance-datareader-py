@@ -18,7 +18,7 @@ class FinancialIndicatorReader_TestCase(unittest.TestCase):
         df_2017 = pd.DataFrame(df, index=dr).dropna(how='all')
         self.assertFalse(df_2017.empty)
         self.assertEqual(len(df_2017.index), 4)
-        print(df.loc[df.index[-1], ['基本每股收益(元)', '每股净资产(元)']])
+        print(df.iloc[-1][:-1])
 
 
 if __name__ == '__main__':

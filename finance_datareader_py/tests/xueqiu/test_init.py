@@ -18,7 +18,7 @@ class FinancialIndicatorReader_TestCase(unittest.TestCase):
         df_2017 = pd.DataFrame(df, index=dr).dropna(how='all')
         self.assertFalse(df_2017.empty)
         self.assertEqual(len(df_2017.index), 4)
-        print(df.iloc[0][0:5])
+        print(df.iloc[0][:-1])
 
 
 if __name__ == '__main__':
