@@ -26,11 +26,12 @@ class FinancialIndicatorReader(_AbsDailyReader):
         chunksize:
 
     Returns:
-        ``DataFrame``: 结果按照 公告日期**倒序** 排序。 任意数据表无数据时返回 空白的
+        ``DataFrame``: 结果按照 公告日期 **倒序** 排序。 任意数据表无数据时返回 空白的
         ``pandas.DataFrame`` 。 参见 ``pandas.DataFrame.empty``。
 
         输出列集合：
         .. code-block:: json
+
             [
                 "基本每股收益",
                 "期末现金及现金等价物余额",
@@ -89,11 +90,12 @@ class FinancialIndicatorReader(_AbsDailyReader):
             chunksize:
 
         Returns:
-            ``DataFrame``: 结果按照 公告日期**倒序** 排序。 任意数据表无数据时返回 空白的
+            ``DataFrame``: 结果按照 公告日期 **倒序** 排序。 任意数据表无数据时返回 空白的
             ``pandas.DataFrame`` 。 参见 ``pandas.DataFrame.empty``。
 
             输出列集合：
             .. code-block:: json
+
                 [
                     "基本每股收益",
                     "期末现金及现金等价物余额",
