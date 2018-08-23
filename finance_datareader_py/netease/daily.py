@@ -12,7 +12,7 @@ __all__ = ['NetEaseDailyReader']
 
 
 class NetEaseDailyReader(_AbsDailyReader):
-    """从 163 读取每日成交汇总数据
+    """从 网易 读取每日成交汇总数据
 
     Args:
         symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002,300002

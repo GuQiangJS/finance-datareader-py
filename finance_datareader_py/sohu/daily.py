@@ -8,6 +8,7 @@ import pandas as pd
 from pandas.io.json import json_normalize
 
 from finance_datareader_py import _AbsDailyReader
+from finance_datareader_py import sohu
 
 __all__ = ['SohuDailyReader']
 
@@ -50,15 +51,16 @@ class SohuDailyReader(_AbsDailyReader):
     @property
     def url(self):
         # http://q.stock.sohu.com/hisHq?code=cn_600569&start=20041008&end=20180608&stat=1&order=D&period=d&rt=jsonp
-        return 'http://q.stock.sohu.com/hisHq?code={symbol}&start={start}&end={end}&stat=1&order=D&period=d&rt=jsonp'.format(
-            symbol=self._parse_symbol(), start=self.start.strftime('%Y%m%d'),
-            end=self.end.strftime('%Y%m%d'))
-
-    def _parse_symbol(self):
-        return self.prefix + self.symbols
+        return 'http://q.stock.sohu.com/hisHq'
 
     def _get_params(self, *args, **kwargs):
-        return ''
+        return {'code': sohu._parse_symbol(self.prefix, self.symbols),
+                'start': self.start.strftime('%Y%m%d'),
+                'end': self.end.strftime('%Y%m%d'),
+                'stat': '1',
+                'order': 'D',
+                'period': 'd',
+                'rt': 'jsonp'}
 
     def read(self):
         """读取数据

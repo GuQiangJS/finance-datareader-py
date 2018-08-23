@@ -7,6 +7,7 @@ import json
 import pandas as pd
 
 from finance_datareader_py import _AbsDailyReader
+from finance_datareader_py import xueqiu
 
 __all__ = ['XueQiuDailyReader']
 
@@ -63,12 +64,9 @@ class XueQiuDailyReader(_AbsDailyReader):
         # &begin=1092067200000&period=day&type=after&count=107800
         return 'https://stock.xueqiu.com/v5/stock/chart/kline.json?symbol=' \
                '{symbol}&begin={begin}&period=day&type={type}&count={count}' \
-            .format(symbol=self._parse_symbol(), begin=self._paser_start(),
+            .format(symbol=xueqiu._parse_symbol(self.symbols),
+                    begin=self._paser_start(),
                     type=self._type, count=self._parse_count())
-
-    def _parse_symbol(self):
-        # 深市前加sz，沪市前加sh
-        return ('SH' if self.symbols[0] == '6' else 'SZ') + self.symbols
 
     def _paser_start(self):
         """转换 self.start 为时间戳格式。使用13位时间戳格式
