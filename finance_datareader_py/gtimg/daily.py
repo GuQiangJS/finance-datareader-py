@@ -92,8 +92,7 @@ class GtimgDailyReader(_AbsDailyReader):
             return self._prefix + str(self.symbols) + self._suffix
         return ('sh' if str(self.symbols)[0] == '6'
                 else 'sz' if str(self.symbols)[0] == '0' or str(self.symbols)[
-            0] == '3'
-        else '') + str(self.symbols) + self._suffix
+            0] == '3' else '') + str(self.symbols) + self._suffix
 
     def _parse_count(self):
         return (self.end - self.start).days + 1

@@ -139,12 +139,13 @@ class DailyReader(_AbsDailyReader):
 
     """
     from finance_datareader_py.gtimg.daily import GtimgDailyReader
+
     def __init__(self, symbols, start=datetime.date(2004, 10, 8),
                  end=datetime.date.today() + datetime.timedelta(days=-1),
                  retry_count=3, pause=1, session=None,
                  chunksize=25, sort_index='asc', fillna='ffill',
-                 reader=GtimgDailyReader, type=None, columns=[
-                'Close'], zs_symbol='sh000001', drop_zs_columns=True):
+                 reader=GtimgDailyReader, type=None, columns=['Close'],
+                 zs_symbol='sh000001', drop_zs_columns=True):
         """自动按照参数 `zs_symbol` 指定的代码（指数代码）的每日成交汇总数据 附加 参数 `symbols` 指定的股票代码的每日成交汇总数据。
         并自动按照参数 `fillna` 的设定填充 NaN 数据。
 
