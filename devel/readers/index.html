@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Data Readers &mdash; finance-datareader-py 0.2.5 文档</title>
+  <title>Data Readers &mdash; finance-datareader-py 0.2.5+2.g45c72c6 文档</title>
   
 
   
@@ -165,8 +165,8 @@
 <dl class="class">
 <dt id="finance_datareader_py.DailyReader">
 <em class="property">class </em><code class="descclassname">finance_datareader_py.</code><code class="descname">DailyReader</code><span class="sig-paren">(</span><em>symbols, start=datetime.date(2004, 10, 8), end=datetime.date(2018, 8, 23), retry_count=3, pause=1, session=None, chunksize=25, sort_index='asc', fillna='ffill', reader=&lt;class 'finance_datareader_py.gtimg.daily.GtimgDailyReader'&gt;, type=None, columns=['Close'], zs_symbol='sh000001', drop_zs_columns=True</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.DailyReader" title="永久链接至目标">¶</a></dt>
-<dd><p>自动按照参数 <cite>zs_symbol</cite> 指定的代码（指数代码）的每日成交汇总数据 附加 参数 <cite>symbols</cite> 指定的股票代码的每日成交汇总数据。
-并自动按照参数 <cite>fillna</cite> 的设定填充 NaN 数据。</p>
+<dd><p>自动按照参数 <code class="docutils literal notranslate"><span class="pre">zs_symbol</span></code> 指定的代码（指数代码）的每日成交汇总数据 附加 参数 <code class="docutils literal notranslate"><span class="pre">symbols</span></code> 指定的股票代码的每日成交汇总数据。
+并自动按照参数 <code class="docutils literal notranslate"><span class="pre">fillna</span></code> 的设定填充 NaN 数据。</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -196,7 +196,7 @@ requests.sessions.Session instance to be used</li>
 </li>
 <li><strong>fillna</strong> – str, 默认值：ffill
 参考 <cite>DataFrame.fillna</cite> 的参数 <cite>method</cite>。</li>
-<li><strong>reader</strong> – class, 默认值：GtimgDailyReader
+<li><strong>reader</strong> – class, 默认值：..class:<cite>finance_datareader_py.gtimg.daily.GtimgDailyReader</cite>
 读取数据使用的读取器。</li>
 <li><strong>type</strong> – <p>str, 默认值：None。
 是否读取复权数据。</p>
@@ -208,107 +208,19 @@ requests.sessions.Session instance to be used</li>
 </ul>
 </div></blockquote>
 </li>
-<li><strong>columns</strong> – List[str], 默认值：[‘Close’]
-从读取器 <cite>reader</cite> 中读取的列集合。
+<li><strong>columns</strong> – List[str], 默认值：<code class="docutils literal notranslate"><span class="pre">['Close']</span></code>
+从读取器 <code class="docutils literal notranslate"><span class="pre">reader</span></code> 中读取的列集合。
 <em>需要保证集合中的所有列均包含在读取器的返回列中</em></li>
-<li><strong>zs_symbol</strong> – str, 默认值：<cite>sh000001</cite>
-首先读取的代码（指数代码）的编号。默认以 <cite>上证指数</cite> 为标准。
+<li><strong>zs_symbol</strong> – str, 默认值：<code class="docutils literal notranslate"><span class="pre">sh000001</span></code>
+首先读取的代码（指数代码）的编号。默认以 <code class="docutils literal notranslate"><span class="pre">上证指数</span></code> 为标准。
 <em>此处根据业务需要，不一定需要传入指数代码</em></li>
 <li><strong>drop_zs_columns</strong> – bool, 默认值：True
-是否在最终结果回传前丢弃从 <cite>zs_symbol</cite> 读取的相关列。</li>
+是否在最终结果回传前丢弃从 <code class="docutils literal notranslate"><span class="pre">zs_symbol</span></code> 读取的相关列。</li>
 </ul>
 </td>
 </tr>
 </tbody>
 </table>
-<dl class="class">
-<dt id="finance_datareader_py.DailyReader.GtimgDailyReader">
-<em class="property">class </em><code class="descname">GtimgDailyReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>prefix=''</em>, <em>suffix=''</em>, <em>type=None</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>23)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.DailyReader.GtimgDailyReader" title="永久链接至目标">¶</a></dt>
-<dd><p>从 gtimg 读取每日成交汇总数据（支持获取前复权、后复权的数据）</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first last simple">
-<li><strong>symbols</strong> – 股票代码。<strong>此参数只接收单一股票代码</strong>。For example:600001,000002</li>
-<li><strong>prefix</strong> – <p>股票代码前缀。默认为空。</p>
-<ul>
-<li>为空表示会自动根据股票代码判断。</li>
-<li>对于某些特定指数请填写 <cite>sz</cite> 或 <cite>sh</cite>。</li>
-</ul>
-</li>
-<li><strong>suffix</strong> – <p>股票代码后缀。默认为空。</p>
-<ul>
-<li>为空表示会自动根据股票代码判断。</li>
-<li>对于某些特定指数请自行填写。</li>
-</ul>
-</li>
-<li><strong>type</strong> – <p>{None, ‘qfq’, ‘hfq’}, 默认值 None</p>
-<ul>
-<li>None: 不复权（默认）</li>
-<li>’qfq’: 前复权</li>
-<li>’hfq’: 后复权</li>
-</ul>
-</li>
-<li><strong>start</strong> – 开始日期。默认值：2004-10-08</li>
-<li><strong>end</strong> – 结束日期。默认值：当前日期的 <strong>前一天</strong> 。</li>
-<li><strong>retry_count</strong> – 重试次数</li>
-<li><strong>pause</strong> – 重试间隔时间</li>
-<li><strong>session</strong> – </li>
-<li><strong>chunksize</strong> – </li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="finance_datareader_py.DailyReader.GtimgDailyReader.read">
-<code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.DailyReader.GtimgDailyReader.read" title="永久链接至目标">¶</a></dt>
-<dd><p>读取数据</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">无数据时返回空白的 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 。参见 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame.empty</span></code>。<p>部分返回列名说明：</p>
-<blockquote>
-<div><ul class="simple">
-<li>Open:开盘价</li>
-<li>Close: 收盘价</li>
-<li>High: 最高价</li>
-<li>Low: 最低价</li>
-<li>Volume: 交易量(手)</li>
-</ul>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.gtimg.daily</span> <span class="kn">import</span> <span class="n">GtimgDailyReader</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">GtimgDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
-
-<span class="go">             Open  Close   High    Low     Volume</span>
-<span class="go">Date</span>
-<span class="go">2018-08-06  21.18  20.86  21.32  20.52   315702.0</span>
-<span class="go">2018-08-07  21.15  21.86  21.86  20.93   451653.0</span>
-<span class="go">2018-08-08  21.89  21.50  22.29  21.50   410720.0</span>
-<span class="go">2018-08-09  21.50  22.48  22.55  21.40   896200.0</span>
-<span class="go">2018-08-10  23.00  23.18  24.07  22.93  1201163.0</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="finance_datareader_py.DailyReader.GtimgDailyReader.url">
-<code class="descname">url</code><a class="headerlink" href="#finance_datareader_py.DailyReader.GtimgDailyReader.url" title="永久链接至目标">¶</a></dt>
-<dd><p>API URL</p>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="method">
 <dt id="finance_datareader_py.DailyReader.read">
 <code class="descname">read</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#finance_datareader_py.DailyReader.read" title="永久链接至目标">¶</a></dt>
@@ -438,7 +350,7 @@ requests.sessions.Session instance to be used</li>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.2.5',
+            VERSION:'0.2.5+2.g45c72c6',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
