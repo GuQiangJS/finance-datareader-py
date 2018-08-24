@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>XueQiu &mdash; finance-datareader-py 0.1.9+9.gc23f145 文档</title>
+  <title>XueQiu &mdash; finance-datareader-py 0.1.9+13.g341d11b 文档</title>
   
 
   
@@ -165,7 +165,7 @@
 <span id="xueqiu"></span><h1>XueQiu<a class="headerlink" href="#module-finance_datareader_py.xueqiu" title="永久链接至标题">¶</a></h1>
 <dl class="class">
 <dt id="finance_datareader_py.xueqiu.FinancialIndicatorReader">
-<em class="property">class </em><code class="descclassname">finance_datareader_py.xueqiu.</code><code class="descname">FinancialIndicatorReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.xueqiu.FinancialIndicatorReader" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="descclassname">finance_datareader_py.xueqiu.</code><code class="descname">FinancialIndicatorReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>prefix=''</em>, <em>suffix=''</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.xueqiu.FinancialIndicatorReader" title="永久链接至目标">¶</a></dt>
 <dd><p>从 雪球 读取主要财务指标</p>
 <p><strong>从1990-01-01开始获取数据</strong>。</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -174,6 +174,18 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first simple">
 <li><strong>symbols</strong> – 股票代码。<strong>此参数只接收单一股票代码</strong>。For example:600001,000002,300002</li>
+<li><strong>prefix</strong> – <p>股票代码前缀。默认为空。</p>
+<ul>
+<li>为空表示会自动根据股票代码判断。</li>
+<li>对于某些特定指数请自行填写。</li>
+</ul>
+</li>
+<li><strong>suffix</strong> – <p>股票代码后缀。默认为空。</p>
+<ul>
+<li>为空表示会自动根据股票代码判断。</li>
+<li>对于某些特定指数请自行填写。</li>
+</ul>
+</li>
 <li><strong>retry_count</strong> – 重试次数</li>
 <li><strong>pause</strong> – 重试间隔时间</li>
 <li><strong>session</strong> – </li>
@@ -236,7 +248,7 @@
 
 <span class="target" id="module-finance_datareader_py.xueqiu.daily"></span><dl class="class">
 <dt id="finance_datareader_py.xueqiu.daily.XueQiuDailyReader">
-<em class="property">class </em><code class="descclassname">finance_datareader_py.xueqiu.daily.</code><code class="descname">XueQiuDailyReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>type='default'</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>23)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.xueqiu.daily.XueQiuDailyReader" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="descclassname">finance_datareader_py.xueqiu.daily.</code><code class="descname">XueQiuDailyReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>prefix=''</em>, <em>suffix=''</em>, <em>type='default'</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>23)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.xueqiu.daily.XueQiuDailyReader" title="永久链接至目标">¶</a></dt>
 <dd><p>从 雪球 读取每日成交汇总数据（支持获取前复权、后复权的数据）</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -244,11 +256,23 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first last simple">
 <li><strong>symbols</strong> – 股票代码。<strong>此参数只接收单一股票代码</strong>。For example:600001,000002</li>
-<li><strong>type</strong> – <p>{‘default’, ‘before’, ‘after’}, 默认值 ‘default’</p>
+<li><strong>prefix</strong> – <p>股票代码前缀。默认为空。</p>
 <ul>
-<li>’default’: 不复权（默认）</li>
-<li>’before’: 前复权</li>
-<li>’after’: 后复权</li>
+<li>为空表示会自动根据股票代码判断。</li>
+<li>对于某些特定指数请填写 <cite>sz</cite> 或 <cite>sh</cite>。</li>
+</ul>
+</li>
+<li><strong>suffix</strong> – <p>股票代码后缀。默认为空。</p>
+<ul>
+<li>为空表示会自动根据股票代码判断。</li>
+<li>对于某些特定指数请自行填写。</li>
+</ul>
+</li>
+<li><strong>type</strong> – <p>{None, ‘qfq’, ‘hfq’}, 默认值 None</p>
+<ul>
+<li>None: 不复权（默认）</li>
+<li>’qfq’: 前复权</li>
+<li>’hfq’: 后复权</li>
 </ul>
 </li>
 <li><strong>start</strong> – 开始日期。默认值：2004-10-08</li>
@@ -270,7 +294,18 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">无数据时返回空白的 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 。参见 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame.empty</span></code>。</td>
+<tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">无数据时返回空白的 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 。参见 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame.empty</span></code>。<p>部分返回列名说明：</p>
+<blockquote>
+<div><ul class="simple">
+<li>Open:开盘价</li>
+<li>Close: 收盘价</li>
+<li>High: 最高价</li>
+<li>Low: 最低价</li>
+<li>Turnover: 成交金额</li>
+<li>Rate: 换手率</li>
+</ul>
+</div></blockquote>
+</td>
 </tr>
 <tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></td>
 </tr>
@@ -278,15 +313,12 @@
 </table>
 <p class="rubric">Examples</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.xueqiu.daily</span> <span class="kn">import</span> <span class="n">XueQiuDailyReader</span>
-
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
-
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">XueQiuDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
 
-<span class="go">            成交金额   Open   High    Low  Close   涨跌额   涨跌幅   换手率</span>
-<span class="go">日期</span>
+<span class="go">            Turnover   Open   High    Low  Close   涨跌额   涨跌幅   Rate</span>
+<span class="go">Date</span>
 <span class="go">2018-08-06   45165309.0  21.15  21.86  20.93  21.86  1.00  4.79  0.46</span>
 <span class="go">2018-08-07   41072018.0  21.89  22.29  21.50  21.50 -0.36 -1.65  0.42</span>
 <span class="go">2018-08-08   89620017.0  21.50  22.55  21.40  22.48  0.98  4.56  0.91</span>
@@ -346,7 +378,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.9+9.gc23f145',
+            VERSION:'0.1.9+13.g341d11b',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

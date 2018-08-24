@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python 金融数据读取器 &mdash; finance-datareader-py 0.1.9+9.gc23f145 文档</title>
+  <title>Python 金融数据读取器 &mdash; finance-datareader-py 0.1.9+13.g341d11b 文档</title>
   
 
   
@@ -188,19 +188,17 @@
 </div>
 <div class="section" id="id6">
 <h2>使用示例<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sohu.daily</span> <span class="kn">import</span> <span class="n">SohuDailyReader</span>
-
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">SohuDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py</span> <span class="kn">import</span> <span class="n">DailyReader</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">DailyReader</span><span class="p">((</span><span class="mi">601398</span><span class="p">,</span><span class="mi">601939</span><span class="p">),</span> <span class="n">drop_zs_columns</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
 
-<span class="go">            Open  Close  Change  Quote   Low  High    Volume  Turnover  Rate</span>
+<span class="go">            sh000001_Close  601398_Close  601939_Close</span>
 <span class="go">Date</span>
-<span class="go">2004-10-14  5.80   5.67   -0.12  -2.07  5.56  5.80  265167.0  15041.02  1.68</span>
-<span class="go">2004-10-13  5.81   5.79    0.00   0.00  5.69  5.85  252039.0  14604.28  1.60</span>
-<span class="go">2004-10-12  5.53   5.79    0.25   4.51  5.50  5.87  600869.0  34637.16  3.82</span>
-<span class="go">2004-10-11  5.56   5.54   -0.02  -0.36  5.51  5.65  264020.0  14775.34  1.68</span>
-<span class="go">2004-10-08  5.42   5.56    0.14   2.58  5.28  5.60  117074.0   6368.60  0.74</span>
+<span class="go">2018-08-17         2668.97          5.26          6.52</span>
+<span class="go">2018-08-20         2698.47          5.36          6.66</span>
+<span class="go">2018-08-21         2733.83          5.40          6.72</span>
+<span class="go">2018-08-22         2714.61          5.39          6.70</span>
+<span class="go">2018-08-23         2724.62          5.40          6.69</span>
 </pre></div>
 </div>
 <div class="section" id="documentation">
@@ -275,7 +273,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.9+9.gc23f145',
+            VERSION:'0.1.9+13.g341d11b',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

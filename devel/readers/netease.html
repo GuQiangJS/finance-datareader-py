@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NetEase &mdash; finance-datareader-py 0.1.9+9.gc23f145 文档</title>
+  <title>NetEase &mdash; finance-datareader-py 0.1.9+13.g341d11b 文档</title>
   
 
   
@@ -276,7 +276,7 @@
 
 <span class="target" id="module-finance_datareader_py.netease.daily"></span><dl class="class">
 <dt id="finance_datareader_py.netease.daily.NetEaseDailyReader">
-<em class="property">class </em><code class="descclassname">finance_datareader_py.netease.daily.</code><code class="descname">NetEaseDailyReader</code><span class="sig-paren">(</span><em>symbols: str = None</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>23)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.netease.daily.NetEaseDailyReader" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="descclassname">finance_datareader_py.netease.daily.</code><code class="descname">NetEaseDailyReader</code><span class="sig-paren">(</span><em>symbols: str = None</em>, <em>prefix=''</em>, <em>suffix=''</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>23)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.netease.daily.NetEaseDailyReader" title="永久链接至目标">¶</a></dt>
 <dd><p>从 网易 读取每日成交汇总数据</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -284,6 +284,18 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">参数:</th><td class="field-body"><ul class="first last simple">
 <li><strong>symbols</strong> – 股票代码。<strong>此参数只接收单一股票代码</strong>。For example:600001,000002,300002</li>
+<li><strong>prefix</strong> – <p>股票代码前缀。默认为空。</p>
+<ul>
+<li>为空表示会自动根据股票代码判断。</li>
+<li>对于某些特定指数请填写 <cite>sz</cite> 或 <cite>sh</cite>。</li>
+</ul>
+</li>
+<li><strong>suffix</strong> – <p>股票代码后缀。默认为空。</p>
+<ul>
+<li>为空表示会自动根据股票代码判断。</li>
+<li>对于某些特定指数请自行填写。</li>
+</ul>
+</li>
 <li><strong>start</strong> – 开始日期。默认值：2004-10-08</li>
 <li><strong>end</strong> – 结束日期。默认值：当前日期的 <strong>前一天</strong> 。</li>
 <li><strong>retry_count</strong> – 重试次数</li>
@@ -304,6 +316,18 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">返回:</th><td class="field-body">成交量的单位为 <em>手</em>，成交金额的单位为 <em>万元</em>。<p>无数据时返回空白的 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 。参见 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame.empty</span></code>。</p>
+<p>部分返回列名说明：</p>
+<blockquote>
+<div><ul class="simple">
+<li>Open:开盘价</li>
+<li>Close: 收盘价</li>
+<li>High: 最高价</li>
+<li>Low: 最低价</li>
+<li>Volume: 交易量(手)</li>
+<li>Turnover: 成交金额</li>
+<li>Rate: 换手率</li>
+</ul>
+</div></blockquote>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">返回类型:</th><td class="field-body"><code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></td>
@@ -312,7 +336,6 @@
 </table>
 <p class="rubric">Examples</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.netease.daily</span> <span class="kn">import</span> <span class="n">NetEaseDailyReader</span>
-
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">NetEaseDailyReader</span><span class="p">(</span><span class="n">symbols</span><span class="o">=</span><span class="s1">&#39;000002&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
 
 <span class="go">            Close   High    Low   Open Change    Quote    Rate     Volume  Turnover</span>
@@ -378,7 +401,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.9+9.gc23f145',
+            VERSION:'0.1.9+13.g341d11b',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
