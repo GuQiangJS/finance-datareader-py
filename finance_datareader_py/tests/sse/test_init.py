@@ -19,6 +19,9 @@ class sse_TestCase(unittest.TestCase):
         print(df2)
 
     def test_get_sse_dividends(self):
+        self.assertRaises(NotImplementedError, get_dividends, '600006')
+        # todo
+        return
         df1, df2 = get_dividends('600006')
         self.assertIsNotNone(df1)
         self.assertFalse(df1.empty)

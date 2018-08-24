@@ -170,7 +170,7 @@ def _download_dividends(symbol: str):
         response = reader._get_response(r'http://vip.stock.finance.sina.com.cn/'
                                         r'corp/go.php/vISSUE_ShareBonus/stockid'
                                         r'/{0}.phtml'.format(symbol),
-                                        _AbsDailyReader._headers)
+                                        _AbsDailyReader._default_headers())
         txt = str(response.content, encoding='gb2312')
         fh = re.search(
             '<!--分红 begin-->[\s\S]*<tbody>([\s\S]*)<\/tbody>[\s\S]*<!--分红 end-->',

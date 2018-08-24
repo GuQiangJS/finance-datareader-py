@@ -17,11 +17,21 @@ class EastMoneyDailyReader(_AbsDailyReader):
 
     Args:
         symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002
-        type: {None, 'fa', 'ba' }, 默认值 None
+        prefix: 股票代码前缀。默认为空。
+
+            * 为空表示会自动根据股票代码判断。
+            * 对于某些特定指数请自行填写。
+
+        suffix: 股票代码后缀。默认为空。
+
+            * 为空表示会自动根据股票代码判断。
+            * 对于某些特定指数请自行填写。
+
+        type: {None, 'qfq', 'hfq'}, 默认值 None
 
             * None: 不复权（默认）
-            * 'fa': 前复权
-            * 'ba': 后复权
+            * 'qfq': 前复权
+            * 'hfq': 后复权
 
         start: 开始日期。默认值：2004-10-08
         end: 结束日期。默认值：当前日期的 **前一天** 。
@@ -31,7 +41,7 @@ class EastMoneyDailyReader(_AbsDailyReader):
         chunksize:
     """
 
-    def __init__(self, symbols=None, type=None,
+    def __init__(self, symbols=None, prefix='', suffix='', type=None,
                  start=datetime.date(2004, 10, 8),
                  end=datetime.date.today() + datetime.timedelta(days=-1),
                  retry_count=3, pause=1, session=None,
@@ -40,11 +50,21 @@ class EastMoneyDailyReader(_AbsDailyReader):
 
         Args:
             symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001
-            type: {None, 'fa', 'ba'}, 默认值 None
+            prefix: 股票代码前缀。默认为空。
+
+                * 为空表示会自动根据股票代码判断。
+                * 对于某些特定指数请自行填写。
+
+            suffix: 股票代码后缀。默认为空。
+
+                * 为空表示会自动根据股票代码判断。
+                * 对于某些特定指数请自行填写。
+
+            type: {None, 'qfq', 'hfq'}, 默认值 None
 
                 * None: 不复权（默认）
-                * 'fa': 前复权
-                * 'ba': 后复权
+                * 'qfq': 前复权
+                * 'hfq': 后复权
 
             start: 开始日期。默认值：2004-10-08
             end: 结束日期。默认值：当前日期的 **前一天** 。
@@ -56,7 +76,14 @@ class EastMoneyDailyReader(_AbsDailyReader):
         super(EastMoneyDailyReader, self).__init__(symbols, start, end,
                                                    retry_count, pause, session,
                                                    chunksize)
-        self._type = type
+        self._type = None
+        if not type:
+            if str(type).lower() == 'qfq':
+                self._type = 'fa'
+            elif str(type).lower() == 'hfq':
+                self._type = 'ba'
+        self._prefix = prefix
+        self._suffix = suffix
 
     @property
     def url(self):
@@ -65,8 +92,11 @@ class EastMoneyDailyReader(_AbsDailyReader):
         return 'http://pdfm.eastmoney.com/EM_UBG_PDTI_Fast/api/js'
 
     def _parse_symbol(self):
-        # 深市后加2，沪市后加1
-        return self.symbols + ('1' if self.symbols[0] == '6' else '2')
+        if self._prefix:
+            return self._prefix + self.symbols + self._suffix
+            # 深市后加2，沪市后加1
+        return self._prefix + self.symbols + (
+            '1' if self.symbols[0] == '6' else '2') + self._prefix
 
     def _get_params(self, *args, **kwargs):
         return {'rtntype': '5', 'id': self._parse_symbol(), 'type': 'k',
@@ -80,17 +110,25 @@ class EastMoneyDailyReader(_AbsDailyReader):
 
             无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
+            部分返回列名说明：
+
+                * Open:开盘价
+                * Close: 收盘价
+                * High: 最高价
+                * Low: 最低价
+                * Volume: 交易量(手)
+                * Turnover: 成交金额
+                * Rate: 换手率
+
         Examples:
             .. code-block:: python
 
                 >>> from finance_datareader_py.eastmoney.daily import EastMoneyDailyReader
-
                 >>> df = EastMoneyDailyReader(symbols='000002').read()
-
                 >>> print(df.tail())
 
-                             Open  Close   High    Low     交易量(手)          成交金额  振幅(%)   换手率
-                日期
+                             Open  Close   High    Low     Volume          Turnover  振幅(%)   Rate
+                Date
                 2018-08-06  21.18  20.86  21.32  20.52   315702.0  6.628799e+08   3.80  0.32
                 2018-08-07  21.15  21.86  21.86  20.93   451653.0  9.691662e+08   4.46  0.46
                 2018-08-08  21.89  21.50  22.29  21.50   410720.0  9.030237e+08   3.61  0.42
@@ -128,18 +166,18 @@ class EastMoneyDailyReader(_AbsDailyReader):
             return out
         # 设置标题
         out.rename(
-            columns={0: '日期', 1: 'Open', 2: 'Close', 3: 'High', 4: 'Low',
-                     5: '交易量(手)', 6: '成交金额', 7: '振幅(%)', 8: '换手率'},
+            columns={0: 'Date', 1: 'Open', 2: 'Close', 3: 'High', 4: 'Low',
+                     5: 'Volume', 6: 'Turnover', 7: '振幅(%)', 8: 'Rate'},
             inplace=True)
         if 6 in out:
             out.drop([6], axis=1, inplace=True)
         out = out.replace('-', np.nan).replace('None', np.nan)
         # 转换 Date 列为 datetime 数据类型
-        out['日期'] = pd.to_datetime(out['日期'])
+        out['Date'] = pd.to_datetime(out['Date'])
         # out['涨跌幅'] = out['涨跌幅'].str.replace('%', '')
         # out['换手率'] = out['换手率'].str.replace('%', '')
         # 将 Date 列设为索引列
         out['振幅(%)'] = out['振幅(%)'].str.replace('%', '')
-        out.set_index("日期", inplace=True)
+        out.set_index('Date', inplace=True)
         out = self._convert_numeric_allcolumns(out)
         return out[self.start:self.end]

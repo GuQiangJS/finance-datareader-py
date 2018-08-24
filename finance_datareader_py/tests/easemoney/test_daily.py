@@ -27,7 +27,7 @@ class EastMoneyDailyReader_TestCase(unittest.TestCase):
 
     def test_read_column_dtype_is_numeric(self):
         df = EastMoneyDailyReader(symbols='000002').read()
-        ss = 'Open', 'Close', 'High', 'Low', '交易量(手)', '换手率', '振幅(%)'
+        ss = 'Open', 'Close', 'High', 'Low', 'Volume', 'Rate', '振幅(%)'
         for s in ss:
             self.assertEqual(df[s].dtype, np.float64)
 

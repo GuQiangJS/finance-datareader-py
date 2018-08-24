@@ -16,6 +16,15 @@ class GtimgDailyReader(_AbsDailyReader):
 
     Args:
         symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002
+        prefix: 股票代码前缀。默认为空。
+
+            * 为空表示会自动根据股票代码判断。
+            * 对于某些特定指数请填写 `sz` 或 `sh`。
+
+        suffix: 股票代码后缀。默认为空。
+
+            * 为空表示会自动根据股票代码判断。
+            * 对于某些特定指数请自行填写。
 
         type: {None, 'qfq', 'hfq'}, 默认值 None
 
@@ -31,7 +40,7 @@ class GtimgDailyReader(_AbsDailyReader):
         chunksize:
     """
 
-    def __init__(self, symbols=None, type=None,
+    def __init__(self, symbols=None, prefix='', suffix='', type=None,
                  start=datetime.date(2004, 10, 8),
                  end=datetime.date.today() + datetime.timedelta(days=-1),
                  retry_count=3, pause=1, session=None,
@@ -40,6 +49,16 @@ class GtimgDailyReader(_AbsDailyReader):
 
         Args:
             symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001
+            prefix: 股票代码前缀。默认为空。
+
+                * 为空表示会自动根据股票代码判断。
+                * 对于某些特定指数请填写 `sz` 或 `sh`。
+
+            suffix: 股票代码后缀。默认为空。
+
+                * 为空表示会自动根据股票代码判断。
+                * 对于某些特定指数请自行填写。
+
             type: {None, 'qfq', 'hfq'}, 默认值 None
 
                 * None: 不复权（默认）
@@ -57,6 +76,8 @@ class GtimgDailyReader(_AbsDailyReader):
                                                retry_count, pause, session,
                                                chunksize)
         self._type = type
+        self._prefix = prefix
+        self._suffix = suffix
 
     @property
     def url(self):
@@ -67,7 +88,12 @@ class GtimgDailyReader(_AbsDailyReader):
 
     def _parse_symbol(self):
         # 深市前加sz，沪市前加sh
-        return ('sh' if self.symbols[0] == '6' else 'sz') + self.symbols
+        if self._prefix:
+            return self._prefix + str(self.symbols) + self._suffix
+        return ('sh' if str(self.symbols)[0] == '6'
+                else 'sz' if str(self.symbols)[0] == '0' or str(self.symbols)[
+            0] == '3'
+        else '') + str(self.symbols) + self._suffix
 
     def _parse_count(self):
         return (self.end - self.start).days + 1
@@ -87,17 +113,23 @@ class GtimgDailyReader(_AbsDailyReader):
 
             无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
+            部分返回列名说明：
+
+                * Open:开盘价
+                * Close: 收盘价
+                * High: 最高价
+                * Low: 最低价
+                * Volume: 交易量(手)
+
         Examples:
             .. code-block:: python
 
                 >>> from finance_datareader_py.gtimg.daily import GtimgDailyReader
-
                 >>> df = GtimgDailyReader(symbols='000002').read()
-
                 >>> print(df.tail())
 
-                             Open  Close   High    Low     交易量(手)
-                日期
+                             Open  Close   High    Low     Volume
+                Date
                 2018-08-06  21.18  20.86  21.32  20.52   315702.0
                 2018-08-07  21.15  21.86  21.86  20.93   451653.0
                 2018-08-08  21.89  21.50  22.29  21.50   410720.0
@@ -135,15 +167,15 @@ class GtimgDailyReader(_AbsDailyReader):
             return out
         # 设置标题
         out.rename(
-            columns={0: '日期', 1: 'Open', 2: 'Close', 3: 'High', 4: 'Low',
-                     5: '交易量(手)'}, inplace=True)
+            columns={0: 'Date', 1: 'Open', 2: 'Close', 3: 'High', 4: 'Low',
+                     5: 'Volume'}, inplace=True)
         if 6 in out:
             out.drop([6], axis=1, inplace=True)
         # 转换 Date 列为 datetime 数据类型
-        out['日期'] = pd.to_datetime(out['日期'])
+        out['Date'] = pd.to_datetime(out['Date'])
         # out['涨跌幅'] = out['涨跌幅'].str.replace('%', '')
         # out['换手率'] = out['换手率'].str.replace('%', '')
         # 将 Date 列设为索引列
-        out.set_index("日期", inplace=True)
+        out.set_index("Date", inplace=True)
         out = self._convert_numeric_allcolumns(out)
         return out

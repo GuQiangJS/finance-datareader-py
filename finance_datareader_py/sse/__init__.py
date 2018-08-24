@@ -76,7 +76,7 @@ def _download_sse_symbols(timeout):
         result = []
         response = reader._get_response(
             r'http://www.sse.com.cn/js/common/ssesuggestdataAll.js',
-            headers=_AbsDailyReader._headers)
+            headers=_AbsDailyReader._default_headers())
         matches = _RE_SYMBOLS.finditer(response.text)
         for match in matches:
             result.append({'symbol': match.group(1), 'name': match.group(2)})
@@ -91,6 +91,9 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
     """从 上海证券交易所 获取分红配送数据
 
     **只能获取上证数据**
+
+    .. Warning::
+        暂时会返回403错误，无法使用。
 
     Args:
         symbol: 股票代码
@@ -108,9 +111,7 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
         .. code-block:: python
 
             >>> from finance_datareader_py.sse import get_dividends
-
             >>> df1, df2 = get_dividends('600006')
-
             >>> print(df1.tail())
 
                         每股红利(除税)  每股红利(含税)       除息交易日  股权登记日总股本(万股)  除息前日收盘价   除息报价
@@ -128,11 +129,13 @@ def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):
             2004-06-10  2004-06-07          10  2004-06-11        100000  2004-06-14
 
         """
-
     if not symbol:
         raise ValueError('symbol')
     if not symbol.startswith('6'):
         raise ValueError('只能获取上证数据')
+
+    # Todo 暂时会返回403错误
+    raise NotImplementedError()
 
     global _dividends_cache
     if timeout < 0:
@@ -171,6 +174,7 @@ def _download_dividends(symbol: str):
                               'http://www.sse.com.cn/assortment/stock/list'
                               '/info/profit/index.shtml?COMPANY_CODE={0}'
                               .format(symbol))
+        reader.session.cookies = reader._get_cookie('http://www.sse.com.cn')
 
         df1 = _download_fh(reader, symbol)
         df2 = _download_sg(reader, symbol)

@@ -8,9 +8,14 @@ import pandas as pd
 from finance_datareader_py import _AbsDailyReader
 
 
-def _parse_symbol(symbol):
+def _parse_symbol(symbol, prefix, suffix):
+    r = ''
+    if prefix:
+        r = prefix + symbol
     # 深市前加sz，沪市前加sh
-    return ('SH' if symbol[0] == '6' else 'SZ') + symbol
+    else:
+        r = ('SH' if symbol[0] == '6' else 'SZ') + symbol
+    return r + suffix
 
 
 class FinancialIndicatorReader(_AbsDailyReader):
@@ -20,6 +25,16 @@ class FinancialIndicatorReader(_AbsDailyReader):
 
     Args:
         symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002,300002
+        prefix: 股票代码前缀。默认为空。
+
+            * 为空表示会自动根据股票代码判断。
+            * 对于某些特定指数请自行填写。
+
+        suffix: 股票代码后缀。默认为空。
+
+            * 为空表示会自动根据股票代码判断。
+            * 对于某些特定指数请自行填写。
+
         retry_count: 重试次数
         pause: 重试间隔时间
         session:
@@ -67,14 +82,24 @@ class FinancialIndicatorReader(_AbsDailyReader):
             Name: 2018-03-31 00:00:00, dtype: object
     """
 
-    def __init__(self, symbols=None, retry_count=3, pause=1, session=None,
-                 chunksize=25):
+    def __init__(self, symbols=None, prefix='', suffix='', retry_count=3,
+                 pause=1, session=None, chunksize=25):
         """从 雪球 读取主要财务指标
 
         **从1990-01-01开始获取数据**。
 
         Args:
             symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002,300002
+            prefix: 股票代码前缀。默认为空。
+
+                * 为空表示会自动根据股票代码判断。
+                * 对于某些特定指数请自行填写。
+
+            suffix: 股票代码后缀。默认为空。
+
+                * 为空表示会自动根据股票代码判断。
+                * 对于某些特定指数请自行填写。
+
             retry_count: 重试次数
             pause: 重试间隔时间
             session:
@@ -127,6 +152,8 @@ class FinancialIndicatorReader(_AbsDailyReader):
                                                        session,
                                                        chunksize)
         self._format = 'json'
+        self._prefix = prefix
+        self._suffix = suffix
 
     @property
     def url(self):
@@ -139,11 +166,13 @@ class FinancialIndicatorReader(_AbsDailyReader):
         s = datetime.date(1990, 1, 1)
         m = (n.year - s.year) * 12 + n.month
         # 每四个月才会有一次数据
-        return {'symbol': _parse_symbol(self.symbols), 'size': int(m / 4 + 10)}
+        return {'symbol': _parse_symbol(self.symbols, self._prefix,
+                                        self._suffix),
+                'size': int(m / 4 + 10)}
 
     def _get_response(self, url, params=None, headers=None):
         if not headers:
-            headers = _AbsDailyReader._headers
+            headers = _AbsDailyReader._default_headers()
         if self.session:
             self.session.cookies = self._get_cookie('http://www.xueqiu.com')
         return super(_AbsDailyReader, self)._get_response(url, params, headers)

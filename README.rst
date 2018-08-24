@@ -53,16 +53,14 @@ Python 金融数据读取器
 
 .. code-block:: python
 
-    >>> from finance_datareader_py.sohu.daily import SohuDailyReader
-
-    >>> df = SohuDailyReader(symbols='000002').read()
-
+    >>> from finance_datareader_py import DailyReader
+    >>> df = DailyReader((601398,601939), drop_zs_columns=False).read()
     >>> print(df.tail())
 
-                Open  Close  Change  Quote   Low  High    Volume  Turnover  Rate
+                sh000001_Close  601398_Close  601939_Close
     Date
-    2004-10-14  5.80   5.67   -0.12  -2.07  5.56  5.80  265167.0  15041.02  1.68
-    2004-10-13  5.81   5.79    0.00   0.00  5.69  5.85  252039.0  14604.28  1.60
-    2004-10-12  5.53   5.79    0.25   4.51  5.50  5.87  600869.0  34637.16  3.82
-    2004-10-11  5.56   5.54   -0.02  -0.36  5.51  5.65  264020.0  14775.34  1.68
-    2004-10-08  5.42   5.56    0.14   2.58  5.28  5.60  117074.0   6368.60  0.74
+    2018-08-17         2668.97          5.26          6.52
+    2018-08-20         2698.47          5.36          6.66
+    2018-08-21         2733.83          5.40          6.72
+    2018-08-22         2714.61          5.39          6.70
+    2018-08-23         2724.62          5.40          6.69

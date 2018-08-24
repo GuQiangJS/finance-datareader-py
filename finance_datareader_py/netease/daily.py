@@ -16,6 +16,16 @@ class NetEaseDailyReader(_AbsDailyReader):
 
     Args:
         symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002,300002
+        prefix: 股票代码前缀。默认为空。
+
+            * 为空表示会自动根据股票代码判断。
+            * 对于某些特定指数请填写 `sz` 或 `sh`。
+
+        suffix: 股票代码后缀。默认为空。
+
+            * 为空表示会自动根据股票代码判断。
+            * 对于某些特定指数请自行填写。
+
         start: 开始日期。默认值：2004-10-08
         end: 结束日期。默认值：当前日期的 **前一天** 。
         retry_count: 重试次数
@@ -24,7 +34,8 @@ class NetEaseDailyReader(_AbsDailyReader):
         chunksize:
     """
 
-    def __init__(self, symbols: str = None, start=datetime.date(2004, 10, 8),
+    def __init__(self, symbols: str = None, prefix='', suffix='',
+                 start=datetime.date(2004, 10, 8),
                  end=datetime.date.today() + datetime.timedelta(days=-1),
                  retry_count=3, pause=1, session=None,
                  chunksize=25):
@@ -32,6 +43,16 @@ class NetEaseDailyReader(_AbsDailyReader):
 
         Args:
             symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002,300002
+            prefix: 股票代码前缀。默认为空。
+
+                * 为空表示会自动根据股票代码判断。
+                * 对于某些特定指数请填写 `sz` 或 `sh`。
+
+            suffix: 股票代码后缀。默认为空。
+
+                * 为空表示会自动根据股票代码判断。
+                * 对于某些特定指数请自行填写。
+
             start: 开始日期。默认值：2004-10-08
             end: 结束日期。默认值：当前日期的 **前一天** 。
             retry_count: 重试次数
@@ -45,6 +66,8 @@ class NetEaseDailyReader(_AbsDailyReader):
                                                  chunksize)
         # 解析 url 回传内容时使用的字符编码
         self._encoding = 'gb2312'
+        self._prefix = prefix
+        self._suffix = suffix
 
     @property
     def url(self):
@@ -57,8 +80,11 @@ class NetEaseDailyReader(_AbsDailyReader):
         return 'http://quotes.money.163.com/service/chddata.html'
 
     def _parse_symbol(self):
+        if self._prefix:
+            return self._prefix + self.symbols + self._suffix
         # 深市前加1，沪市前加0
-        return ('0' if self.symbols[0] == '6' else '1') + self.symbols
+        return ('0' if self.symbols[
+                           0] == '6' else '1') + self.symbols + self._suffix
 
     def _get_params(self, *args, **kwargs):
         return {'code': self._parse_symbol(),
@@ -90,11 +116,20 @@ class NetEaseDailyReader(_AbsDailyReader):
 
             无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
+            部分返回列名说明：
+
+                * Open:开盘价
+                * Close: 收盘价
+                * High: 最高价
+                * Low: 最低价
+                * Volume: 交易量(手)
+                * Turnover: 成交金额
+                * Rate: 换手率
+
         Examples:
             .. code-block:: python
 
                 >>> from finance_datareader_py.netease.daily import NetEaseDailyReader
-
                 >>> print(NetEaseDailyReader(symbols='000002').read().tail())
 
                             Close   High    Low   Open Change    Quote    Rate     Volume  Turnover

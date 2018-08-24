@@ -9,10 +9,8 @@ import pandas as pd
 from finance_datareader_py import _AbsDailyReader
 
 
-def _parse_symbol(prefix: str, symbol: str):
-    if not prefix or not symbol:
-        raise ValueError()
-    return prefix + symbol
+def _parse_symbol(symbol: str, prefix: str = '', suffix: str = ''):
+    return prefix + symbol + suffix
 
 
 class FinancialIndicatorReader(_AbsDailyReader):
@@ -22,6 +20,16 @@ class FinancialIndicatorReader(_AbsDailyReader):
 
     Args:
         symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002,300002
+        prefix: 股票代码前缀。默认为空。
+
+            * 为空表示会自动根据股票代码判断。
+            * 对于某些特定指数请填写 `sz` 或 `sh`。
+
+        suffix: 股票代码后缀。默认为空。
+
+            * 为空表示会自动根据股票代码判断。
+            * 对于某些特定指数请自行填写。
+
         retry_count: 重试次数
         pause: 重试间隔时间
         session:
@@ -60,7 +68,9 @@ class FinancialIndicatorReader(_AbsDailyReader):
 
     """
 
-    def __init__(self, symbols=None, retry_count=3, pause=1, session=None,
+    def __init__(self, symbols=None, prefix='', suffix='', retry_count=3,
+                 pause=1,
+                 session=None,
                  chunksize=25):
         """从 Sohu 读取主要财务指标
 
@@ -68,6 +78,16 @@ class FinancialIndicatorReader(_AbsDailyReader):
 
         Args:
             symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002,300002
+            prefix: 股票代码前缀。默认为空。
+
+                * 为空表示会自动根据股票代码判断。
+                * 对于某些特定指数请填写 `sz` 或 `sh`。
+
+            suffix: 股票代码后缀。默认为空。
+
+                * 为空表示会自动根据股票代码判断。
+                * 对于某些特定指数请自行填写。
+
             retry_count: 重试次数
             pause: 重试间隔时间
             session:
@@ -109,6 +129,8 @@ class FinancialIndicatorReader(_AbsDailyReader):
                                                        session,
                                                        chunksize)
         self._encoding = 'gb2312'
+        self._prefix = prefix
+        self._suffix = suffix
 
     @property
     def url(self):

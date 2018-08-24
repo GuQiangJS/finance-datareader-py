@@ -18,6 +18,13 @@ class SohuDailyReader(_AbsDailyReader):
 
     Args:
         symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002,300002
+        prefix: 读取股票数据时需要拼接的前缀。默认为 'cn_'。如果是获取指数时需要使用 'zs_'。
+
+        suffix: 股票代码后缀。默认为空。
+
+            * 为空表示会自动根据股票代码判断。
+            * 对于某些特定指数请自行填写。
+
         prefix: 读取股票数据时需要拼接的前缀。默认为 ``cn_``。如果是获取指数时需要使用 ``zs_``。
         start: 开始日期。默认值：2004-10-08
         end: 结束日期。默认值：当前日期的 **前一天** 。
@@ -27,7 +34,7 @@ class SohuDailyReader(_AbsDailyReader):
         chunksize:
     """
 
-    def __init__(self, symbols=None, prefix='cn_',
+    def __init__(self, symbols=None, prefix='cn_', suffix='',
                  start=datetime.date(2004, 10, 8),
                  end=datetime.date.today() + datetime.timedelta(days=-1),
                  retry_count=3, pause=1, session=None,
@@ -36,6 +43,13 @@ class SohuDailyReader(_AbsDailyReader):
 
         Args:
             symbols: 股票代码。**此参数只接收单一股票代码**。For example:600001,000002,300002
+            prefix: 读取股票数据时需要拼接的前缀。默认为 'cn_'。如果是获取指数时需要使用 'zs_'。
+
+            suffix: 股票代码后缀。默认为空。
+
+                * 为空表示会自动根据股票代码判断。
+                * 对于某些特定指数请自行填写。
+
             prefix: 读取股票数据时需要拼接的前缀。默认为 'cn_'。如果是获取指数时需要使用 'zs_'。
             start: 开始日期。默认值：2004-10-08
             end: 结束日期。默认值：当前日期的 **前一天** 。
@@ -46,7 +60,8 @@ class SohuDailyReader(_AbsDailyReader):
         """
         super(SohuDailyReader, self).__init__(symbols, start, end, retry_count,
                                               pause, session, chunksize)
-        self.prefix = prefix
+        self._prefix = prefix
+        self._suffix = suffix
 
     @property
     def url(self):
@@ -54,7 +69,8 @@ class SohuDailyReader(_AbsDailyReader):
         return 'http://q.stock.sohu.com/hisHq'
 
     def _get_params(self, *args, **kwargs):
-        return {'code': sohu._parse_symbol(self.prefix, self.symbols),
+        return {'code': sohu._parse_symbol(self.symbols, self._prefix,
+                                           self._suffix),
                 'start': self.start.strftime('%Y%m%d'),
                 'end': self.end.strftime('%Y%m%d'),
                 'stat': '1',
@@ -72,13 +88,21 @@ class SohuDailyReader(_AbsDailyReader):
 
             无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
 
+            部分返回列名说明：
+
+                * Open:开盘价
+                * Close: 收盘价
+                * High: 最高价
+                * Low: 最低价
+                * Volume: 交易量(手)
+                * Turnover: 成交金额
+                * Rate: 换手率
+
         Examples:
             .. code-block:: python
 
                 >>> from finance_datareader_py.sohu.daily import SohuDailyReader
-
                 >>> df = SohuDailyReader(symbols='000002').read()
-
                 >>> print(df.tail())
 
                             Open  Close  Change  Quote   Low  High    Volume  Turnover  Rate
