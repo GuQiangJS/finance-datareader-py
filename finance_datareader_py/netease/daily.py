@@ -80,11 +80,12 @@ class NetEaseDailyReader(_AbsDailyReader):
         return 'http://quotes.money.163.com/service/chddata.html'
 
     def _parse_symbol(self):
+        r = ''
         if self._prefix:
-            return self._prefix + self.symbols + self._suffix
+            r = self._prefix + self.symbols
         # 深市前加1，沪市前加0
-        return ('0' if self.symbols[
-                           0] == '6' else '1') + self.symbols + self._suffix
+        r = ('0' if self.symbols[0] == '6' else '1') + self.symbols
+        return r + self._suffix
 
     def _get_params(self, *args, **kwargs):
         return {'code': self._parse_symbol(),
