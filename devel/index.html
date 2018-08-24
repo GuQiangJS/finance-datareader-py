@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python 金融数据读取器 &mdash; finance-datareader-py 0.1.9+13.g341d11b 文档</title>
+  <title>Python 金融数据读取器 &mdash; finance-datareader-py 0.1.9+14.g214d6cb 文档</title>
   
 
   
@@ -188,7 +188,10 @@
 </div>
 <div class="section" id="id6">
 <h2>使用示例<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py</span> <span class="kn">import</span> <span class="n">DailyReader</span>
+<ul>
+<li><p class="first">一次获取多支股票的收盘价。并自动填充停牌数据。</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py</span> <span class="kn">import</span> <span class="n">DailyReader</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">DailyReader</span><span class="p">((</span><span class="mi">601398</span><span class="p">,</span><span class="mi">601939</span><span class="p">),</span> <span class="n">drop_zs_columns</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
 
@@ -201,6 +204,55 @@
 <span class="go">2018-08-23         2724.62          5.40          6.69</span>
 </pre></div>
 </div>
+</div></blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>获取上证股票列表</dt>
+<dd><div class="first last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sse</span> <span class="kn">import</span> <span class="n">get_sse_symbols</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">get_sse_symbols</span><span class="p">()</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+
+<span class="go">          name  symbol</span>
+<span class="go">1425  洛阳钼业  603993</span>
+<span class="go">1426  中新科技  603996</span>
+<span class="go">1427  继峰股份  603997</span>
+<span class="go">1428  方盛制药  603998</span>
+<span class="go">1429  读者传媒  603999</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>读取上市公司主要财务指标</dt>
+<dd><div class="first last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sohu</span> <span class="kn">import</span> <span class="n">FinancialIndicatorReader</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">FinancialIndicatorReader</span><span class="p">(</span><span class="s1">&#39;601398&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="go">净资产收益率加权(%)                 3.85</span>
+<span class="go">股东权益不含少数股东权益(万元)       217151000</span>
+<span class="go">流动负债(万元)                      --</span>
+<span class="go">总负债(万元)               2430887600</span>
+<span class="go">流动资产(万元)                      --</span>
+<span class="go">总资产(万元)               2649378100</span>
+<span class="go">现金及现金等价物净增加额(万元)        -5756000</span>
+<span class="go">经营活动产生的现金流量净额(万元)        6216000</span>
+<span class="go">净利润(扣除非经常性损益后)(万元)       7779500</span>
+<span class="go">净利润(万元)                  7880200</span>
+<span class="go">利润总额(万元)                10164600</span>
+<span class="go">营业外收支净额(万元)               136000</span>
+<span class="go">投资收益(万元)                  267800</span>
+<span class="go">营业利润(万元)                10028600</span>
+<span class="go">主营业务利润(万元)              10028600</span>
+<span class="go">主营业务收入(万元)              19719800</span>
+<span class="go">每股经营活动产生的现金流量净额(元)            --</span>
+<span class="go">每股净资产(元)                    5.85</span>
+<span class="go">Name: 2018-03-31 00:00:00, dtype: object</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
 <div class="section" id="documentation">
 <h3>Documentation<a class="headerlink" href="#documentation" title="永久链接至标题">¶</a></h3>
 <p>Contents:</p>
@@ -273,7 +325,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.9+13.g341d11b',
+            VERSION:'0.1.9+14.g214d6cb',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
