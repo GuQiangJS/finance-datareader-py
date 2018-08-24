@@ -25,6 +25,7 @@ class _AbsDailyReader(_DailyBaseReader):
     封装了_get_response。默认提供仿浏览器浏览的headers
     """
 
+    @staticmethod
     def _default_headers():
         return {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X '
                               '10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) '
@@ -97,6 +98,9 @@ class _AbsDailyReader(_DailyBaseReader):
         return out
 
 
+from finance_datareader_py.gtimg.daily import GtimgDailyReader
+
+
 class DailyReader(_AbsDailyReader):
     """自动按照参数 `zs_symbol` 指定的代码（指数代码）的每日成交汇总数据 附加 参数 `symbols` 指定的股票代码的每日成交汇总数据。
     并自动按照参数 `fillna` 的设定填充 NaN 数据。
@@ -138,7 +142,6 @@ class DailyReader(_AbsDailyReader):
             是否在最终结果回传前丢弃从 `zs_symbol` 读取的相关列。
 
     """
-    from finance_datareader_py.gtimg.daily import GtimgDailyReader
 
     def __init__(self, symbols, start=datetime.date(2004, 10, 8),
                  end=datetime.date.today() + datetime.timedelta(days=-1),

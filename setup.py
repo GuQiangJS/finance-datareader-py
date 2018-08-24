@@ -35,7 +35,7 @@ setup(
     ],
     keywords='data',
     install_requires=['xlrd', 'pandas', 'pandas-datareader', 'numpy',
-                      'beautifulsoup4'],
+                      'beautifulsoup4', 'requests'],
     packages=find_packages(),
     zip_safe=False,
     exclude_package_data={'': ['test_*.py']}
