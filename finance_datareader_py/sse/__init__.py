@@ -33,7 +33,6 @@ def get_sse_symbols(retry_count=3, timeout=30, pause=None):
         .. code-block:: python
 
             >>> from finance_datareader_py.sse import get_sse_symbols
-
             >>> print(get_sse_symbols().tail())
 
                   name  symbol
