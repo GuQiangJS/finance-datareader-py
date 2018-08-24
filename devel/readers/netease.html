@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>NetEase &mdash; finance-datareader-py 0.1.9+8.gfc8f4c4 文档</title>
+  <title>NetEase &mdash; finance-datareader-py 0.1.9+9.gc23f145 文档</title>
   
 
   
@@ -182,87 +182,8 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first"><p>结果按照 公告日期 <strong>正序</strong> 排序。 任意数据表无数据时返回 空白的
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">结果按照 公告日期 <strong>正序</strong> 排序。 任意数据表无数据时返回 空白的
 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 。 参见 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame.empty</span></code>。</p>
-<p>输出列集合：
-.. code-block:: json</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>[</dt>
-<dd><p class="first last">“总资产增长率(%)”,
-“净资产增长率(%)”,
-“净利润增长率(%)”,
-“主营业务收入增长率(%)”,
-“现金流量比率(%)”,
-“经营现金净流量对负债比率(%)”,
-“经营现金净流量与净利润的比率(%)”,
-“资产的经营现金流量回报率(%)”,
-“经营现金净流量对销售收入比率(%)”,
-“流动资产周转天数(天)”,
-“流动资产周转率(次)”,
-“总资产周转天数(天)”,
-“存货周转天数(天)”,
-“总资产周转率(次)”,
-“固定资产周转率(次)”,
-“存货周转率(次)”,
-“应收账款周转天数(天)”,
-“应收账款周转率(次)”,
-“固定资产比重(%)”,
-“清算价值比率(%)”,
-“产权比率(%)”,
-“资本固定化比率(%)”,
-“固定资产净值率(%)”,
-“资本化比率(%)”,
-“长期资产与长期资金比率(%)”,
-“负债与所有者权益比率(%)”,
-“股东权益与固定资产比率(%)”,
-“长期负债比率(%)”,
-“股东权益比率(%)”,
-“长期债务与营运资金比率(%)”,
-“资产负债率(%)”,
-“利息支付倍数(%)”,
-“现金比率(%)”,
-“速动比率(%)”,
-“流动比率(%)”,
-“主营利润比重(%)”,
-“非主营比重(%)”,
-“三项费用比重(%)”,
-“销售毛利率(%)”,
-“资产报酬率(%)”,
-“净资产报酬率(%)”,
-“股本报酬率(%)”,
-“净资产收益率(%)”,
-“销售净利率(%)”,
-“主营业务成本率(%)”,
-“营业利润率(%)”,
-“成本费用利润率(%)”,
-“总资产净利润率(%)”,
-“主营业务利润率(%)”,
-“总资产利润率(%)”,
-“净资产收益率加权(%)”,
-“股东权益不含少数股东权益(万元)”,
-“流动负债(万元)”,
-“总负债(万元)”,
-“流动资产(万元)”,
-“总资产(万元)”,
-“现金及现金等价物净增加额(万元)”,
-“经营活动产生的现金流量净额(万元)”,
-“净利润(扣除非经常性损益后)(万元)”,
-“净利润(万元)”,
-“利润总额(万元)”,
-“营业外收支净额(万元)”,
-“投资收益(万元)”,
-“营业利润(万元)”,
-“主营业务利润(万元)”,
-“主营业务收入(万元)”,
-“每股经营活动产生的现金流量净额(元)”,
-“每股净资产(元)”,
-“基本每股收益(元)”</p>
-</dd>
-</dl>
-<p>]</p>
-</div></blockquote>
-</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code></p>
@@ -273,11 +194,70 @@
 <p class="rubric">Examples</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.netease</span> <span class="kn">import</span> <span class="n">FinancialIndicatorReader</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">FinancialIndicatorReader</span><span class="p">(</span><span class="s1">&#39;601398&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="s1">&#39;基本每股收益(元)&#39;</span><span class="p">,</span><span class="s1">&#39;每股净资产(元)&#39;</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
-<span class="go">基本每股收益(元)    0.22</span>
-<span class="go">每股净资产(元)     5.85</span>
-<span class="go">Name: 2018-03-31 00:00:00, dtype: object</span>
+<span class="go">总资产增长率(%)                   6.38</span>
+<span class="go">净资产增长率(%)                   6.84</span>
+<span class="go">净利润增长率(%)                      4</span>
+<span class="go">主营业务收入增长率(%)                 NaN</span>
+<span class="go">现金流量比率(%)                    NaN</span>
+<span class="go">经营现金净流量对负债比率(%)                0</span>
+<span class="go">经营现金净流量与净利润的比率(%)           0.79</span>
+<span class="go">资产的经营现金流量回报率(%)                0</span>
+<span class="go">经营现金净流量对销售收入比率(%)            NaN</span>
+<span class="go">流动资产周转天数(天)                  NaN</span>
+<span class="go">流动资产周转率(次)                   NaN</span>
+<span class="go">总资产周转天数(天)                   NaN</span>
+<span class="go">存货周转天数(天)                    NaN</span>
+<span class="go">总资产周转率(次)                    NaN</span>
+<span class="go">固定资产周转率(次)                   NaN</span>
+<span class="go">存货周转率(次)                     NaN</span>
+<span class="go">应收账款周转天数(天)                  NaN</span>
+<span class="go">应收账款周转率(次)                   NaN</span>
+<span class="go">固定资产比重(%)                    NaN</span>
+<span class="go">清算价值比率(%)                    NaN</span>
+<span class="go">产权比率(%)                        0</span>
+<span class="go">资本固定化比率(%)               1212.58</span>
+<span class="go">固定资产净值率(%)                   NaN</span>
+<span class="go">资本化比率(%)                     NaN</span>
+<span class="go">长期资产与长期资金比率(%)               NaN</span>
+<span class="go">负债与所有者权益比率(%)            1112.58</span>
+<span class="go">股东权益与固定资产比率(%)               NaN</span>
+<span class="go">长期负债比率(%)                    NaN</span>
+<span class="go">股东权益比率(%)                   8.25</span>
+<span class="go">长期债务与营运资金比率(%)               NaN</span>
+<span class="go">                         ...</span>
+<span class="go">销售毛利率(%)                   50.86</span>
+<span class="go">资产报酬率(%)                     0.3</span>
+<span class="go">净资产报酬率(%)                   3.62</span>
+<span class="go">股本报酬率(%)                   22.19</span>
+<span class="go">净资产收益率(%)                   3.63</span>
+<span class="go">销售净利率(%)                     NaN</span>
+<span class="go">主营业务成本率(%)                   NaN</span>
+<span class="go">营业利润率(%)                     NaN</span>
+<span class="go">成本费用利润率(%)                255.18</span>
+<span class="go">总资产净利润率(%)                   0.3</span>
+<span class="go">主营业务利润率(%)                   NaN</span>
+<span class="go">总资产利润率(%)                    0.3</span>
+<span class="go">净资产收益率加权(%)                 3.85</span>
+<span class="go">股东权益不含少数股东权益(万元)       217151000</span>
+<span class="go">流动负债(万元)                     NaN</span>
+<span class="go">总负债(万元)               2430887600</span>
+<span class="go">流动资产(万元)                     NaN</span>
+<span class="go">总资产(万元)               2649378100</span>
+<span class="go">现金及现金等价物净增加额(万元)             NaN</span>
+<span class="go">经营活动产生的现金流量净额(万元)        6216000</span>
+<span class="go">净利润(扣除非经常性损益后)(万元)       7779500</span>
+<span class="go">净利润(万元)                  7880200</span>
+<span class="go">利润总额(万元)                10164600</span>
+<span class="go">营业外收支净额(万元)               136000</span>
+<span class="go">投资收益(万元)                  267800</span>
+<span class="go">营业利润(万元)                10028600</span>
+<span class="go">主营业务利润(万元)              10028600</span>
+<span class="go">主营业务收入(万元)              19719800</span>
+<span class="go">每股经营活动产生的现金流量净额(元)           NaN</span>
+<span class="go">每股净资产(元)                    5.85</span>
+<span class="go">Name: 2018-03-31 00:00:00, Length: 68, dtype: object</span>
 </pre></div>
 </div>
 <dl class="method">
@@ -296,7 +276,7 @@
 
 <span class="target" id="module-finance_datareader_py.netease.daily"></span><dl class="class">
 <dt id="finance_datareader_py.netease.daily.NetEaseDailyReader">
-<em class="property">class </em><code class="descclassname">finance_datareader_py.netease.daily.</code><code class="descname">NetEaseDailyReader</code><span class="sig-paren">(</span><em>symbols: str = None</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>22)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.netease.daily.NetEaseDailyReader" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="descclassname">finance_datareader_py.netease.daily.</code><code class="descname">NetEaseDailyReader</code><span class="sig-paren">(</span><em>symbols: str = None</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>23)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.netease.daily.NetEaseDailyReader" title="永久链接至目标">¶</a></dt>
 <dd><p>从 网易 读取每日成交汇总数据</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -398,7 +378,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.9+8.gfc8f4c4',
+            VERSION:'0.1.9+9.gc23f145',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

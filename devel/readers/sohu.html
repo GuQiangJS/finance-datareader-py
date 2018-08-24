@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sohu &mdash; finance-datareader-py 0.1.9+8.gfc8f4c4 文档</title>
+  <title>Sohu &mdash; finance-datareader-py 0.1.9+9.gc23f145 文档</title>
   
 
   
@@ -182,37 +182,8 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first"><p>结果按照 公告日期 <strong>倒序</strong> 排序。 任意数据表无数据时返回 空白的
+<tr class="field-even field"><th class="field-name">返回:</th><td class="field-body"><p class="first">结果按照 公告日期 <strong>倒序</strong> 排序。 任意数据表无数据时返回 空白的
 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> 。 参见 <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame.empty</span></code>。</p>
-<p>输出列集合：
-.. code-block:: json</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>[</dt>
-<dd><p class="first last">“净资产收益率加权(%)”,
-“股东权益不含少数股东权益(万元)”,
-“流动负债(万元)”,
-“总负债(万元)”,
-“流动资产(万元)”,
-“总资产(万元)”,
-“现金及现金等价物净增加额(万元)”,
-“经营活动产生的现金流量净额(万元)”,
-“净利润(扣除非经常性损益后)(万元)”,
-“净利润(万元)”,
-“利润总额(万元)”,
-“营业外收支净额(万元)”,
-“投资收益(万元)”,
-“营业利润(万元)”,
-“主营业务利润(万元)”,
-“主营业务收入(万元)”,
-“每股经营活动产生的现金流量净额(元)”,
-“每股净资产(元)”,
-“基本每股收益(元)”</p>
-</dd>
-</dl>
-<p>]</p>
-</div></blockquote>
-</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">返回类型:</th><td class="field-body"><p class="first last"><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code></p>
@@ -222,8 +193,28 @@
 </table>
 <p class="rubric">Examples</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sohu</span> <span class="kn">import</span> <span class="n">FinancialIndicatorReader</span>
-
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">FinancialIndicatorReader</span><span class="p">(</span><span class="s1">&#39;601398&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="go">净资产收益率加权(%)                 3.85</span>
+<span class="go">股东权益不含少数股东权益(万元)       217151000</span>
+<span class="go">流动负债(万元)                      --</span>
+<span class="go">总负债(万元)               2430887600</span>
+<span class="go">流动资产(万元)                      --</span>
+<span class="go">总资产(万元)               2649378100</span>
+<span class="go">现金及现金等价物净增加额(万元)        -5756000</span>
+<span class="go">经营活动产生的现金流量净额(万元)        6216000</span>
+<span class="go">净利润(扣除非经常性损益后)(万元)       7779500</span>
+<span class="go">净利润(万元)                  7880200</span>
+<span class="go">利润总额(万元)                10164600</span>
+<span class="go">营业外收支净额(万元)               136000</span>
+<span class="go">投资收益(万元)                  267800</span>
+<span class="go">营业利润(万元)                10028600</span>
+<span class="go">主营业务利润(万元)              10028600</span>
+<span class="go">主营业务收入(万元)              19719800</span>
+<span class="go">每股经营活动产生的现金流量净额(元)            --</span>
+<span class="go">每股净资产(元)                    5.85</span>
+<span class="go">Name: 2018-03-31 00:00:00, dtype: object</span>
 </pre></div>
 </div>
 <dl class="method">
@@ -242,7 +233,7 @@
 
 <span class="target" id="module-finance_datareader_py.sohu.daily"></span><dl class="class">
 <dt id="finance_datareader_py.sohu.daily.SohuDailyReader">
-<em class="property">class </em><code class="descclassname">finance_datareader_py.sohu.daily.</code><code class="descname">SohuDailyReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>prefix='cn_'</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>22)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.sohu.daily.SohuDailyReader" title="永久链接至目标">¶</a></dt>
+<em class="property">class </em><code class="descclassname">finance_datareader_py.sohu.daily.</code><code class="descname">SohuDailyReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>prefix='cn_'</em>, <em>start=datetime.date(2004</em>, <em>10</em>, <em>8)</em>, <em>end=datetime.date(2018</em>, <em>8</em>, <em>23)</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.sohu.daily.SohuDailyReader" title="永久链接至目标">¶</a></dt>
 <dd><p>从sohu读取每日成交汇总数据</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -346,7 +337,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.9+8.gfc8f4c4',
+            VERSION:'0.1.9+9.gc23f145',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
