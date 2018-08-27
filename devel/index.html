@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python 金融数据读取器 &mdash; finance-datareader-py 0.2.5+2.g45c72c6 文档</title>
+  <title>Python 金融数据读取器 &mdash; finance-datareader-py 0.2.5+3.g9800449 文档</title>
   
 
   
@@ -206,9 +206,9 @@
 </div>
 </div></blockquote>
 </li>
-<li><dl class="first docutils">
-<dt>获取上证股票列表</dt>
-<dd><div class="first last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sse</span> <span class="kn">import</span> <span class="n">get_sse_symbols</span>
+<li><p class="first">获取上证股票列表</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sse</span> <span class="kn">import</span> <span class="n">get_sse_symbols</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">get_sse_symbols</span><span class="p">()</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
 
 <span class="go">          name  symbol</span>
@@ -219,12 +219,11 @@
 <span class="go">1429  读者传媒  603999</span>
 </pre></div>
 </div>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-<li><dl class="first docutils">
-<dt>读取上市公司主要财务指标</dt>
-<dd><div class="first last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sohu</span> <span class="kn">import</span> <span class="n">FinancialIndicatorReader</span>
+<li><p class="first">读取上市公司主要财务指标</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sohu</span> <span class="kn">import</span> <span class="n">FinancialIndicatorReader</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">FinancialIndicatorReader</span><span class="p">(</span><span class="s1">&#39;601398&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
@@ -249,8 +248,7 @@
 <span class="go">Name: 2018-03-31 00:00:00, dtype: object</span>
 </pre></div>
 </div>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
 <div class="section" id="documentation">
@@ -325,7 +323,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.2.5+2.g45c72c6',
+            VERSION:'0.2.5+3.g9800449',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
