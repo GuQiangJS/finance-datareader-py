@@ -68,6 +68,7 @@ Python 金融数据读取器
         2018-08-23         2724.62          5.40          6.69
 
 * 获取上证股票列表
+
     .. code-block:: python
 
         >>> from finance_datareader_py.sse import get_sse_symbols
@@ -81,6 +82,7 @@ Python 金融数据读取器
         1429  读者传媒  603999
 
 * 读取上市公司主要财务指标
+
     .. code-block:: python
 
         >>> from finance_datareader_py.sohu import FinancialIndicatorReader
