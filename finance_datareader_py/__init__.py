@@ -102,44 +102,38 @@ from finance_datareader_py.gtimg.daily import GtimgDailyReader  # noqa: E402
 
 
 class DailyReader(_AbsDailyReader):
-    """自动按照参数 ``zs_symbol`` 指定的代码（指数代码）的每日成交汇总数据 附加 参数 ``symbols`` 指定的股票代码的每日成交汇总数据。
-    并自动按照参数 ``fillna`` 的设定填充 NaN 数据。
+    """自动按照参数 ``zs_symbol`` 指定的基准代码（一般可以为指数代码）的每日成交
+    汇总数据 附加 参数 ``symbols`` 指定的股票代码的每日成交汇总数据。
+    并自动按照参数 ``fillna`` 的设定填充 :attr:`numpy.NaN` 数据。
 
     Args:
-        symbols: {str, List[str],int, List[int]}
+        symbols ({str, List[str],int, List[int]}):
             待查询的股票代码或集合。
-        start: datetime.date, 默认值：2004-10-08
-            开始日期。
-        end: datetime.date, 默认值：当前日期的 **前一天** 。
-            结束日期。
-        retry_count: int, default 3
+        start (datetime.date): 开始日期。默认值：2004-10-08
+        end (datetime.date): 结束日期。默认值：当前日期的 **前一天** 。
+        retry_count (int): default 3
             Number of times to retry query request.
-        pause : float, default 1
+        pause (float): default 1
             Time, in seconds, of the pause between retries.
-        session : Session, default None
+        session (Session): default None
             requests.sessions.Session instance to be used
         chunksize:
-        sort_index: str, 默认值：asc
-            数据按照索引的排序方式。
+        sort_index (str): 数据按照索引的排序方式。默认值：asc
                 * asc: 升序
                 * desc: 降序
-        fillna: str, 默认值：ffill
-            参考 `DataFrame.fillna` 的参数 `method`。
-        reader: class, 默认值：..class:`finance_datareader_py.gtimg.daily.GtimgDailyReader`
-            读取数据使用的读取器。
-        type: str, 默认值：None。
-            是否读取复权数据。
+        fillna (str): 默认值：ffill
+            参考 :meth:`pandas.DataFrame.fillna` 的参数 ``method``。
+        reader (class): 读取数据使用的读取器。
+            默认值：:class:`finance_datareader_py.gtimg.daily.GtimgDailyReader`
+        type (str): 是否读取复权数据。默认值：None。
                 * None: 不复权
                 * 'qfq': 前复权
                 * 'hfq': 后复权
-        columns: List[str], 默认值：``['Close']``
-            从读取器 ``reader`` 中读取的列集合。
+        columns (List[str]): 从读取器 ``reader`` 中读取的列集合。默认值：['Close']
             *需要保证集合中的所有列均包含在读取器的返回列中*
-        zs_symbol: str, 默认值：``sh000001``
-            首先读取的代码（指数代码）的编号。默认以 ``上证指数`` 为标准。
+        zs_symbol (str): 首先读取的基准代码（一般可以为指数代码）的编号。默认值：``sh000001``
             *此处根据业务需要，不一定需要传入指数代码*
-        drop_zs_columns: bool, 默认值：True
-            是否在最终结果回传前丢弃从 ``zs_symbol`` 读取的相关列。
+        drop_zs_columns (bool): 是否在最终结果回传前丢弃从 ``zs_symbol`` 读取的相关列。默认值：True
 
     """
 
@@ -149,44 +143,41 @@ class DailyReader(_AbsDailyReader):
                  chunksize=25, sort_index='asc', fillna='ffill',
                  reader=GtimgDailyReader, type=None, columns=['Close'],
                  zs_symbol='sh000001', drop_zs_columns=True):
-        """自动按照参数 ``zs_symbol`` 指定的代码（指数代码）的每日成交汇总数据 附加 参数 ``symbols`` 指定的股票代码的每日成交汇总数据。
-        并自动按照参数 ``fillna`` 的设定填充 NaN 数据。
+        """自动按照参数 ``zs_symbol`` 指定的基准代码（一般可以为指数代码）的每日成交
+        汇总数据 附加 参数 ``symbols`` 指定的股票代码的每日成交汇总数据。
+        并自动按照参数 ``fillna`` 的设定填充 :attr:`numpy.NaN` 数据。
 
         Args:
-            symbols: {str, List[str],int, List[int]}
+            symbols ({str, List[str],int, List[int]}):
                 待查询的股票代码或集合。
-            start: datetime.date
-                开始日期。默认值：2004-10-08
-            end: datetime.date
-                结束日期。,默认值：当前日期的 **前一天** 。
-            retry_count: int, default 3
+            start (datetime.date): 开始日期。默认值：2004-10-08
+            end (datetime.date): 结束日期。默认值：当前日期的 **前一天** 。
+            retry_count (int): default 3
                 Number of times to retry query request.
-            pause : float, default 1
+            pause (float): default 1
                 Time, in seconds, of the pause between retries.
-            session : Session, default None
+            session (Session): default None
                 requests.sessions.Session instance to be used
             chunksize:
-            sort_index: str, 默认值：asc
-                数据按照索引的排序方式。
+            sort_index (str): 数据按照索引的排序方式。默认值：asc
                     * asc: 升序
                     * desc: 降序
-            fillna: str, 默认值：ffill
-                参考 `DataFrame.fillna` 的参数 `method`。
-            reader: class, 默认值：..class:`finance_datareader_py.gtimg.daily.GtimgDailyReader`
-                读取数据使用的读取器。
-            type: str, 默认值：None。
-                是否读取复权数据。
+            fillna (str): 默认值：ffill
+                参考 :meth:`pandas.DataFrame.fillna` 的参数 ``method``。
+            reader (class): 读取数据使用的读取器。
+                默认值：:class:`finance_datareader_py.gtimg.daily.GtimgDailyReader`
+            type (str): 是否读取复权数据。默认值：None。
                     * None: 不复权
                     * 'qfq': 前复权
                     * 'hfq': 后复权
-            columns: List[str], 默认值：``['Close']``
-                从读取器 ``reader`` 中读取的列集合。
+            columns (List[str]): 从读取器 ``reader`` 中读取的列集合。默认值：['Close']
                 *需要保证集合中的所有列均包含在读取器的返回列中*
-            zs_symbol: str, 默认值：``sh000001``
-                首先读取的代码（指数代码）的编号。默认以 ``上证指数`` 为标准。
+            zs_symbol (str): 首先读取的基准代码（一般可以为指数代码）的编号。默认值：``sh000001``
                 *此处根据业务需要，不一定需要传入指数代码*
-            drop_zs_columns: bool, 默认值：True
-                是否在最终结果回传前丢弃从 ``zs_symbol`` 读取的相关列。
+            drop_zs_columns (bool): 是否在最终结果回传前丢弃从 ``zs_symbol`` 读取的相关列。默认值：True
+
+        Returns (:class:`pandas.DataFrame`):
+
 
         Raises:
             ValueError: 当 ``symbols`` 或 ``reader`` 或 ``columns`` 或 ``zs_symbol`` 为
@@ -217,8 +208,9 @@ class DailyReader(_AbsDailyReader):
     def read(self) -> pd.DataFrame:
         """读取数据
 
-        Returns:
-            无数据时返回空白的 ``pandas.DataFrame`` 。参见 ``pandas.DataFrame.empty``。
+        Returns (:class:`pandas.DataFrame`):
+            无数据时返回空白的 :class:`pandas.DataFrame` 。
+            参见 :attr:`pandas.DataFrame.empty`。
 
         Raises:
             RuntimeError: 当根据 `zs_symbol` 无法正确读取到数据时。
