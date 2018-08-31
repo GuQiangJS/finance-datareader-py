@@ -2,6 +2,7 @@
 # Licensed under Apache License 2.0 <see LICENSE file>
 
 import datetime
+import json
 import re
 import time
 
@@ -10,6 +11,7 @@ import pandas as pd
 from bs4 import BeautifulSoup as bs
 from pandas_datareader.base import _BaseReader
 
+import finance_datareader_py
 from finance_datareader_py import _AbsDailyReader
 
 _dividends_cache = None
@@ -87,6 +89,56 @@ class SinaQuoteReader(_AbsDailyReader):
         s = line.split(',')
         dt = datetime.datetime.strptime(s[-3] + s[-2], '%Y-%m-%d%H:%M:%S')
         return pd.DataFrame({'price': [float(s[3])], 'datetime': [dt]})
+
+
+def get_cpi() -> pd.DataFrame:
+    """ 从 Sina 获取 CPI 居民消费价格指数。
+
+    Returns: 返回获取到的数据表。数据从1990.1开始。
+
+    Examples:
+
+        .. code-block:: python
+
+            >>> from finance_datareader_py.sina import get_cpi
+            >>> print(get_cpi().tail())
+
+                     价格指数
+            统计月份
+            1990.5  102.7
+            1990.4  103.2
+            1990.3  103.4
+            1990.2  104.4
+            1990.1  104.3
+
+    """
+    # http://finance.sina.com.cn/mac/#price-0-0-31-2
+
+    c = finance_datareader_py._random()
+    start = 0
+    num = (datetime.date.today().year - 1990) * 12
+
+    url = 'http://money.finance.sina.com.cn/mac/api/jsonp.php' \
+          '/SINAREMOTECALLCALLBACK{' \
+          'c}/MacPage_Service.get_pagedata?cate=price&event=0&from={' \
+          'start}&num={num}&condition=&_={c}'.format(c=c, start=start, num=num)
+    reader = _BaseReader(url)
+    try:
+        rep = reader._get_response(url)
+        if rep:
+            m = re.compile('count:"\d+",data:(.*)}').search(rep.text)
+            if m:
+                df = pd.DataFrame(json.loads(m.group(1)),
+                                  columns=['统计月份', '价格指数'])
+                # df['统计月份'] = pd.to_datetime(df['统计月份'], format='%Y.%m')
+                df = df.set_index('统计月份')
+                df = df.astype(np.float64)
+                return df
+    except Exception:
+        raise
+    finally:
+        reader.close()
+    return None
 
 
 def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):

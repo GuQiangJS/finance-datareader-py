@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 
 from finance_datareader_py.sina import SinaQuoteReader
+from finance_datareader_py.sina import get_cpi
 from finance_datareader_py.sina import get_dividends
 
 
@@ -71,6 +72,22 @@ class sina_TestCase(unittest.TestCase):
                 else:
                     self.assertEqual(df[col_name].dtype, np.float64,
                                      msg=col_name)
+
+    def test_get_cpi(self):
+        df = get_cpi()
+        print(df.tail())
+        print(df)
+        c = (datetime.date.today().year - 1 - 1990) * 12 + \
+            datetime.date.today().month
+        print('{0}>{1}'.format(len(df.index), c))
+        self.assertTrue(len(df.index) > c)
+        self.assertFalse(df.empty)
+        for i in range(2016, 2017):
+            for j in range(1, 12):
+                v = df.loc['{0}.{1}'.format(i, j)]['价格指数']
+                self.assertIsInstance(v, np.float64)
+                self.assertTrue(v)
+                print(v)
 
 
 class SinaQuoteReader_TestCase(unittest.TestCase):
