@@ -1,5 +1,8 @@
 Python 金融数据读取器
-=====================
+==========================================
+
+.. image:: https://badge.fury.io/py/finance-datareader-py.svg
+    :target: https://badge.fury.io/py/finance-datareader-py
 
 .. image:: https://api.travis-ci.org/GuQiangJS/finance-datareader-py.svg?branch=master
     :target: https://travis-ci.org/GuQiangJS/finance-datareader-py
@@ -12,7 +15,7 @@ Python 金融数据读取器
 基于 ``pandas-datareader`` 开发，用来读取 上证、深证（股票列表、每日成交汇总）
 
 依赖
-~~~~~
+~~~~~~~~~~
 
 使用 finance-datareader-py 依赖于以下包：
 
@@ -27,29 +30,29 @@ Python 金融数据读取器
 * sphinxcontrib-napoleon
 
 快速安装
-~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 安装发布版本
-------------
+------------------------
 
 .. code-block:: shell
 
    $ pip install finance-datareader-py
 
 安装开发版本
-------------
+------------------------
 
 .. code-block:: shell
 
    $ pip install git+https://github.com/GuQiangJS/finance-datareader-py.git
 
 文档
-~~~~
+~~~~~~~~
 
 `开发文档 <https://guqiangjs.github.io/finance-datareader-py/devel/>`__
 
 使用示例
-~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 * 一次获取多支股票的收盘价。并自动填充停牌数据。
 
