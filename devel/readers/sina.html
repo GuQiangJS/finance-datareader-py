@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sina &mdash; finance-datareader-py 0.2.5+6.g0a6cc18 文档</title>
+  <title>Sina &mdash; finance-datareader-py 0.2.5+8.gc1bd053 文档</title>
   
 
   
@@ -169,6 +169,26 @@
 <p class="last">频繁从Sina读取数据，可能会被暂时封禁IP。建议至少间隔 5 秒。</p>
 </div>
 <span class="target" id="module-finance_datareader_py.sina"></span><dl class="function">
+<dt id="finance_datareader_py.sina.get_cpi">
+<code class="descclassname">finance_datareader_py.sina.</code><code class="descname">get_cpi</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#finance_datareader_py.sina.get_cpi" title="永久链接至目标">¶</a></dt>
+<dd><p>从 Sina 获取 CPI 居民消费价格指数。</p>
+<p>Returns: 返回获取到的数据表。数据从1990.1开始。</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sina</span> <span class="kn">import</span> <span class="n">get_cpi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">get_cpi</span><span class="p">()</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+
+<span class="go">         价格指数</span>
+<span class="go">统计月份</span>
+<span class="go">1990.5  102.7</span>
+<span class="go">1990.4  103.2</span>
+<span class="go">1990.3  103.4</span>
+<span class="go">1990.2  104.4</span>
+<span class="go">1990.1  104.3</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
 <dt id="finance_datareader_py.sina.get_dividends">
 <code class="descclassname">finance_datareader_py.sina.</code><code class="descname">get_dividends</code><span class="sig-paren">(</span><em>symbol: str</em>, <em>retry_count=3</em>, <em>timeout=30</em>, <em>pause=None</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.sina.get_dividends" title="永久链接至目标">¶</a></dt>
 <dd><p>从新浪获取分红配送数据</p>
@@ -221,21 +241,21 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="finance_datareader_py.sina.get_cpi">
-<code class="descclassname">finance_datareader_py.sina.</code><code class="descname">get_cpi</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#finance_datareader_py.sina.get_cpi" title="永久链接至目标">¶</a></dt>
-<dd><p>从 Sina 获取 CPI 居民消费价格指数。</p>
-<p>Returns: 返回获取到的数据表。数据从1990.1开始。</p>
+<dt id="finance_datareader_py.sina.get_gold_and_foreign_exchange_reserves">
+<code class="descclassname">finance_datareader_py.sina.</code><code class="descname">get_gold_and_foreign_exchange_reserves</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.sina.get_gold_and_foreign_exchange_reserves" title="永久链接至目标">¶</a></dt>
+<dd><p>从 Sina 获取 央行黄金和外汇储备。</p>
+<p>Returns: 返回获取到的数据表。数据从1978开始。</p>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sina</span> <span class="kn">import</span> <span class="n">get_cpi</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">get_cpi</span><span class="p">()</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sina</span> <span class="kn">import</span> <span class="n">get_gold_and_foreign_exchange_reserves</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
 
-<span class="go">         价格指数</span>
-<span class="go">统计月份</span>
-<span class="go">1990.5  102.7</span>
-<span class="go">1990.4  103.2</span>
-<span class="go">1990.3  103.4</span>
-<span class="go">1990.2  104.4</span>
-<span class="go">1990.1  104.3</span>
+<span class="go">         黄金储备(万盎司)  国家外汇储备(亿美元)</span>
+<span class="go">统计时间</span>
+<span class="go">1982.12     1267.0        69.86</span>
+<span class="go">1981.12     1267.0        27.08</span>
+<span class="go">1980.12     1280.0       -12.96</span>
+<span class="go">1979.12     1280.0         8.40</span>
+<span class="go">1978.12     1280.0         1.67</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -246,7 +266,8 @@
 <dd><p>从 Sina 获取 中国货币供应量数据。</p>
 <p>Returns: 返回获取到的数据表。数据从1978.1开始。</p>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">get_measure_of_money_supply</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sina</span> <span class="kn">import</span> <span class="n">get_measure_of_money_supply</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">get_measure_of_money_supply</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
@@ -258,6 +279,46 @@
 <span class="go">       &#39;活期存款同比增长(%)&#39;, &#39;准货币(亿元)&#39;, &#39;准货币同比增长(%)&#39;, &#39;定期存款(亿元)&#39;, &#39;定期存款同比增长(%)&#39;,</span>
 <span class="go">       &#39;储蓄存款(亿元)&#39;, &#39;储蓄存款同比增长(%)&#39;, &#39;其他存款(亿元)&#39;, &#39;其他存款同比增长(%)&#39;],</span>
 <span class="go">      dtype=&#39;object&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="finance_datareader_py.sina.get_ppi">
+<code class="descclassname">finance_datareader_py.sina.</code><code class="descname">get_ppi</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#finance_datareader_py.sina.get_ppi" title="永久链接至目标">¶</a></dt>
+<dd><p>从 Sina 获取 PPI工业品出厂价格指数。</p>
+<p>Returns: 返回获取到的数据表。数据从1993.1开始。</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sina</span> <span class="kn">import</span> <span class="n">get_ppi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="go">104.6</span>
+<span class="go">Index([&#39;工业品出厂价格指数&#39;, &#39;生产资料价格指数&#39;, &#39;采掘工业价格指数&#39;, &#39;原材料工业价格指数&#39;, &#39;加工工业价格指数&#39;,</span>
+<span class="go">       &#39;生活资料价格指数&#39;, &#39;食品类价格指数&#39;, &#39;衣着类价格指数&#39;, &#39;一般日用品价格指数&#39;, &#39;耐用消费品价格指数&#39;],</span>
+<span class="go">      dtype=&#39;object&#39;)</span>
+<span class="go">1993.1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="finance_datareader_py.sina.get_required_reserve_ratio">
+<code class="descclassname">finance_datareader_py.sina.</code><code class="descname">get_required_reserve_ratio</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.sina.get_required_reserve_ratio" title="永久链接至目标">¶</a></dt>
+<dd><p>从 Sina 获取 存款准备金率。</p>
+<p>Returns: 返回获取到的数据表。数据从1985开始。</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sina</span> <span class="kn">import</span> <span class="n">get_required_reserve_ratio</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+
+<span class="go">            调整前存款准备金率(%)  调整后存款准备金率(%)  调整幅度(%)</span>
+<span class="go">变动日期</span>
+<span class="go">1999-11-21           8.0           6.0     -2.0</span>
+<span class="go">1998-03-21          13.0           8.0     -5.0</span>
+<span class="go">1988-09-30          12.0          13.0      1.0</span>
+<span class="go">1987-12-31          10.0          12.0      2.0</span>
+<span class="go">1985-12-31           NaN          10.0      NaN</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -419,7 +480,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.2.5+6.g0a6cc18',
+            VERSION:'0.2.5+8.gc1bd053',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
