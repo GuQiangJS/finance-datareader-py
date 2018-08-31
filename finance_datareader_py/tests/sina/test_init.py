@@ -10,7 +10,10 @@ import pandas as pd
 from finance_datareader_py.sina import SinaQuoteReader
 from finance_datareader_py.sina import get_cpi
 from finance_datareader_py.sina import get_dividends
+from finance_datareader_py.sina import get_gold_and_foreign_exchange_reserves
 from finance_datareader_py.sina import get_measure_of_money_supply
+from finance_datareader_py.sina import get_ppi
+from finance_datareader_py.sina import get_required_reserve_ratio
 
 
 class sina_TestCase(unittest.TestCase):
@@ -76,6 +79,7 @@ class sina_TestCase(unittest.TestCase):
 
     def test_get_cpi(self):
         df = get_cpi()
+        self.assertEqual(df.index[-1], '1990.1')
         print(df.tail())
         print(df)
         c = (datetime.date.today().year - 1 - 1990) * 12 + \
@@ -98,6 +102,29 @@ class sina_TestCase(unittest.TestCase):
         c = (datetime.date.today().year - 1 - 1978) * 12 + \
             datetime.date.today().month
         print('{0}>{1}'.format(len(df.index), c))
+        self.assertEqual(df.index[-1], '1978.1')
+        self.assertFalse(df.empty)
+
+    def test_get_ppi(self):
+        df = get_ppi()
+        print(df.iloc[0][df.columns[0]])
+        print(df.columns)
+        print(df.index[-1])
+        c = (datetime.date.today().year - 1 - 1978) * 12 + \
+            datetime.date.today().month
+        print('{0}>{1}'.format(len(df.index), c))
+        self.assertEqual(df.index[-1], '1993.1')
+        self.assertFalse(df.empty)
+
+    def test_get_required_reserve_ratio(self):
+        df = get_required_reserve_ratio()
+        print(df.tail())
+        self.assertFalse(df.empty)
+
+    def test_get_gold_and_foreign_exchange_reserves(self):
+        df = get_gold_and_foreign_exchange_reserves()
+        print(df.tail())
+        print(df)
         self.assertFalse(df.empty)
 
 

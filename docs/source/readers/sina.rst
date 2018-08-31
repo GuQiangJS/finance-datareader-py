@@ -7,9 +7,12 @@ Sina
 
 .. py:module:: finance_datareader_py.sina
 
-.. autofunction:: get_dividends
 .. autofunction:: get_cpi
+.. autofunction:: get_dividends
+.. autofunction:: get_gold_and_foreign_exchange_reserves
 .. autofunction:: get_measure_of_money_supply
+.. autofunction:: get_ppi
+.. autofunction:: get_required_reserve_ratio
 
 .. autoclass:: SinaQuoteReader
    :members:
