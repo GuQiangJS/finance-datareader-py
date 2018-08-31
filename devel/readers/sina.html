@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sina &mdash; finance-datareader-py 0.2.5+5.g8366acc 文档</title>
+  <title>Sina &mdash; finance-datareader-py 0.2.5+6.g0a6cc18 文档</title>
   
 
   
@@ -220,6 +220,48 @@
 </div>
 </dd></dl>
 
+<dl class="function">
+<dt id="finance_datareader_py.sina.get_cpi">
+<code class="descclassname">finance_datareader_py.sina.</code><code class="descname">get_cpi</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#finance_datareader_py.sina.get_cpi" title="永久链接至目标">¶</a></dt>
+<dd><p>从 Sina 获取 CPI 居民消费价格指数。</p>
+<p>Returns: 返回获取到的数据表。数据从1990.1开始。</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">finance_datareader_py.sina</span> <span class="kn">import</span> <span class="n">get_cpi</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">get_cpi</span><span class="p">()</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+
+<span class="go">         价格指数</span>
+<span class="go">统计月份</span>
+<span class="go">1990.5  102.7</span>
+<span class="go">1990.4  103.2</span>
+<span class="go">1990.3  103.4</span>
+<span class="go">1990.2  104.4</span>
+<span class="go">1990.1  104.3</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="finance_datareader_py.sina.get_measure_of_money_supply">
+<code class="descclassname">finance_datareader_py.sina.</code><code class="descname">get_measure_of_money_supply</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.sina.get_measure_of_money_supply" title="永久链接至目标">¶</a></dt>
+<dd><p>从 Sina 获取 中国货币供应量数据。</p>
+<p>Returns: 返回获取到的数据表。数据从1978.1开始。</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">get_measure_of_money_supply</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="go">1776196.11</span>
+<span class="go">1978.8</span>
+<span class="go">Index([&#39;货币和准货币（广义货币M2）(亿元)&#39;, &#39;货币和准货币（广义货币M2）同比增长(%)&#39;, &#39;货币(狭义货币M1)(亿元)&#39;,</span>
+<span class="go">       &#39;货币(狭义货币M1)同比增长(%)&#39;, &#39;流通中现金(M0)(亿元)&#39;, &#39;流通中现金(M0)同比增长(%)&#39;, &#39;活期存款(亿元)&#39;,</span>
+<span class="go">       &#39;活期存款同比增长(%)&#39;, &#39;准货币(亿元)&#39;, &#39;准货币同比增长(%)&#39;, &#39;定期存款(亿元)&#39;, &#39;定期存款同比增长(%)&#39;,</span>
+<span class="go">       &#39;储蓄存款(亿元)&#39;, &#39;储蓄存款同比增长(%)&#39;, &#39;其他存款(亿元)&#39;, &#39;其他存款同比增长(%)&#39;],</span>
+<span class="go">      dtype=&#39;object&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="class">
 <dt id="finance_datareader_py.sina.SinaQuoteReader">
 <em class="property">class </em><code class="descclassname">finance_datareader_py.sina.</code><code class="descname">SinaQuoteReader</code><span class="sig-paren">(</span><em>symbols=None</em>, <em>start=None</em>, <em>end=None</em>, <em>retry_count=3</em>, <em>pause=1</em>, <em>session=None</em>, <em>chunksize=25</em><span class="sig-paren">)</span><a class="headerlink" href="#finance_datareader_py.sina.SinaQuoteReader" title="永久链接至目标">¶</a></dt>
@@ -377,7 +419,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.2.5+5.g8366acc',
+            VERSION:'0.2.5+6.g0a6cc18',
             LANGUAGE:'zh_CN',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
