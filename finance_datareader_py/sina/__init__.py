@@ -112,33 +112,91 @@ def get_cpi() -> pd.DataFrame:
             1990.1  104.3
 
     """
-    # http://finance.sina.com.cn/mac/#price-0-0-31-2
 
     c = finance_datareader_py._random()
     start = 0
-    num = (datetime.date.today().year - 1990) * 12
+    num = (datetime.date.today().year + 1 - 1990) * 12
 
     url = 'http://money.finance.sina.com.cn/mac/api/jsonp.php' \
           '/SINAREMOTECALLCALLBACK{' \
           'c}/MacPage_Service.get_pagedata?cate=price&event=0&from={' \
           'start}&num={num}&condition=&_={c}'.format(c=c, start=start, num=num)
+    return _get_mac_price(url, columns=['统计月份', '价格指数'])[0] \
+        .set_index('统计月份') \
+        .astype(np.float64)
+
+
+def _get_mac_price(url, columns=None, index=None, dtype=None):
+    """从新浪 中国宏观经济数据页 分析数据
+    # http://finance.sina.com.cn/mac/#price-0-0-31-2
+
+    Args:
+        url:
+        columns:
+        index:
+
+    Returns: 返回 [数据表,url源码]
+
+    """
     reader = _BaseReader(url)
     try:
         rep = reader._get_response(url)
         if rep:
-            m = re.compile('count:"\d+",data:(.*)}').search(rep.text)
+            txt = rep.text
+            m = re.compile('count:"\d+",data:(.*)}').search(txt)
             if m:
                 df = pd.DataFrame(json.loads(m.group(1)),
-                                  columns=['统计月份', '价格指数'])
-                # df['统计月份'] = pd.to_datetime(df['统计月份'], format='%Y.%m')
-                df = df.set_index('统计月份')
-                df = df.astype(np.float64)
-                return df
+                                  columns=columns, index=index, dtype=dtype)
+                return df, txt
     except Exception:
         raise
     finally:
         reader.close()
-    return None
+    return None, None
+
+
+def get_measure_of_money_supply():
+    """ 从 Sina 获取 中国货币供应量数据。
+
+    Returns: 返回获取到的数据表。数据从1978.1开始。
+
+    Examples:
+
+        .. code-block:: python
+
+            >>> df = get_measure_of_money_supply()
+            >>> print(df.iloc[0][df.columns[0]])
+            >>> print(df.index[-1])
+            >>> print(df.columns)
+
+            1776196.11
+            1978.8
+            Index(['货币和准货币（广义货币M2）(亿元)', '货币和准货币（广义货币M2）同比增长(%)', '货币(狭义货币M1)(亿元)',
+                   '货币(狭义货币M1)同比增长(%)', '流通中现金(M0)(亿元)', '流通中现金(M0)同比增长(%)', '活期存款(亿元)',
+                   '活期存款同比增长(%)', '准货币(亿元)', '准货币同比增长(%)', '定期存款(亿元)', '定期存款同比增长(%)',
+                   '储蓄存款(亿元)', '储蓄存款同比增长(%)', '其他存款(亿元)', '其他存款同比增长(%)'],
+                  dtype='object')
+
+    """
+    c = finance_datareader_py._random()
+    start = 0
+    num = (datetime.date.today().year + 1 - 1978) * 12
+
+    url = 'http://money.finance.sina.com.cn/mac/api/jsonp.php' \
+          '/SINAREMOTECALLCALLBACK{c}/MacPage_Service.get_pagedata' \
+          '?cate=fininfo&event=1&from={start}&num={num}&condition=&_={' \
+          'c}'.format(c=c, start=start, num=num)
+    df, txt = _get_mac_price(url)
+    title = re.compile('all:(.*),defaultItems:').search(txt).group(1)
+    columns = {}
+    index = 0
+    for t in json.loads(title):
+        columns[index] = t[1] + ('({0})'.format(t[2]) if len(t) > 2 else '')
+        index = index + 1
+    df = df.rename(columns=columns)
+    df = df.set_index('统计时间')
+    df = df.astype(np.float64)
+    return df
 
 
 def get_dividends(symbol: str, retry_count=3, timeout=30, pause=None):

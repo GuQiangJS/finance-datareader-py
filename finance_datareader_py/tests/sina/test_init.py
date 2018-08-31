@@ -10,6 +10,7 @@ import pandas as pd
 from finance_datareader_py.sina import SinaQuoteReader
 from finance_datareader_py.sina import get_cpi
 from finance_datareader_py.sina import get_dividends
+from finance_datareader_py.sina import get_measure_of_money_supply
 
 
 class sina_TestCase(unittest.TestCase):
@@ -88,6 +89,16 @@ class sina_TestCase(unittest.TestCase):
                 self.assertIsInstance(v, np.float64)
                 self.assertTrue(v)
                 print(v)
+
+    def test_get_measure_of_money_supply(self):
+        df = get_measure_of_money_supply()
+        print(df.iloc[0][df.columns[0]])
+        print(df.columns)
+        print(df.index[-1])
+        c = (datetime.date.today().year - 1 - 1978) * 12 + \
+            datetime.date.today().month
+        print('{0}>{1}'.format(len(df.index), c))
+        self.assertFalse(df.empty)
 
 
 class SinaQuoteReader_TestCase(unittest.TestCase):

@@ -8,6 +8,8 @@ Sina
 .. py:module:: finance_datareader_py.sina
 
 .. autofunction:: get_dividends
+.. autofunction:: get_cpi
+.. autofunction:: get_measure_of_money_supply
 
 .. autoclass:: SinaQuoteReader
    :members:
