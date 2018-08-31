@@ -143,7 +143,7 @@ def get_cpi() -> pd.DataFrame:
     return _get_mac_price(num=num, event=0, cate='price', index='统计月份')
 
 
-def _get_mac_price(num: int, event: int, cate: str, start=0, index=None, \
+def _get_mac_price(num: int, event: int, cate: str, start=0, index=None,
                    dtype=np.float64):
     """从新浪 中国宏观经济数据页 分析数据
     # http://finance.sina.com.cn/mac/#price-0-0-31-2
